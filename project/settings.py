@@ -47,10 +47,12 @@ INSTALLED_APPS = [
     # Third-party
     'debug_toolbar',
     'django_extensions',
+    'storages',
 
     # Project-specific
     'users',
     'registration',
+    'obodo',
 ]
 
 MIDDLEWARE = [
@@ -139,6 +141,13 @@ INTERNAL_IPS = [
     '127.0.0.1',
     # ...
 ]
+
+
+AWS_ACCESS_KEY_ID = 'AKIAX2HKQTJBOMQWGOFF'
+AWS_SECRET_ACCESS_KEY = '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'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_STORAGE_BUCKET_NAME = 'obodo-app'
+AWS_S3_REGION_NAME = 'us-east-2'
 
 # Configure Django App for Heroku.
 import django_heroku
