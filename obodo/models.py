@@ -22,6 +22,18 @@ TYPE_SELECTION = (
     ('Offer', 'Offer'),
 )
 
+LOCATION_CHOICES = (
+    ('Raleigh', 'Raleigh'),
+    ('Durham', 'Durham'),
+    ('Wake Forest', 'Wake Forest'),
+    ('Chapel Hill', 'Chapel Hill'),
+    ('Cary', 'Cary'),
+    ('Apex/Holly Springs', 'Apex/Holly Springs'),
+    ('Garner', 'Garner'),
+    ('Clayton', 'Clayton'),
+    ('Knightdale/Zebulon', 'Knightdale/Zebulon'),
+)
+
 class Tag(models.Model):
     tag = models.CharField(max_length=100, unique=True)
 
@@ -34,6 +46,12 @@ class Photo(models.Model):
     title = models.CharField(max_length=100)
     photo = models.FileField()
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="photos", null=True)
+
+class Profile(models.Model):
+    current_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="profiles", null=True)
+    profile_pic = models.ForeignKey(to=Photo, on_delete=models.CASCADE, related_name="profiles", null=True)
+    joined_at = models.DateField(auto_now_add=True, blank=True, null=True)
+    community = models.CharField(max_length=55, choices=LOCATION_CHOICES, default='')
 
 class RequestOfferPost(models.Model):
     member = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="posts", null=True)

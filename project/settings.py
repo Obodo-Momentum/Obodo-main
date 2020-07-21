@@ -29,6 +29,12 @@ BASE_DIR = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
 
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+DEFAULT_FILE_STORAGE = env('DEFAULT_FILE_STORAGE')
+AWS_STORAGE_BUCKET_NAME = 'obodo-app'
+AWS_S3_REGION_NAME = 'us-east-2'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -141,13 +147,6 @@ INTERNAL_IPS = [
     '127.0.0.1',
     # ...
 ]
-
-
-AWS_ACCESS_KEY_ID = 'AKIAX2HKQTJBOMQWGOFF'
-AWS_SECRET_ACCESS_KEY = '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'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_STORAGE_BUCKET_NAME = 'obodo-app'
-AWS_S3_REGION_NAME = 'us-east-2'
 
 # Configure Django App for Heroku.
 import django_heroku
