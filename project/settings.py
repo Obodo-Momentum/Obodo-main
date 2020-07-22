@@ -29,6 +29,8 @@ BASE_DIR = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
 
+MAPBOX_KEY = env('MAPBOX_KEY')
+
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 DEFAULT_FILE_STORAGE = env('DEFAULT_FILE_STORAGE')
@@ -55,6 +57,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'webpack_loader',
     'storages',
+    'mapbox_location_field',
 
     # Project-specific
     'users',

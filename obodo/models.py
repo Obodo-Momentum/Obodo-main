@@ -1,6 +1,7 @@
 from django.db import models
 from users.models import User
 import uuid
+from mapbox_location_field.models import LocationField
 
 # Create your models here.
 
@@ -40,25 +41,12 @@ class Tag(models.Model):
     def __str__(self):
         return self.tag
 
-class Photo(models.Model):
-    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    title = models.CharField(max_length=100)
-    photo = models.FileField()
-    user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="photos", null=True)
-
-class Profile(models.Model):
-    current_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="profiles", null=True)
-    profile_pic = models.ForeignKey(to=Photo, on_delete=models.CASCADE, related_name="profiles", null=True)
-    joined_at = models.DateField(auto_now_add=True, blank=True, null=True)
-    community = models.CharField(max_length=55, choices=LOCATION_CHOICES, default='')
-
 class RequestOfferPost(models.Model):
     member = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="posts", null=True)
-    post_image = models.ForeignKey(to=Photo, on_delete=models.CASCADE, related_name="posts")
+    post_image = models.ImageField(default='default.jpg')
     title = models.CharField(max_length=80, null=True, blank=True)
-    post_text = models.TextField(max_length=500, help_text="What do you need? What can you give?", null=True, blank=True)
-    # location = models.CharField()
+    post_text = models.TextField(max_length=500, null=True, blank=True)
+    location = LocationField(map_attrs={"center": [0,0], "marker_color": "blue", "track_location_button": True, "geocoder": True}, null=True, blank=True, default='')
     tags = models.ManyToManyField(to=Tag, related_name="posts")
     fulfilled = models.BooleanField(default=False)
     category = models.CharField(max_length=25, choices=CATEGORY_CHOICES)
@@ -87,9 +75,19 @@ class RequestOfferPost(models.Model):
             tags.append(tag)
         self.tags.set(tags)
 
+class Photo(models.Model):
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    title = models.CharField(max_length=100)
+    photo = models.FileField()
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="photos", null=True)
+    post = models.ForeignKey(to=RequestOfferPost, on_delete=models.CASCADE, related_name="photos", null=True)
 
-
-
+class Profile(models.Model):
+    current_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="profiles", null=True)
+    profile_pic = models.ForeignKey(to=Photo, on_delete=models.CASCADE, related_name="profiles", null=True)
+    joined_at = models.DateField(auto_now_add=True, blank=True, null=True)
+    community = models.CharField(max_length=55, choices=LOCATION_CHOICES, default='')
 
 
 

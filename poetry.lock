@@ -111,6 +111,17 @@ whitenoise = "*"
 
 [[package]]
 category = "main"
+description = "location field with MapInput widget for picking some location"
+name = "django-mapbox-location-field"
+optional = false
+python-versions = "*"
+version = "1.6.1"
+
+[package.dependencies]
+django = "*"
+
+[[package]]
+category = "main"
 description = "An extensible user-registration application for Django"
 name = "django-registration-redux"
 optional = false
@@ -274,7 +285,19 @@ version = "5.1.0"
 brotli = ["brotli"]
 
 [metadata]
+<<<<<<< HEAD
 content-hash = "7bcd14b743d0e4ba876b1d81f6225e52a678b4d72687aa05d30bfc381c8c1926"
+=======
+<<<<<<< HEAD
+content-hash = "128db4f955f924066b9bf27dda70a0010ba3ebb8e92d57eb4d3dd0c257ea79d4"
+=======
+<<<<<<< HEAD
+content-hash = "4e7c162d0fb8317dd6c7bdb006955d52e701e4f4d5bc48c6606716733f102339"
+=======
+content-hash = "7bcd14b743d0e4ba876b1d81f6225e52a678b4d72687aa05d30bfc381c8c1926"
+>>>>>>> master
+>>>>>>> master
+>>>>>>> master
 python-versions = "3.7.7"
 
 [metadata.files]
@@ -313,6 +336,9 @@ django-extensions = [
 django-heroku = [
     {file = "django-heroku-0.3.1.tar.gz", hash = "sha256:6af4bc3ae4a9b55eaad6dbe5164918982d2762661aebc9f83d9fa49f6009514e"},
     {file = "django_heroku-0.3.1-py2.py3-none-any.whl", hash = "sha256:2bc690aab89eedbe01311752320a9a12e7548e3b0ed102681acc5736a41a4762"},
+]
+django-mapbox-location-field = [
+    {file = "django-mapbox-location-field-1.6.1.tar.gz", hash = "sha256:42ca4ff9f0c23c5d98ef56a7b251b5bf083671057d611d54d94b7dfd400ca080"},
 ]
 django-registration-redux = [
     {file = "django-registration-redux-2.8.tar.gz", hash = "sha256:ed525f393c452d3f5044148131cafbf50da7bdec9f78b594450bf01ad67085d4"},
