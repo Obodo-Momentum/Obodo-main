@@ -45,6 +45,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -61,7 +62,6 @@ INSTALLED_APPS = [
 
     # Project-specific
     'users',
-    'registration',
     'obodo',
 ]
 
@@ -174,3 +174,10 @@ AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 DEFAULT_FILE_STORAGE = env('DEFAULT_FILE_STORAGE')
 AWS_STORAGE_BUCKET_NAME = 'obodo-app'
 AWS_S3_REGION_NAME = 'us-east-2'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
+
+# REGISTRATION_FORM = 'obodo.forms.MyUserCreationForm'
