@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+{% load mapbox_location_field_tags %}
+{% location_field_includes %}
+{% include_jquery %}
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Obodo</title>
+    <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
 </head>
 <body>
-    
+
+{% block content %}
+{% endblock %}
+
 </body>
 </html>
