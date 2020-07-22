@@ -49,10 +49,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    
     # Third-party
     'debug_toolbar',
     'django_extensions',
+    'webpack_loader',
     'storages',
 
     # Project-specific
@@ -89,6 +90,18 @@ TEMPLATES = [
         },
     },
 ]
+
+WEBPACK_LOADER = {
+  'DEFAULT': {
+      'CACHE': not DEBUG,
+      'BUNDLE_DIR_NAME': 'webpack_bundles/', # must end with slash
+      'STATS_FILE': (BASE_DIR / 'webpack-stats.json'),
+      'POLL_INTERVAL': 0.1,
+      'TIMEOUT': None,
+      'IGNORE': [r'.+\.hot-update.js', r'.+\.map'],
+      'LOADER_CLASS': 'webpack_loader.loader.WebpackLoader',
+  }
+}
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
@@ -152,3 +165,9 @@ INTERNAL_IPS = [
 import django_heroku
 django_heroku.settings(locals())
 del DATABASES['default']['OPTIONS']['sslmode']
+
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+DEFAULT_FILE_STORAGE = env('DEFAULT_FILE_STORAGE')
+AWS_STORAGE_BUCKET_NAME = 'obodo-app'
+AWS_S3_REGION_NAME = 'us-east-2'
