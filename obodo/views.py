@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def home(request):
-    return render(request, 'Obodo/homepage.html')
+    return render(request, 'obodo/homepage.html')
 
 def add_request_offer(request):
     if request.method == 'POST':
@@ -20,6 +20,6 @@ def add_request_offer(request):
     else:
         form = RequestOfferForm()
     
-    return render(request, 'Obodo/add_request_offer.html', {
+    return render(request, 'obodo/add_request_offer.html', {
         'form': form,
     })
