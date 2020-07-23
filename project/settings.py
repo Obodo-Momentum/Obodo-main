@@ -45,6 +45,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -61,7 +62,6 @@ INSTALLED_APPS = [
 
     # Project-specific
     'users',
-    'registration',
     'obodo',
 ]
 
@@ -169,4 +169,7 @@ import django_heroku
 django_heroku.settings(locals())
 del DATABASES['default']['OPTIONS']['sslmode']
 
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL= '/'
 ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
