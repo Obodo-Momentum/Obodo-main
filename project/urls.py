@@ -23,14 +23,6 @@ urlpatterns = [
     path('accounts/', include('registration.backends.simple.urls')),
     path('home/', obodo_views.home, name='homepage'),
     path('obodo/add_request_offer/', obodo_views.add_request_offer, name='add_request_offer'),
-
-]
-
-from django.views.generic import TemplateView
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', TemplateView.as_view(template_name='frontend/index.html')),
 ]
 
 
