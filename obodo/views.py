@@ -23,3 +23,26 @@ def add_request_offer(request):
     return render(request, 'obodo/add_request_offer.html', {
         'form': form,
     })
+
+def view_user_posts(request):
+    posts = request.user.posts.all()
+    return render(request, 'obodo/view_user_posts.html', {
+        "posts": posts,
+    })
+
+def post_detail(request, post_pk):
+    post = get_object_or_404(RequestOfferPost, pk=post_pk)
+    return render(request, "obodo/post_detail.html", {
+        "post": post,
+    })
+
+def delete_post(request, post_pk):
+    post = get_object_or_404(request.user.posts, pk=post_pk)
+
+    if request.method == 'POST':
+        post.delete()
+        return redirect(to='view_user_posts')
+    
+    return render(request, 'obodo/delete_post.html', {
+        "post": post,
+    })

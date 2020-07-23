@@ -169,7 +169,15 @@ import django_heroku
 django_heroku.settings(locals())
 del DATABASES['default']['OPTIONS']['sslmode']
 
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+DEFAULT_FILE_STORAGE = env('DEFAULT_FILE_STORAGE')
+AWS_STORAGE_BUCKET_NAME = 'obodo-app'
+AWS_S3_REGION_NAME = 'us-east-2'
+
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL= '/'
+LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
+
+# REGISTRATION_FORM = 'obodo.forms.MyUserCreationForm'
