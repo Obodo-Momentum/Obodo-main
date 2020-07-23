@@ -9,6 +9,8 @@
 
 <body>
   <div id="react-app"></div>
+  <!-- this template tag will result in a script tag containing json data with the id "team-info" -->
+  {{ data_from_view_context|json_script:"team-info" }}
   <!-- Webpack rendered JS -->
   {% render_bundle 'main' 'js' %}
 </body>

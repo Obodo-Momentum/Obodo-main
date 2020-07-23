@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.urls import include, path
 from django.views.generic import TemplateView
+from obodo import views as obodo_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,7 +27,7 @@ if settings.DEBUG:
     import debug_toolbar
     urlpatterns = [
         path('__debug__/', include(debug_toolbar.urls)),
-        path('', TemplateView.as_view(template_name='frontend/index.html')),
+        path('', obodo_views.home, name="home" ),
         # For django versions before 2.0:
         # url(r'^__debug__/', include(debug_toolbar.urls)),
     ] + urlpatterns
