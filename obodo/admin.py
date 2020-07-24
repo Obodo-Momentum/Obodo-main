@@ -6,4 +6,4 @@ from .models import RequestOfferPost, Tag, Photo, Profile
 admin.site.register(RequestOfferPost)
 admin.site.register(Tag)
 admin.site.register(Photo)
-admin.site.register(Profile)
+# admin.site.register(Profile)
