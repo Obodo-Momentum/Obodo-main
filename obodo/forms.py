@@ -22,7 +22,7 @@ from .widgets import MapInput
 #         return super().to_python(reverse_tuple_string(value))
 
 class RequestOfferForm(forms.ModelForm):
-    tag_names = forms.CharField(label="Tags", help_text="Enter tags separated by spaces.", widget=forms.TextInput)
+    tag_names = forms.CharField(label="Tags", help_text="Enter tags separated by spaces.", widget=forms.TextInput(attrs={"class":"form-control"}))
     # location = LocationField()
     class Meta:
         model = RequestOfferPost
@@ -38,9 +38,13 @@ class RequestOfferForm(forms.ModelForm):
             'location',
         ]
         widgets = {
-            'post_text' : forms.Textarea(),
-            'timeline_start' : forms.DateInput(),
-            'timeline_end' : forms.DateInput(),
+            'title' : forms.TextInput(attrs={"class":"form-control"}),
+            'post_text' : forms.Textarea(attrs={"class":"form-control"}),
+            'category' : forms.Select(attrs={"class":"form-control"}),
+            'request_or_offer' : forms.Select(attrs={"class":"form-control"}),
+            'post_image' : forms.FileInput(attrs={"class":"form-control-file"}),
+            'timeline_start' : forms.DateInput(attrs={"class":"form-control"}),
+            'timeline_end' : forms.DateInput(attrs={"class":"form-control"}),
         }
 
 class ProfileForm(forms.ModelForm):
