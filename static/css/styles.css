@@ -1,4 +1,9 @@
 .banner {
-  border: solid 5px black;
+  border: solid .50rem black;
   width: 100%;
+}
+
+.login {
+  border: 3px solid black;
+  
 }
