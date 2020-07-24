@@ -1,7 +1,7 @@
 from django import forms
 from .models import Tag, RequestOfferPost, Profile
 from .widgets import MapInput
-from django.contrib.auth.forms import UserCreationForm
+
 
 # def reverse_tuple_string(location_string):
 #     if location_string == "":
@@ -47,11 +47,11 @@ class RequestOfferForm(forms.ModelForm):
             'timeline_end' : forms.DateInput(attrs={"class":"form-control"}),
         }
 
-class MyUserCreationForm(UserCreationForm):
-
-    class Meta(UserCreationForm):
+class ProfileForm(forms.ModelForm):
+    profile_pic = forms.FileField(label='Upload Your Photo')
+    class Meta:
         model = Profile
-        fields = (
+        fields = [
             'profile_pic',
             'community',
-        )
+        ]

@@ -20,8 +20,17 @@ location_field_includes %} {% load render_bundle from webpack_loader %} {% load 
         </div>
     </div>
 
+<<<<<<< HEAD
+<div>
+    <form class='' action="{% url 'add_request_offer' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div>
+            <button class='' type="submit">Submit</button>
+=======
     <div class="col-6">
         <div id='preview' >
+>>>>>>> master
         </div>
     </div>
 </div>

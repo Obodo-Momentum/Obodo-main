@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import RequestOfferPost, Tag
+from .models import RequestOfferPost, Tag, Profile
 from users.models import User
-from .forms import RequestOfferForm
+from .forms import RequestOfferForm, ProfileForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -11,10 +11,11 @@ def home(request):
 
 def add_request_offer(request):
     if request.method == 'POST':
-        form = RequestOfferForm(data=request.POST)
+        form = RequestOfferForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
-            post.user = request.user
+            post.image = request.FILES
+            post.member = request.user
             post.save()
             return redirect(to='homepage')
     else:
@@ -28,6 +29,12 @@ def view_user_posts(request):
     posts = request.user.posts.all()
     return render(request, 'obodo/view_user_posts.html', {
         "posts": posts,
+    })
+
+def view_all_posts(request):
+    posts = RequestOfferPost.objects.all()
+    return render(request, 'obodo/view_all_posts.html', {
+        "posts": posts
     })
 
 def post_detail(request, post_pk):
@@ -45,4 +52,40 @@ def delete_post(request, post_pk):
     
     return render(request, 'obodo/delete_post.html', {
         "post": post,
+    })
+
+def add_profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = Profile(profile_pic = request.FILES['profile_pic'])
+            profile.current_user = request.user
+            profile.save()
+            return redirect(to='view_user_profile', profile_pk=profile.pk)
+    else:
+        form = ProfileForm()
+    
+    return render(request, 'obodo/add_profile.html', {
+        "form": form
+    })
+
+def view_user_profile(request, profile_pk):
+    profile = get_object_or_404(Profile, pk=profile_pk)
+    return render(request, "obodo/view_user_profile.html", {
+        "profile": profile
+    })
+
+def edit_user_profile(request, profile_pk):
+    profile = get_object_or_404(request.user.profiles, pk=profile_pk)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect(to='view_user_profile', profile_pk=profile.pk)
+    else:
+        form = ProfileForm()
+    
+    return render(request, "obodo/edit_user_profile.html", {
+        "form": form,
+        "profile": profile,
     })
