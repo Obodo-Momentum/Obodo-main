@@ -8,7 +8,7 @@
 <h1>Add Your Request / Add Your Offering</h1>
 
 <div>
-    <form class='' action="{% url 'add_request_offer' %}" method="POST">
+    <form class='' action="{% url 'add_request_offer' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <div>

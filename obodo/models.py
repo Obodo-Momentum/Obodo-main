@@ -81,11 +81,11 @@ class Photo(models.Model):
     title = models.CharField(max_length=100)
     photo = models.FileField()
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="photos", null=True)
-    post = models.ForeignKey(to=RequestOfferPost, on_delete=models.CASCADE, related_name="photos", null=True)
+
 
 class Profile(models.Model):
     current_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="profiles", null=True)
-    profile_pic = models.ForeignKey(to=Photo, on_delete=models.CASCADE, related_name="profiles", null=True)
+    profile_pic = models.ImageField(default='default.jpg')
     joined_at = models.DateField(auto_now_add=True, blank=True, null=True)
     community = models.CharField(max_length=55, choices=LOCATION_CHOICES, default='')
 
