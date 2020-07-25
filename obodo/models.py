@@ -8,9 +8,8 @@ from mapbox_location_field.models import LocationField
 
 CATEGORY_CHOICES = (
     ('kids', 'kids'),
-    ('yard/garden', 'yard/garden'),
-    ('odd job', 'odd job'),
-    ('skilled labor', 'skilled labor'),
+    ('outdoors', 'outdoors'),
+    ('services', 'services'),
     ('food', 'food'),
     ('clothing', 'clothing'),
     ('homegoods', 'homegoods'),
