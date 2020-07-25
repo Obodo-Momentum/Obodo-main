@@ -1,7 +1,10 @@
 from django import forms
 from .models import Tag, RequestOfferPost, Profile
 from .widgets import MapInput
-
+# from .widgets import EmailInput
+from users.models import User
+from django.contrib.auth.forms import UserCreationForm
+from registration.forms import RegistrationForm
 
 # def reverse_tuple_string(location_string):
 #     if location_string == "":
@@ -55,3 +58,43 @@ class ProfileForm(forms.ModelForm):
             'profile_pic',
             'community',
         ]
+
+# class CommentForm(forms.ModelForm):
+
+#     class Meta:
+#         model = Comment
+#         fields = [
+#             'comment_text',
+#         ]
+
+class RegistrationForm(UserCreationForm):
+    """
+    Form for registering a new user account.
+    Validates that the requested username is not already in use, and
+    requires the password to be entered twice to catch typos.
+    Subclasses should feel free to add any additional validation they
+    need, but should avoid defining a ``save()`` method -- the actual
+    saving of collected user data is delegated to the active
+    registration backend.
+    """
+    required_css_class = 'required'
+
+    
+
+    class Meta:
+        model = User
+        fields = [
+            'email',
+            'username',
+            'password1',
+            'password2',
+            'community',
+            ]
+
+        widgets = {
+            'username' : forms.TextInput(attrs={'class':'form-control'}),
+            'email' : forms.TextInput(attrs={'class':'form-control'}),
+            'password1' : forms.PasswordInput(attrs={'class':'form-control'}),
+            'password2' : forms.PasswordInput(attrs={'class':'form-control'}),
+            'community' : forms.Select(attrs={'class':'form-control'}),
+        }

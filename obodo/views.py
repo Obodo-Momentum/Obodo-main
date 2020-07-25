@@ -89,3 +89,14 @@ def edit_user_profile(request, profile_pk):
         "form": form,
         "profile": profile,
     })
+
+
+# def view_post_comment(request, post_pk):
+    
+#     post = get_object_or_404(RequestOfferPost, pk=post_pk)
+#     comments = post.comments.all()
+
+#     return render(request, dataorsmth, {
+#         "":.,
+
+#     }
