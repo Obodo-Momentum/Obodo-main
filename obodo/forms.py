@@ -1,6 +1,6 @@
 from django import forms
-from .models import Tag, RequestOfferPost, Profile
-from .widgets import MapInput
+from .models import Tag, RequestOfferPost, Profile, Event
+# from .widgets import MapInput
 
 
 # def reverse_tuple_string(location_string):
@@ -55,3 +55,23 @@ class ProfileForm(forms.ModelForm):
             'profile_pic',
             'community',
         ]
+
+class EventForm(forms.ModelForm):
+
+    class Meta:
+        model = Event
+        fields = [
+            'host',
+            'event_title',
+            'event_pic',
+            'event_text',
+            'attendee',
+            'start_date',
+            'end_date',
+            'event_location',
+        ]
+        widgets = {
+            'start_date' : forms.DateInput(),
+            'end_date' : forms.DateInput(),
+            'event_pic' : forms.FileInput(),
+        }
