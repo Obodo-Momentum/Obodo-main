@@ -8,7 +8,12 @@
     <form method="post" action="">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="{% trans 'Submit' %}" />
+        <div>Your password can’t be too similar to your other personal information.</div>
+        <div>Your password must contain at least 8 characters.</div>
+        <div>Your password can’t be a commonly used password.</div>
+        <div>Your password can’t be entirely numeric.</div>
+
+        <input class='mt-3' type="submit" value="{% trans 'Submit' %}" />
     </form>
 </div>
 {% endblock %}

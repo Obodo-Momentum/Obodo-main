@@ -3,8 +3,6 @@ from .models import Tag, RequestOfferPost, Profile
 from .widgets import MapInput
 from users.models import User
 from django.contrib.auth.forms import UserCreationForm
-from registration.forms import RegistrationForm
-from django.utils.safestring import mark_safe
 from .models import Tag, RequestOfferPost, Profile, Event
 # from .widgets import MapInput
 
@@ -62,9 +60,6 @@ class ProfileForm(forms.ModelForm):
             'community',
         ]
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 # class CommentForm(forms.ModelForm):
 
 #     class Meta:
@@ -73,7 +68,6 @@ class ProfileForm(forms.ModelForm):
 #             'comment_text',
 #         ]
 
->>>>>>> master
 class RegistrationForm(UserCreationForm):
     """
     Form for registering a new user account.
@@ -84,19 +78,6 @@ class RegistrationForm(UserCreationForm):
     saving of collected user data is delegated to the active
     registration backend.
     """
-<<<<<<< HEAD
-    required_css_class = 'required'
-    email = forms.EmailField(label=_("E-mail"))
-    class Meta:
-        model = User
-        fields = (UsernameField(), "email")
-        widgets = {
-            'username' : forms.TextInput(attrs={"class":"form-control"}),
-            'email' : forms.TextInput(attrs={"class":"form-control"}),
-            'password1' : forms.PasswordInput(attrs={"class":"form-control"}),
-            'password2' : forms.PasswordInput(attrs={"class":"form-control"}),
-        }
-=======
     LOCATION_CHOICES = (
         ('Raleigh', 'Raleigh'),
         ('Durham', 'Durham'),
@@ -130,7 +111,7 @@ class RegistrationForm(UserCreationForm):
 # Your password can’t be entirely numeric.
 
 # (<ul> <li>"Your password can’t be too similar to your other personal information."</li> <li>"Your password must contain at least 8 characters."</li> <li>"Your password can’t be a commonly used password."</li> <li>"Your password can’t be entirely numeric."</li> </ul>)
-=======
+
 class EventForm(forms.ModelForm):
 
     class Meta:
@@ -150,5 +131,4 @@ class EventForm(forms.ModelForm):
             'end_date' : forms.DateInput(),
             'event_pic' : forms.FileInput(),
         }
->>>>>>> d84f5bce6b6e1e444aeccbdf9849e8a4f547df66
->>>>>>> master
+
