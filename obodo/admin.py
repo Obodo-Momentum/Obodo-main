@@ -1,9 +1,10 @@
 from django.contrib import admin
-from .models import RequestOfferPost, Tag, Photo, Profile
+from .models import RequestOfferPost, Tag, Photo, Profile, Event
 
 
 # Register your models here.
 admin.site.register(RequestOfferPost)
 admin.site.register(Tag)
 admin.site.register(Photo)
+
 # admin.site.register(Profile)

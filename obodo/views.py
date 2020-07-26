@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import RequestOfferPost, Tag, Profile
+from .models import RequestOfferPost, Tag, Profile, Event
 from users.models import User
-from .forms import RequestOfferForm, ProfileForm
+from .forms import RequestOfferForm, ProfileForm, EventForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -17,7 +17,7 @@ def add_request_offer(request):
             post.image = request.FILES
             post.member = request.user
             post.save()
-            return redirect(to='homepage')
+            return redirect(to='view_user_posts')
     else:
         form = RequestOfferForm()
     
@@ -88,4 +88,47 @@ def edit_user_profile(request, profile_pk):
     return render(request, "obodo/edit_user_profile.html", {
         "form": form,
         "profile": profile,
+    })
+
+
+# def view_post_comment(request, post_pk):
+    
+#     post = get_object_or_404(RequestOfferPost, pk=post_pk)
+#     comments = post.comments.all()
+
+#     return render(request, dataorsmth, {
+#         "":.,
+
+#     }
+def add_event(request):
+    if request.method == 'POST':
+        form = EventForm(request.POST, request.FILES)
+        if form.is_valid():
+            event = Event(event_pic = request.FILES['event_pic'])
+            event.host = request.user
+            event.save()
+            return redirect(to='homepage')
+    else:
+        form = EventForm()
+    
+    return render(request, 'obodo/add_event.html', {
+        "form": form,
+    })
+
+def view_event_page(request, event_pk):
+    event = get_object_or_404(Event, pk=event_pk)
+    return render(request, 'obodo/view_event_page.html', {
+        "event": event
+    })
+
+def view_user_events(request):
+    events = request.user.events.all()
+    return render(request, 'obodo/view_user_events.html', {
+        "events": events,
+    })
+
+def view_all_events(request):
+    events = Event.objects.all()
+    return render(request, 'obodo/view_all_events.html', {
+        "events": events,
     })

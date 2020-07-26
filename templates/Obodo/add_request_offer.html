@@ -6,31 +6,22 @@ location_field_includes %} {% load render_bundle from webpack_loader %} {% load 
     <div class="row">
         <div class="col-6">
             <!-- <div></div> -->
-            <form class="" action="{% url 'add_request_offer' %}" method="POST" id='post-form'>
+            <form class="" action="{% url 'add_request_offer' %}" method="POST" id='post-form'
+                enctype="multipart/form-data">
                 {% csrf_token %}
-                <div class='post-form'>
-                    <div class="form-group">
-                        {{ form.as_p }}
+                {{ form.as_p }}
+                <div>
+                    <button class='' type="submit">Submit</button>
+                    <div class="col-6">
+                        <div id='preview'>
+                        </div>
                     </div>
-                    <div>
-                        <button class="" type="submit">Submit</button>
-                    </div>
+                </div>
             </form>
             <!-- {{ form.media }} -->
         </div>
     </div>
 
-    <div>
-        <form class='' action="{% url 'add_request_offer' %}" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <div>
-                <button class='' type="submit">Submit</button>
-                <div class="col-6">
-                    <div id='preview'>
-                    </div>
-                </div>
-            </div>
-    </div>
+</div>
 
-    {% endblock %}
+{% endblock %}
