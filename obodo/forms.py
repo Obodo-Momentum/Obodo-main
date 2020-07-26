@@ -59,7 +59,6 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = [
             'profile_pic',
-            'community',
         ]
 
 # class CommentForm(forms.ModelForm):
