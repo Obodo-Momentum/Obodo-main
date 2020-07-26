@@ -5,6 +5,9 @@ from users.models import User
 from django.contrib.auth.forms import UserCreationForm
 from registration.forms import RegistrationForm
 from django.utils.safestring import mark_safe
+from .models import Tag, RequestOfferPost, Profile, Event
+# from .widgets import MapInput
+
 
 # def reverse_tuple_string(location_string):
 #     if location_string == "":
@@ -59,6 +62,7 @@ class ProfileForm(forms.ModelForm):
             'community',
         ]
 
+<<<<<<< HEAD
 # class CommentForm(forms.ModelForm):
 
 #     class Meta:
@@ -110,3 +114,24 @@ class RegistrationForm(UserCreationForm):
 # Your password can’t be entirely numeric.
 
 # (<ul> <li>"Your password can’t be too similar to your other personal information."</li> <li>"Your password must contain at least 8 characters."</li> <li>"Your password can’t be a commonly used password."</li> <li>"Your password can’t be entirely numeric."</li> </ul>)
+=======
+class EventForm(forms.ModelForm):
+
+    class Meta:
+        model = Event
+        fields = [
+            'host',
+            'event_title',
+            'event_pic',
+            'event_text',
+            'attendee',
+            'start_date',
+            'end_date',
+            'event_location',
+        ]
+        widgets = {
+            'start_date' : forms.DateInput(),
+            'end_date' : forms.DateInput(),
+            'event_pic' : forms.FileInput(),
+        }
+>>>>>>> d84f5bce6b6e1e444aeccbdf9849e8a4f547df66
