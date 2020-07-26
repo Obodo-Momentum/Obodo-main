@@ -19,8 +19,8 @@ LOCATION_CHOICES = (
 )
 
 class User(AbstractUser):
-     community = models.CharField(max_length=55, choices=LOCATION_CHOICES)
-
+    community = models.CharField(max_length=55, choices=LOCATION_CHOICES)
+    profile_pic = models.ImageField(default='default.jpg')
 
 
 

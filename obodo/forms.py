@@ -56,7 +56,7 @@ class RequestOfferForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     profile_pic = forms.FileField(label='Upload Your Photo')
     class Meta:
-        model = Profile
+        model = User
         fields = [
             'profile_pic',
         ]

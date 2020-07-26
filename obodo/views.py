@@ -58,10 +58,10 @@ def add_profile(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
-            profile = Profile(profile_pic = request.FILES['profile_pic'])
-            profile.current_user = request.user
-            profile.save()
-            return redirect(to='view_user_profile', profile_pk=profile.pk)
+            user = User(profile_pic = request.FILES['profile_pic'])
+            # profile.current_user = request.user
+            user.save()
+            return redirect(to='view_user_profile', user_pk=user.pk)
     else:
         form = ProfileForm()
     
@@ -69,10 +69,14 @@ def add_profile(request):
         "form": form
     })
 
-def view_user_profile(request, profile_pk):
-    profile = get_object_or_404(Profile, pk=profile_pk)
+def view_user_profile(request, user_pk):
+    user = get_object_or_404(User, pk=user_pk)
+    community = user.community
+    pic = user.profile_pic
+    # profile = user.profile
     return render(request, "obodo/view_user_profile.html", {
-        "profile": profile
+        # "profile": profile,
+        "community": community
     })
 
 def edit_user_profile(request, profile_pk):
