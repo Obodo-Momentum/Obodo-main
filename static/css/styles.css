@@ -2,3 +2,6 @@
   border: solid 5px black;
   width: 100%;
 }
+.form-control {
+  height: 25px;
+}

@@ -92,6 +92,16 @@ class Profile(models.Model):
     community = models.CharField(max_length=55, choices=LOCATION_CHOICES, default='')
 
 
+class Comment(models.Model):
+    original_post = models.ForeignKey(to=RequestOfferPost, on_delete=models.CASCADE, related_name="comments", null=True, blank=True)
+    commenter = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="comments", null=True, blank=True)
+    comment_text = models.TextField(max_length=1000, null=True, blank=True)
+    posted_at = models.DateTimeField(auto_now_add=True)
+
+
+class Community (models.Model):
+    community = models.CharField(max_length=55, choices=LOCATION_CHOICES)
+    
 class Event(models.Model):
     host = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="events", null=True)
     event_title = models.CharField(max_length=50, null=True, blank=True)
