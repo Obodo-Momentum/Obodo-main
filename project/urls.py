@@ -32,6 +32,10 @@ urlpatterns = [
     path('obodo/view_user_profile/<int:profile_pk>/', obodo_views.view_user_profile, name='view_user_profile'),
     path('obodo/add_profile/', obodo_views.add_profile, name='add_profile'),
     path('obodo/edit_user_profile/<int:profile_pk>/', obodo_views.edit_user_profile, name='edit_user_profile'),
+    path('obodo/add_event/', obodo_views.add_event, name="add_event"),
+    path('obodo/view_event_page/<int:event_pk>/', obodo_views.view_event_page, name="view_event_page"),
+    path('obodo/view_user_events/', obodo_views.view_user_events, name="view_user_events"),
+    path('obodo/view_all_events/', obodo_views.view_all_events, name="view_all_events"),
 ]
 
 

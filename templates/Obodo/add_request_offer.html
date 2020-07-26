@@ -6,7 +6,8 @@ location_field_includes %} {% load render_bundle from webpack_loader %} {% load 
     <div class="row">
         <div class="col-6">
             <!-- <div></div> -->
-            <form class="" action="{% url 'add_request_offer' %}" method="POST" id='post-form'>
+            <form class="" action="{% url 'add_request_offer' %}" method="POST" id='post-form'
+                enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class='post-form'>
                     <div class="form-group">
@@ -24,7 +25,6 @@ location_field_includes %} {% load render_bundle from webpack_loader %} {% load 
         <div id='preview'>
         </div>
     </div>
-</div>
 </div>
 
 {% endblock %}
