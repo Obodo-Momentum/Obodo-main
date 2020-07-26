@@ -36,6 +36,7 @@ urlpatterns = [
     path('obodo/view_event_page/<int:event_pk>/', obodo_views.view_event_page, name="view_event_page"),
     path('obodo/view_user_events/', obodo_views.view_user_events, name="view_user_events"),
     path('obodo/view_all_events/', obodo_views.view_all_events, name="view_all_events"),
+    path('obodo/view_community_posts/', obodo_views.view_community_posts,name="view_community_posts")
 ]
 
 

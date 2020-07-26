@@ -12,10 +12,12 @@ def home(request):
 def add_request_offer(request):
     if request.method == 'POST':
         form = RequestOfferForm(request.POST, request.FILES)
+        
         if form.is_valid():
             post = form.save(commit=False)
             post.image = request.FILES
             post.member = request.user
+            post.community = request.user.community
             post.save()
             return redirect(to='view_user_posts')
     else:
@@ -55,12 +57,16 @@ def delete_post(request, post_pk):
     })
 
 def add_profile(request):
+    user = request.user
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES)
+        form = ProfileForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
-            user = User(profile_pic = request.FILES['profile_pic'])
+            
+            # user.profile_picture = User(profile_pic = request.FILES['profile_pic'])
+            form.save()
+            
+
             # profile.current_user = request.user
-            user.save()
             return redirect(to='view_user_profile', user_pk=user.pk)
     else:
         form = ProfileForm()
@@ -68,6 +74,43 @@ def add_profile(request):
     return render(request, 'obodo/add_profile.html', {
         "form": form
     })
+
+
+
+
+
+# DELETE THIS BENNY
+# DELETE DELETE DELETE
+def example(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = Profile(profile_pic = request.FILES['profile_pic'])
+            profile.current_user = request.user
+            profile.save()
+            return redirect(to='view_user_profile', profile_pk=profile.pk)
+    else:
+        form = ProfileForm()
+    return render(request, 'obodo/add_profile.html', {
+        "form": form
+    })
+# def add_snippet(request):
+#     if request.method == "POST":
+#         form = CodeSnippetForm(data=request.POST)
+#         if form.is_valid():
+#             snippet = form.save(commit=False)
+#             snippet.user = request.user
+#             snippet.save()
+#             snippet.set_tag_names(form.cleaned_data['tag_names'])
+#             return redirect(to='display_a_snippet', snippet_pk=snippet.pk)
+# SNIPPETS? WTF IS THIS
+# DELETE DELETE DELETE DLETE
+
+
+
+
+
+
 
 def view_user_profile(request, user_pk):
     user = get_object_or_404(User, pk=user_pk)
@@ -136,3 +179,8 @@ def view_all_events(request):
     return render(request, 'obodo/view_all_events.html', {
         "events": events,
     })
+
+
+def view_community_posts(request):
+    queryset = RequestOfferPosts.all()
+
