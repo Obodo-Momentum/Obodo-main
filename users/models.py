@@ -18,12 +18,8 @@ LOCATION_CHOICES = (
     ('Knightdale/Zebulon', 'Knightdale/Zebulon'),
 )
 
-class Community(models.Model):
-    community = models.CharField(max_length=55, choices=LOCATION_CHOICES)
-
-
 class User(AbstractUser):
-    community = models.ForeignKey(to=Community, on_delete=models.CASCADE, related_name='users', null=True, blank=True)
+     community = models.CharField(max_length=55, choices=LOCATION_CHOICES)
 
 
 

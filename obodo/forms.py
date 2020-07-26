@@ -57,7 +57,6 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = [
             'profile_pic',
-            'community',
         ]
 
 # class CommentForm(forms.ModelForm):
@@ -111,7 +110,6 @@ class RegistrationForm(UserCreationForm):
 # Your password can’t be entirely numeric.
 
 # (<ul> <li>"Your password can’t be too similar to your other personal information."</li> <li>"Your password must contain at least 8 characters."</li> <li>"Your password can’t be a commonly used password."</li> <li>"Your password can’t be entirely numeric."</li> </ul>)
-
 class EventForm(forms.ModelForm):
 
     class Meta:
