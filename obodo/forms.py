@@ -4,7 +4,8 @@ from .widgets import MapInput
 from users.models import User
 from django.contrib.auth.forms import UserCreationForm
 from registration.forms import RegistrationForm
-from django.utils.translation import ugettext_lazy as _
+from django.utils.safestring import mark_safe
+
 # def reverse_tuple_string(location_string):
 #     if location_string == "":
 #         return location_string
@@ -88,24 +89,24 @@ class RegistrationForm(UserCreationForm):
         ('Knightdale/Zebulon', 'Knightdale/Zebulon'),
     )
     required_css_class = 'required'
-    community = forms.CharField(max_length=55, widget=forms.Select(choices=LOCATION_CHOICES,attrs={'class':'form-control'})),
-    password = forms.CharField(max_length=32, widget=forms.PasswordInput(attrs={'class':'form-control'})),
-    password = forms.CharField(max_length=32, widget=forms.PasswordInput(attrs={'class':'form-control'})),
+    community = forms.CharField(max_length=55, widget=forms.Select(choices=LOCATION_CHOICES, attrs={'class':'form-control'}))
+    password1 = forms.CharField(max_length=32, label="Password", help_text="testing", widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    password2 = forms.CharField(max_length=32, label="Password Confirmation" , help_text="Enter the same password as before, for verification.", widget=forms.PasswordInput(attrs={'class':'form-control'}))
 
     class Meta:
         model = User
         fields = [
             'email',
             'username',
-            # 'password1',
-            # 'password2',
-            # 'community',
             ]
     
         widgets = {
             'username' : forms.TextInput(attrs={'class':'form-control'}),
-            'email' : forms.TextInput(attrs={'class':'form-control'}),
-            # 'password1' : forms.PasswordInput(attrs={'class':'form-control'}),
-            # 'password2' : forms.PasswordInput(attrs={'class':'form-control'}),
-            'community' : forms.Select(attrs={'class':'form-control'}),
+            'email' : forms.TextInput(attrs={'class':'form-control'}),            
         }
+# Your password can’t be too similar to your other personal information.
+# Your password must contain at least 8 characters.
+# Your password can’t be a commonly used password.
+# Your password can’t be entirely numeric.
+
+# (<ul> <li>"Your password can’t be too similar to your other personal information."</li> <li>"Your password must contain at least 8 characters."</li> <li>"Your password can’t be a commonly used password."</li> <li>"Your password can’t be entirely numeric."</li> </ul>)
