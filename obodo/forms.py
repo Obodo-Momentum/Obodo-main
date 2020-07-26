@@ -59,9 +59,59 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = [
             'profile_pic',
-            'community',
         ]
 
+# class CommentForm(forms.ModelForm):
+
+#     class Meta:
+#         model = Comment
+#         fields = [
+#             'comment_text',
+#         ]
+
+class RegistrationForm(UserCreationForm):
+    """
+    Form for registering a new user account.
+    Validates that the requested username is not already in use, and
+    requires the password to be entered twice to catch typos.
+    Subclasses should feel free to add any additional validation they
+    need, but should avoid defining a ``save()`` method -- the actual
+    saving of collected user data is delegated to the active
+    registration backend.
+    """
+    LOCATION_CHOICES = (
+        ('Raleigh', 'Raleigh'),
+        ('Durham', 'Durham'),
+        ('Wake Forest', 'Wake Forest'),
+        ('Chapel Hill', 'Chapel Hill'),
+        ('Cary', 'Cary'),
+        ('Apex/Holly Springs', 'Apex/Holly Springs'),
+        ('Garner', 'Garner'),
+        ('Clayton', 'Clayton'),
+        ('Knightdale/Zebulon', 'Knightdale/Zebulon'),
+    )
+    required_css_class = 'required'
+    community = forms.CharField(max_length=55, widget=forms.Select(choices=LOCATION_CHOICES, attrs={'class':'form-control'}))
+    password1 = forms.CharField(max_length=32, label="Password", help_text="testing", widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    password2 = forms.CharField(max_length=32, label="Password Confirmation" , help_text="Enter the same password as before, for verification.", widget=forms.PasswordInput(attrs={'class':'form-control'}))
+
+    class Meta:
+        model = User
+        fields = [
+            'email',
+            'username',
+            ]
+    
+        widgets = {
+            'username' : forms.TextInput(attrs={'class':'form-control'}),
+            'email' : forms.TextInput(attrs={'class':'form-control'}),            
+        }
+# Your password can’t be too similar to your other personal information.
+# Your password must contain at least 8 characters.
+# Your password can’t be a commonly used password.
+# Your password can’t be entirely numeric.
+
+# (<ul> <li>"Your password can’t be too similar to your other personal information."</li> <li>"Your password must contain at least 8 characters."</li> <li>"Your password can’t be a commonly used password."</li> <li>"Your password can’t be entirely numeric."</li> </ul>)
 class EventForm(forms.ModelForm):
 
     class Meta:
