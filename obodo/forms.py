@@ -3,8 +3,6 @@ from .models import Tag, RequestOfferPost, Profile
 from .widgets import MapInput
 from users.models import User
 from django.contrib.auth.forms import UserCreationForm
-from registration.forms import RegistrationForm
-from django.utils.safestring import mark_safe
 from .models import Tag, RequestOfferPost, Profile, Event
 # from .widgets import MapInput
 
@@ -131,3 +129,4 @@ class EventForm(forms.ModelForm):
             'end_date' : forms.DateInput(),
             'event_pic' : forms.FileInput(),
         }
+
