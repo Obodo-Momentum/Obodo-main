@@ -1,11 +1,10 @@
 from django import forms
 from .models import Tag, RequestOfferPost, Profile
 from .widgets import MapInput
-# from .widgets import EmailInput
 from users.models import User
 from django.contrib.auth.forms import UserCreationForm
 from registration.forms import RegistrationForm
-
+from django.utils.translation import ugettext_lazy as _
 # def reverse_tuple_string(location_string):
 #     if location_string == "":
 #         return location_string
@@ -77,24 +76,36 @@ class RegistrationForm(UserCreationForm):
     saving of collected user data is delegated to the active
     registration backend.
     """
+    LOCATION_CHOICES = (
+        ('Raleigh', 'Raleigh'),
+        ('Durham', 'Durham'),
+        ('Wake Forest', 'Wake Forest'),
+        ('Chapel Hill', 'Chapel Hill'),
+        ('Cary', 'Cary'),
+        ('Apex/Holly Springs', 'Apex/Holly Springs'),
+        ('Garner', 'Garner'),
+        ('Clayton', 'Clayton'),
+        ('Knightdale/Zebulon', 'Knightdale/Zebulon'),
+    )
     required_css_class = 'required'
-
-    
+    community = forms.CharField(max_length=55, widget=forms.Select(choices=LOCATION_CHOICES,attrs={'class':'form-control'})),
+    password = forms.CharField(max_length=32, widget=forms.PasswordInput(attrs={'class':'form-control'})),
+    password = forms.CharField(max_length=32, widget=forms.PasswordInput(attrs={'class':'form-control'})),
 
     class Meta:
         model = User
         fields = [
             'email',
             'username',
-            'password1',
-            'password2',
-            'community',
+            # 'password1',
+            # 'password2',
+            # 'community',
             ]
-
+    
         widgets = {
             'username' : forms.TextInput(attrs={'class':'form-control'}),
             'email' : forms.TextInput(attrs={'class':'form-control'}),
-            'password1' : forms.PasswordInput(attrs={'class':'form-control'}),
-            'password2' : forms.PasswordInput(attrs={'class':'form-control'}),
+            # 'password1' : forms.PasswordInput(attrs={'class':'form-control'}),
+            # 'password2' : forms.PasswordInput(attrs={'class':'form-control'}),
             'community' : forms.Select(attrs={'class':'form-control'}),
         }

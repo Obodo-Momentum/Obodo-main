@@ -98,7 +98,7 @@ class Comment(models.Model):
 
 
 class Community (models.Model):
-    community  = models.CharField(max_length=55, choices=LOCATION_CHOICES)
+    community = models.CharField(max_length=55, choices=LOCATION_CHOICES)
     
 
     
