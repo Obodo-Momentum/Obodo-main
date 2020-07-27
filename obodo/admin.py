@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import RequestOfferPost, Tag, Photo, Profile, Event
+from .models import RequestOfferPost, Tag, Photo, Event
 
 
 # Register your models here.

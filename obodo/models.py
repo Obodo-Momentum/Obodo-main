@@ -54,7 +54,7 @@ class RequestOfferPost(models.Model):
     request_or_offer = models.CharField(max_length=50, choices=TYPE_SELECTION)
     timeline_start = models.DateField()
     timeline_end = models.DateField()
-
+    community = models.CharField(max_length=50, null=True, blank=True)
     time_stamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
