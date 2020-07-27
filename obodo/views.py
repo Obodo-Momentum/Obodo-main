@@ -35,7 +35,7 @@ def view_user_posts(request):
 
 def view_all_posts(request):
     posts = RequestOfferPost.objects.all()
-    return render(request, 'obodo/view_all_posts.html', {
+    return render(request, 'obodo/landing_page.html', {
         "posts": posts
     })
 
