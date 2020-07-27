@@ -1,5 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import './add-request-or-offer'
+
 class App extends React.Component {
   render () {
     return (
@@ -7,4 +9,8 @@ class App extends React.Component {
     )
   }
 }
-ReactDOM.render(<App />, document.getElementById('react-app'))
+
+const reactApp = document.getElementById('react-app')
+if (reactApp) {
+  ReactDOM.render(<App />, reactApp)
+}

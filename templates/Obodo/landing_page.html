@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="login-menu">
+
+    <span> <a href="{% url 'add_request_offer' %}"> logout</a></span>
+
+</div>
+
+<div class='preview-posts'>
+
+</div>
+
+
+<ul>
+    {% for post in posts.all %}
+    <li><a href="{% url 'post_detail' post_pk=post.pk %}">{{ post.title }}</a></li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}

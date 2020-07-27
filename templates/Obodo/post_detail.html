@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div>
+    <div class="">Title: {{ post.title }}</div>
+    <div class="">Text: {{ post.post_text }}</div>
+    <img src="{{ post.post_image.url }}" alt="My image"/>
+</div>
+
+<div>
+    <a href="{% url 'delete_post' post_pk=post.pk %}">Delete this post</a>
+</div>
+
+{% endblock %}

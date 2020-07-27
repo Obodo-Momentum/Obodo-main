@@ -1,15 +1,16 @@
 from django.db import models
 from users.models import User
 import uuid
+from mapbox_location_field.models import LocationField
+import datetime
 
 # Create your models here.
 
 
 CATEGORY_CHOICES = (
     ('kids', 'kids'),
-    ('yard/garden', 'yard/garden'),
-    ('odd job', 'odd job'),
-    ('skilled labor', 'skilled labor'),
+    ('outdoors', 'outdoors'),
+    ('services', 'services'),
     ('food', 'food'),
     ('clothing', 'clothing'),
     ('homegoods', 'homegoods'),
@@ -40,25 +41,13 @@ class Tag(models.Model):
     def __str__(self):
         return self.tag
 
-class Photo(models.Model):
-    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    title = models.CharField(max_length=100)
-    photo = models.FileField()
-    user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="photos", null=True)
-
-class Profile(models.Model):
-    current_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="profiles", null=True)
-    profile_pic = models.ForeignKey(to=Photo, on_delete=models.CASCADE, related_name="profiles", null=True)
-    joined_at = models.DateField(auto_now_add=True, blank=True, null=True)
-    community = models.CharField(max_length=55, choices=LOCATION_CHOICES, default='')
-
 class RequestOfferPost(models.Model):
     member = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="posts", null=True)
-    post_image = models.ForeignKey(to=Photo, on_delete=models.CASCADE, related_name="posts")
+    post_image = models.ImageField(default='default.jpg')
     title = models.CharField(max_length=80, null=True, blank=True)
-    post_text = models.TextField(max_length=500, help_text="What do you need? What can you give?", null=True, blank=True)
-    # location = models.CharField()
+    post_text = models.TextField(max_length=500, null=True, blank=True)
+    address = models.CharField(max_length=100, null=True, blank=True)
+    location = LocationField(map_attrs={"center": [0,0], "marker_color": "blue", "track_location_button": True, "geocoder": True}, null=True, blank=True, default='')
     tags = models.ManyToManyField(to=Tag, related_name="posts")
     fulfilled = models.BooleanField(default=False)
     category = models.CharField(max_length=25, choices=CATEGORY_CHOICES)
@@ -87,10 +76,36 @@ class RequestOfferPost(models.Model):
             tags.append(tag)
         self.tags.set(tags)
 
+class Photo(models.Model):
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    title = models.CharField(max_length=100)
+    photo = models.FileField()
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="photos", null=True)
 
 
+class Profile(models.Model):
+    current_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="profiles", null=True)
+    profile_pic = models.ImageField(default='default.jpg')
+    joined_at = models.DateField(auto_now_add=True, blank=True, null=True)
+    
 
 
+class Comment(models.Model):
+    original_post = models.ForeignKey(to=RequestOfferPost, on_delete=models.CASCADE, related_name="comments", null=True, blank=True)
+    commenter = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="comments", null=True, blank=True)
+    comment_text = models.TextField(max_length=1000, null=True, blank=True)
+    posted_at = models.DateTimeField(auto_now_add=True)
 
+    
+class Event(models.Model):
+    host = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="events", null=True)
+    event_title = models.CharField(max_length=50, null=True, blank=True)
+    event_pic = models.ImageField(default='default.jpg')
+    event_text = models.TextField(max_length=500, null=True, blank=True)
+    attendee = models.ManyToManyField(to=User, related_name="attendees")
+    start_date = models.DateField(default=datetime.date.today, blank=True)
+    end_date = models.DateField(default=datetime.date.today, blank=True)
+    event_location = models.CharField(max_length=100, null=True, blank=True)
 
     

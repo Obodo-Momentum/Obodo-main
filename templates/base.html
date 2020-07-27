@@ -1,19 +1,30 @@
+{% load render_bundle from webpack_loader %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Obodo</title>
-  </head>
 
-  {% block content %}
-  <body>
-    <div>
-      <div>
-        <h1>Obodo</h1>
-        <h3>A place for your community</h3>
-      </div>
+<head>
+  {% load mapbox_location_field_tags %} {% location_field_includes %}
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Obodo</title>
+  <script src="https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js"></script>
+  <link href="https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  <link rel='stylesheet' href="{% static 'js/index.js' %}">
+</head>
+
+<body>
+  <div class=" banner">
+    <div class="mx-auto" style="width: 200px;">
+      <h1>Obodo</h1>
+      <h4>A place for community</h4>
     </div>
-  </body>
+  </div>
+  {% block content %} {% endblock %} {% render_bundle 'main' 'js' %}
+</body>
+
 </html>
-{% endblock %}

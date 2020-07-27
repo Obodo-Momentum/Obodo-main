@@ -15,14 +15,30 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import include, path
+from obodo import views as obodo_views
 from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', TemplateView.as_view(template_name='frontend/index.html'))
-
+    path('accounts/', include('registration.backends.simple.urls')),
+    path('home/', obodo_views.home, name='homepage'),
+    path('obodo/add_request_offer/', obodo_views.add_request_offer, name='add_request_offer'),
+    path('obodo/view_user_posts/', obodo_views.view_user_posts, name='view_user_posts'),
+    path('obodo/post_detail/<int:post_pk>/', obodo_views.post_detail, name='post_detail'),
+    path('obodo/delete_post/<int:post_pk>/', obodo_views.delete_post, name='delete_post'),
+    path('', obodo_views.view_all_posts, name='landing_page'),
+    path('obodo/view_user_profile/<int:profile_pk>/', obodo_views.view_user_profile, name='view_user_profile'),
+    path('obodo/add_profile/', obodo_views.add_profile, name='add_profile'),
+    path('obodo/edit_user_profile/<int:profile_pk>/', obodo_views.edit_user_profile, name='edit_user_profile'),
+    path('obodo/add_event/', obodo_views.add_event, name="add_event"),
+    path('obodo/view_event_page/<int:event_pk>/', obodo_views.view_event_page, name="view_event_page"),
+    path('obodo/view_user_events/', obodo_views.view_user_events, name="view_user_events"),
+    path('obodo/view_all_events/', obodo_views.view_all_events, name="view_all_events"),
 ]
+
+
 
 if settings.DEBUG:
     import debug_toolbar
