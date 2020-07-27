@@ -1,1 +1,6 @@
-{% extends "base.html" %} {% block content %} {% endblock %}
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-center">
+    <span><a href="{% url 'obodo/view_user_profile/<int:profile_pk>/' %}"></a></span>
+</div>
+{% endblock %}
