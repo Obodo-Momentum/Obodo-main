@@ -90,7 +90,7 @@ class RegistrationForm(UserCreationForm):
     )
     required_css_class = 'required'
     community = forms.CharField(max_length=55, widget=forms.Select(choices=LOCATION_CHOICES, attrs={'class':'form-control'}))
-    password1 = forms.CharField(max_length=32, label="Password", help_text="testing", widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    password1 = forms.CharField(max_length=32, label="Password", help_text="", widget=forms.PasswordInput(attrs={'class':'form-control'}))
     password2 = forms.CharField(max_length=32, label="Password Confirmation" , help_text="Enter the same password as before, for verification.", widget=forms.PasswordInput(attrs={'class':'form-control'}))
 
     class Meta:
