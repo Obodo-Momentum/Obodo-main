@@ -12,10 +12,12 @@ def home(request):
 def add_request_offer(request):
     if request.method == 'POST':
         form = RequestOfferForm(request.POST, request.FILES)
+        
         if form.is_valid():
             post = form.save(commit=False)
             post.image = request.FILES
             post.member = request.user
+            post.community = request.user.community
             post.save()
             return redirect(to='view_user_posts')
     else:
@@ -55,13 +57,12 @@ def delete_post(request, post_pk):
     })
 
 def add_profile(request):
+    user = request.user
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES)
+        form = ProfileForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
-            profile = Profile(profile_pic = request.FILES['profile_pic'])
-            profile.current_user = request.user
-            profile.save()
-            return redirect(to='view_user_profile', profile_pk=profile.pk)
+            form.save()
+            return redirect(to='view_user_profile', user_pk=user.pk)
     else:
         form = ProfileForm()
     
@@ -69,25 +70,27 @@ def add_profile(request):
         "form": form
     })
 
-def view_user_profile(request, profile_pk):
-    profile = get_object_or_404(Profile, pk=profile_pk)
+
+def view_user_profile(request, user_pk):
+    user = get_object_or_404(User, pk=user_pk)
+    community = user.community
+    pic = user.profile_pic
     return render(request, "obodo/view_user_profile.html", {
-        "profile": profile
+        "community": community
     })
 
-def edit_user_profile(request, profile_pk):
-    profile = get_object_or_404(request.user.profiles, pk=profile_pk)
+def edit_user_profile(request, user_pk):
+    
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        form = ProfileForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect(to='view_user_profile', profile_pk=profile.pk)
+            return redirect(to='view_user_profile', user_pk=user.pk)
     else:
         form = ProfileForm()
     
     return render(request, "obodo/edit_user_profile.html", {
         "form": form,
-        "profile": profile,
     })
 
 
@@ -132,3 +135,14 @@ def view_all_events(request):
     return render(request, 'obodo/view_all_events.html', {
         "events": events,
     })
+
+
+def view_community_posts(request):
+    community = request.user.community
+    posts = RequestOfferPost.objects.filter(community = community)
+
+    return render(request, 'obodo/view_community_posts.html', {
+        "posts":posts
+    })
+
+
