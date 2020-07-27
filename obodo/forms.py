@@ -89,9 +89,10 @@ class RegistrationForm(UserCreationForm):
         ('Garner', 'Garner'),
         ('Clayton', 'Clayton'),
         ('Knightdale/Zebulon', 'Knightdale/Zebulon'),
-    )
+)
+    
     required_css_class = 'required'
-    community = forms.CharField(max_length=55, widget=forms.Select(choices=LOCATION_CHOICES, attrs={'class':'form-control'}))
+    # community = forms.ChoiceField(choices=LOCATION_CHOICES, widget=forms.Select(attrs={'class':'form-control'}))
     password1 = forms.CharField(max_length=32, label="Password", help_text="testing", widget=forms.PasswordInput(attrs={'class':'form-control'}))
     password2 = forms.CharField(max_length=32, label="Password Confirmation" , help_text="Enter the same password as before, for verification.", widget=forms.PasswordInput(attrs={'class':'form-control'}))
 
@@ -100,11 +101,13 @@ class RegistrationForm(UserCreationForm):
         fields = [
             'email',
             'username',
+            'community',
             ]
-    
+        
         widgets = {
             'username' : forms.TextInput(attrs={'class':'form-control'}),
-            'email' : forms.TextInput(attrs={'class':'form-control'}),            
+            'email' : forms.TextInput(attrs={'class':'form-control'}),
+            # 'community' : forms.ChoiceField(attrs={'class':'form-control'}),
         }
 # Your password can’t be too similar to your other personal information.
 # Your password must contain at least 8 characters.

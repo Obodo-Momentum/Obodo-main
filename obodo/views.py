@@ -61,12 +61,7 @@ def add_profile(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
-            
-            # user.profile_picture = User(profile_pic = request.FILES['profile_pic'])
             form.save()
-            
-
-            # profile.current_user = request.user
             return redirect(to='view_user_profile', user_pk=user.pk)
     else:
         form = ProfileForm()
@@ -74,42 +69,6 @@ def add_profile(request):
     return render(request, 'obodo/add_profile.html', {
         "form": form
     })
-
-
-
-
-
-# DELETE THIS BENNY
-# DELETE DELETE DELETE
-def example(request):
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES)
-        if form.is_valid():
-            profile = Profile(profile_pic = request.FILES['profile_pic'])
-            profile.current_user = request.user
-            profile.save()
-            return redirect(to='view_user_profile', profile_pk=profile.pk)
-    else:
-        form = ProfileForm()
-    return render(request, 'obodo/add_profile.html', {
-        "form": form
-    })
-# def add_snippet(request):
-#     if request.method == "POST":
-#         form = CodeSnippetForm(data=request.POST)
-#         if form.is_valid():
-#             snippet = form.save(commit=False)
-#             snippet.user = request.user
-#             snippet.save()
-#             snippet.set_tag_names(form.cleaned_data['tag_names'])
-#             return redirect(to='display_a_snippet', snippet_pk=snippet.pk)
-# SNIPPETS? WTF IS THIS
-# DELETE DELETE DELETE DLETE
-
-
-
-
-
 
 
 def view_user_profile(request, user_pk):
@@ -182,5 +141,11 @@ def view_all_events(request):
 
 
 def view_community_posts(request):
-    queryset = RequestOfferPosts.all()
+    community = request.user.community
+    posts = RequestOfferPost.objects.filter(community = community)
+
+    return render(request, 'obodo/view_community_posts.html', {
+        "posts":posts
+    })
+
 

@@ -2,8 +2,9 @@
 
 
 {% block content %}
+{% for post in posts %}
+<div>{{ post.title }}</div>
+<div>{{ post.community }}</div>
 
-<div>{{ }}</div>
-
-
+{% endfor %}
 {% endblock %}
