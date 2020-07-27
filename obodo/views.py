@@ -59,7 +59,7 @@ def delete_post(request, post_pk):
 def add_profile(request):
     user = request.user
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=request.user)
+        form = ProfileForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             form.save()
             return redirect(to='view_user_profile', user_pk=user.pk)
@@ -81,19 +81,18 @@ def view_user_profile(request, user_pk):
         "community": community
     })
 
-def edit_user_profile(request, profile_pk):
-    profile = get_object_or_404(request.user.profiles, pk=profile_pk)
+def edit_user_profile(request, user_pk):
+    
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        form = ProfileForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect(to='view_user_profile', profile_pk=profile.pk)
+            return redirect(to='view_user_profile', user_pk=user.pk)
     else:
         form = ProfileForm()
     
     return render(request, "obodo/edit_user_profile.html", {
         "form": form,
-        "profile": profile,
     })
 
 
