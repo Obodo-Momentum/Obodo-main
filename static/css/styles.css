@@ -1,5 +1,7 @@
 .banner {
-  border: solid .50rem black;
+  background-color: #002400 ;
+  color: blanchedalmond;
+  border-bottom: solid .25rem #AEB2A9;
   width: 100%;
 }
 
@@ -10,3 +12,4 @@
 .form-control {
   height: 25px;
 }
+
