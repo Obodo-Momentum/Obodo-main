@@ -75,9 +75,7 @@ def view_user_profile(request, user_pk):
     user = get_object_or_404(User, pk=user_pk)
     community = user.community
     pic = user.profile_pic
-    # profile = user.profile
     return render(request, "obodo/view_user_profile.html", {
-        # "profile": profile,
         "community": community
     })
 
