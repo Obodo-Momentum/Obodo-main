@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+
+<ul>
+    {% for organization in organizations.all %}
+        <li><a href="{% url 'view_organization' org_pk=org.pk %}">{{ organization.name }}</a></li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}

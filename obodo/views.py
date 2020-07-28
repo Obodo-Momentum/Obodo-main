@@ -169,3 +169,9 @@ def view_organization(request, org_pk):
         "creator": creator,
         "community": community,
     })
+
+def browse_organizations(request):
+    organizations = Organization.objects.all()
+    return render(request, 'obodo/browse_organizations.html', {
+        "organizations": organizations,
+    })
