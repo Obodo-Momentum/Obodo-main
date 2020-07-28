@@ -113,7 +113,7 @@ def add_comment(request,):
             # return redirect(to='post_detail', pk=post_pk)
     else:
         form = CommentForm()
-    return render(request, "obodo/view_post_comments.html", {
+    return render(request, "obodo/add_comment.html", {
         "form": form,
     })
 
