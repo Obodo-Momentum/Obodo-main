@@ -12,7 +12,6 @@ def home(request):
 def add_request_offer(request):
     if request.method == 'POST':
         form = RequestOfferForm(request.POST, request.FILES)
-        
         if form.is_valid():
             post = form.save(commit=False)
             post.image = request.FILES
@@ -22,7 +21,6 @@ def add_request_offer(request):
             return redirect(to='view_user_posts')
     else:
         form = RequestOfferForm()
-    
     return render(request, 'obodo/add_request_offer.html', {
         'form': form,
     })
@@ -70,13 +68,12 @@ def add_profile(request):
         "form": form
     })
 
-
 def view_user_profile(request, user_pk):
     user = get_object_or_404(User, pk=user_pk)
-    community = user.community
-    pic = user.profile_pic
+    posts = user.posts.all()
     return render(request, "obodo/view_user_profile.html", {
-        "community": community
+        "user": user,
+        "posts": posts,
     })
 
 def edit_user_profile(request, user_pk):
@@ -98,23 +95,28 @@ def view_comments(request, post_pk):
     post = get_object_or_404(RequestOfferPost, pk=post_pk)
     comments = post.comments.all()
 
-    return render(request, 'obodo/view_comments', {
+    return render(request, 'obodo/view_comments.html', {
+        "post": post,
         "comments": comments,
+        
     })
 
-def add_comment(request,):
+def add_comment(request, post_pk):
+    post = get_object_or_404(RequestOfferPost, pk=post_pk)
     if request.method == 'POST':
-        form = CommentForm(request.POST)
+        form = CommentForm(data=request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
+            comment.original_post = post
             comment.commenter = request.user
             comment.save()
-            return redirect(to='homepage')
-            # return redirect(to='post_detail', pk=post_pk)
+            
+            return redirect(to='post_detail', post_pk=post.pk)
     else:
         form = CommentForm()
     return render(request, "obodo/add_comment.html", {
         "form": form,
+        "post": post,
     })
 
 
@@ -151,13 +153,12 @@ def view_all_events(request):
         "events": events,
     })
 
-
 def view_community_posts(request):
     community = request.user.community
     posts = RequestOfferPost.objects.filter(community = community)
 
     return render(request, 'obodo/view_community_posts.html', {
-        "posts":posts
+        "posts": posts
     })
 
 

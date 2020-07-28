@@ -6,6 +6,9 @@
 {% block content %}
 
 <div>hey fam</div>
+{% for comment in post.comments.all %}
+{{ comment.commenter }}
+{{ comment.comment_text }}
 
-
+{% endfor %}
 {% endblock %}

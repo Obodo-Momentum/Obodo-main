@@ -5,6 +5,11 @@
     <p>HI</p>
     <img src="{{ user.profile_pic.url }}"/>
     <p>{{ user.community }}</p>
+    <p>{{ user.username }}</p>
+    {% for post in user.posts.all %}
+    <p>{{ post.title }}</p>
+    <p>{{ post.post_text }}</p>
+    {% endfor %}
 </div>
 
 
