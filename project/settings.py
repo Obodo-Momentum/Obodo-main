@@ -177,7 +177,7 @@ AWS_S3_REGION_NAME = 'us-east-2'
 
 REGISTRATION_FORM = 'obodo.forms.RegistrationForm'
 LOGIN_REDIRECT_URL = '/home/'
-LOGOUT_REDIRECT_URL = '/obodo/add_request_offer/'
+LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
 

@@ -1,15 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="login-menu">
 
+    <span> <a href="{% url 'auth_login' %}"> login or make a new account</a></span>
 
+</div>
 
+<div class='preview-posts'>
 
-<ul>
-    {% for post in posts.all %}
-        <li><a href="{% url 'post_detail' post_pk=post.pk %}">{{ post.title }}</a></li>
-    {% endfor %}
-</ul>
+</div>
 
+{% for post in posts.all %}
+<div>
+    <div class="card" style="width: 18rem;">
+        <img src="{{ post.post_image }}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title"><a href="{% url 'post_detail' post_pk=post.pk %}">{{ post.title }}</a></h5>
+            <span class="card-subtitle mb-2 text-muted">{{ post.request_or_offer}}</span>
+            <span class="card-subtitle mb-2 text-muted">{{ post.category }}</span>
+            <p class="card-text">{{ post.post_text }}</p>
+            <footer class="card-footer text-muted">{{post.address}}</footer>
+        </div>
+    </div>
+</div>
+{% endfor %}
 
 {% endblock %}
