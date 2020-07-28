@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import RequestOfferPost, Tag, Profile, Event
+from .models import RequestOfferPost, Tag, Event, Organization, Member
 from users.models import User
-from .forms import RequestOfferForm, ProfileForm, EventForm
+from .forms import RequestOfferForm, EventForm, OrganizationForm, MemberForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -145,4 +145,20 @@ def view_community_posts(request):
         "posts":posts
     })
 
+def add_organization(request):
+    if request.method == 'POST':
+        form = OrganizationForm(request.POST, request.FILES)
 
+        if form.is_valid():
+            org = form.save(commit=False)
+            org.picture = request.FILES
+            org.creator = request.user
+            org.community = request.user.community
+            org.save()
+            return redirect(to='homepage')
+    else:
+        form = OrganizationForm()
+    
+    return render(request, 'obodo/add_organization.html', {
+        "form": form,
+    })

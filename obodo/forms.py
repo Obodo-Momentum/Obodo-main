@@ -1,9 +1,8 @@
 from django import forms
-from .models import Tag, RequestOfferPost, Profile
 from .widgets import MapInput
 from users.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Tag, RequestOfferPost, Profile, Event
+from .models import Tag, RequestOfferPost, Event, Organization, Member
 # from .widgets import MapInput
 
 
@@ -51,13 +50,35 @@ class RequestOfferForm(forms.ModelForm):
             'timeline_end' : forms.DateInput(attrs={"class":"form-control"}),
         }
 
-class ProfileForm(forms.ModelForm):
-    profile_pic = forms.FileField(label='Upload Your Photo')
+class OrganizationForm(forms.ModelForm):
+
     class Meta:
-        model = User
+        model = Organization
         fields = [
-            'profile_pic',
+            'name',
+            'picture',
+            'located_at',
+            'mission',
         ]
+        widgets = {
+            'name' : forms.TextInput(attrs={"class":"form-control"}),
+            'picture' : forms.FileInput(attrs={"class":"form-control-file"}),
+            'located_at' : forms.TextInput(attrs={"class":"form-control"}),
+            'mission' : forms.Textarea(attrs={"class":"form-control"}),
+        }
+
+
+class MemberForm(forms.ModelForm):
+
+    class Meta:
+        model = Member
+        fields = [
+            'username',
+        ]
+        widgets = {
+            'username' : forms.TextInput(attrs={"class":"form-control"}),
+        }
+
 
 # class CommentForm(forms.ModelForm):
 
