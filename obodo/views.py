@@ -29,7 +29,7 @@ def add_request_offer(request):
 
 def view_user_posts(request):
     posts = request.user.posts.all()
-    return render(request, 'obodo/view_user_posts.html', {
+    return render(request, 'obodo/view_user_profile.html', {
         "posts": posts,
     })
 
@@ -73,10 +73,10 @@ def add_profile(request):
 
 def view_user_profile(request, user_pk):
     user = get_object_or_404(User, pk=user_pk)
-    community = user.community
-    pic = user.profile_pic
+    posts = user.posts.all()
     return render(request, "obodo/view_user_profile.html", {
-        "community": community
+        "user": user,
+        "posts": posts,
     })
 
 def edit_user_profile(request, user_pk):
@@ -141,7 +141,7 @@ def view_community_posts(request):
     community = request.user.community
     posts = RequestOfferPost.objects.filter(community = community)
 
-    return render(request, 'obodo/view_community_posts.html', {
+    return render(request, 'obodo/homepage.html', {
         "posts":posts
     })
 
