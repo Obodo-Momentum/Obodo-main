@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <p>Organization Profile</p>
+    <img src="{{ organization.picture.url }}"/>
+    <p>Organization Creator: {{ organization.creator }}</p>
+    <p>{{ organization.name }}</p>
+    <p>{{ organization.located_at }}</p>
+    <!-- <p>{{ creator.community }}</p> -->
+    <p>Mission Statement: {{ organization.mission }}</p>
+</div>
+
+
+{% endblock %}

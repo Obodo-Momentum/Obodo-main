@@ -10,10 +10,10 @@ location_field_includes %} {% load render_bundle from webpack_loader %} {% load 
                 enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <div class='post-form'>
+                <!-- <div class='post-form'>
                     <div class="form-group">
                         {{ form.as_p }}
-                    </div>
+                    </div> -->
                     <div>
                         <button class="" type="submit">Submit</button>
                     </div>

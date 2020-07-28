@@ -109,7 +109,7 @@ def add_event(request):
         if form.is_valid():
             event = Event(event_pic = request.FILES['event_pic'])
             event.host = request.user
-            event.save()
+            event = form.save()
             return redirect(to='homepage')
     else:
         form = EventForm()
@@ -148,17 +148,24 @@ def view_community_posts(request):
 def add_organization(request):
     if request.method == 'POST':
         form = OrganizationForm(request.POST, request.FILES)
-
         if form.is_valid():
-            org = form.save(commit=False)
-            org.picture = request.FILES
+            org = Organization(picture = request.FILES['picture'])
             org.creator = request.user
-            org.community = request.user.community
-            org.save()
-            return redirect(to='homepage')
+            org = form.save()
+            return redirect(to='view_organization')
     else:
         form = OrganizationForm()
     
     return render(request, 'obodo/add_organization.html', {
         "form": form,
+    })
+
+def view_organization(request, org_pk):
+    creator = request.user
+    community = request.user.community
+    organization = get_object_or_404(Organization, pk=org_pk)
+    return render(request, 'obodo/view_organization.html', {
+        'organization': organization,
+        "creator": creator,
+        "community": community,
     })
