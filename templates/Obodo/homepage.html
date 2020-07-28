@@ -1,1 +1,11 @@
-{% extends "base.html" %} {% block content %} {% endblock %}
+{% extends "base.html" %} 
+
+
+
+{% block content %} 
+
+<span><a href="{% url 'view_user_profile' user_pk=user.pk %}"></a> </span>
+"{% url 'edit_snippet' snippet_pk=snippet.pk %}"
+
+
+{% endblock %}

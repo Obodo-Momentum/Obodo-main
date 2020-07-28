@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import RequestOfferPost, Tag, Profile, Event
 from users.models import User
-from .forms import RequestOfferForm, ProfileForm, EventForm
+from .forms import RequestOfferForm, ProfileForm, EventForm, CommentForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -94,15 +94,30 @@ def edit_user_profile(request, user_pk):
     })
 
 
-# def view_post_comment(request, post_pk):
-    
-#     post = get_object_or_404(RequestOfferPost, pk=post_pk)
-#     comments = post.comments.all()
+def view_comments(request, post_pk):
+    post = get_object_or_404(RequestOfferPost, pk=post_pk)
+    comments = post.comments.all()
 
-#     return render(request, dataorsmth, {
-#         "":.,
+    return render(request, 'obodo/view_comments', {
+        "comments": comments,
+    })
 
-#     }
+def add_comment(request,):
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.commenter = request.user
+            comment.save()
+            return redirect(to='homepage')
+            # return redirect(to='post_detail', pk=post_pk)
+    else:
+        form = CommentForm()
+    return render(request, "obodo/view_post_comments.html", {
+        "form": form,
+    })
+
+
 def add_event(request):
     if request.method == 'POST':
         form = EventForm(request.POST, request.FILES)
