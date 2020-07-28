@@ -23,7 +23,7 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
-    path('home/', obodo_views.home, name='homepage'),
+    path('home/', obodo_views.view_community_posts, name='homepage'),
     path('obodo/add_request_offer/', obodo_views.add_request_offer, name='add_request_offer'),
     path('obodo/view_user_posts/', obodo_views.view_user_posts, name='view_user_posts'),
     path('obodo/post_detail/<int:post_pk>/', obodo_views.post_detail, name='post_detail'),
@@ -36,7 +36,6 @@ urlpatterns = [
     path('obodo/view_event_page/<int:event_pk>/', obodo_views.view_event_page, name="view_event_page"),
     path('obodo/view_user_events/', obodo_views.view_user_events, name="view_user_events"),
     path('obodo/view_all_events/', obodo_views.view_all_events, name="view_all_events"),
-    path('obodo/view_community_posts/', obodo_views.view_community_posts,name="view_community_posts")
 ]
 
 
