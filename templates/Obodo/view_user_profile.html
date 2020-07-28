@@ -1,11 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="d-flex justify-content-center">
+    <span><a href="{% url 'view_user_profile' user_pk=user.pk %}"> Profile </a></span>
+</div>
 <div>
-    <p>HI</p>
-    <img src="{{ user.profile_pic.url }}"/>
-    <p>{{ user.community }}</p>
+    <p> {{ user.username}} </p>
+    <a href="{% url 'edit_user_profile' user_pk=user.pk %}"> edit your profile</a>
+    <p>your community: {{ user.community }}</p>
 </div>
 
+<div id='profile-content'>
+    <p>your posts</p>
+    <ul>
+        {% for post in posts.all %}
+        <li><a href="{% url 'post_detail' post_pk=post.pk %}">{{ post.title }}</a></li>
+        {% endfor %}
+    </ul>
+
+</div>
 
 {% endblock %}
