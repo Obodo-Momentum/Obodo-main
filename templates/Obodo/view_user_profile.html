@@ -10,10 +10,10 @@
     <p>your community: {{ user.community }}</p>
 </div>
 
-<div id='profile-content'>
+<div id='user-posts'>
     <p>your posts</p>
     <ul>
-        {% for post in posts.all %}
+        {% for post in user.posts.all %}
         <li><a href="{% url 'post_detail' post_pk=post.pk %}">{{ post.title }}</a></li>
         {% endfor %}
     </ul>
