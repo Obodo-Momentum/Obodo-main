@@ -157,7 +157,7 @@ def view_community_posts(request):
     community = request.user.community
     posts = RequestOfferPost.objects.filter(community = community)
 
-    return render(request, 'obodo/view_community_posts.html', {
+    return render(request, 'obodo/homepage.html', {
         "posts": posts
     })
 # return render(request, 'obodo/homepage.html', {

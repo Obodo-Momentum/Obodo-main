@@ -6,6 +6,11 @@
 </div>
 
 <a href="{% url 'add_request_offer' %}"> make a new request or offer </a>
+{% for post in posts %}
+<div>{{ post.title }}</div>
+<div>{{ post.community }}</div>
+<div>{{ post.post_text }}</div>
 
+{% endfor %}
 
 {% endblock %}
