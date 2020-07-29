@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import RequestOfferPost, Tag, Event, Organization, Member, Profile
 from users.models import User
-from .forms import RequestOfferForm, EventForm, OrganizationForm, MemberForm, ProfileForm
+from .forms import RequestOfferForm, EventForm, OrganizationForm, MemberForm, ProfileForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 

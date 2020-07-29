@@ -5,16 +5,8 @@
     <button><a href="{% url 'auth_logout' %}">Logout</a></button>
 </div>
 
-<<<<<<< HEAD
-<a href="{% url 'add_request_offer' %}"> make a new request or offer </a>
-{% for post in posts %}
-<div>{{ post.title }}</div>
-<div>{{ post.community }}</div>
-<div>{{ post.post_text }}</div>
-=======
 <button><a href="{% url 'add_request_offer' %}">Make Request or Offer</a></button>
->>>>>>> a23dbe17550cd7c57d93190dc14f10c4a3df64ed
 
-{% endfor %}
+
 
 {% endblock %}
