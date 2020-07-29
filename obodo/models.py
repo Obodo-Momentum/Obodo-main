@@ -76,20 +76,19 @@ class RequestOfferPost(models.Model):
             tags.append(tag)
         self.tags.set(tags)
 
+
+class Profile(models.Model):
+    current_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="profiles", null=True)
+    profile_pic = models.ImageField(default='default.jpg')
+    joined_at = models.DateField(auto_now_add=True, blank=True, null=True)
+
 class Photo(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     created_at = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=100)
     photo = models.FileField()
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="photos", null=True)
-
-
-class Profile(models.Model):
-    current_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="profiles", null=True)
-    profile_pic = models.ImageField(default='default.jpg')
-    joined_at = models.DateField(auto_now_add=True, blank=True, null=True)
     
-
 
 class Comment(models.Model):
     original_post = models.ForeignKey(to=RequestOfferPost, on_delete=models.CASCADE, related_name="comments", null=True, blank=True)
@@ -108,4 +107,18 @@ class Event(models.Model):
     end_date = models.DateField(default=datetime.date.today, blank=True)
     event_location = models.CharField(max_length=100, null=True, blank=True)
 
-    
+
+class Organization(models.Model):
+    creator = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='creators', null=True)
+    name = models.CharField(max_length=100, null=True, blank=True)
+    picture = models.ImageField(default='default.jpg')
+    located_at = models.CharField(max_length=200, null=True, blank=True)
+    mission = models.TextField(max_length=500, null=True, blank=True)
+
+
+class Member(models.Model):
+    username = models.CharField(max_length=40, null=True, blank=True, help_text='Please enter your username:')
+    organization = models.ForeignKey(to=Organization, on_delete=models.CASCADE, related_name='members', null=True)
+
+    def __str__(self):
+        return f"{self.username}"

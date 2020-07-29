@@ -2,13 +2,13 @@
 
 {% block content %}
 
-<h2>Edit Your Profile</h2>
+<h2>Edit Your Profile Picture</h2>
 
 <form action="{% url 'edit_user_profile' user_pk=user.pk %}" method='POST' enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <div>
-        <button type="submit" value="Update">Update Your Profile</button>
+        <button type="submit" value="Update">Update Image</button>
     </div>
 </form>
 

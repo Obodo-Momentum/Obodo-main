@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form action="{% url 'add_member' organization_pk=organization.pk %}" method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <div>
+    <button type="submit">Join {{ organization.name }}</button>
+  </div>
+</form>
+
+{% endblock %}
