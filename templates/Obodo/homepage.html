@@ -1,11 +1,11 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-center">
+    <span><a href="{% url 'view_user_profile' user_pk=user.pk %}"> Profile </a></span>
+    <span><a href="{% url 'auth_logout' %}"> logout</a></span>
+</div>
 
-
-
-{% block content %} 
-
-<span><a href="{% url 'view_user_profile' user_pk=user.pk %}"></a> </span>
-
+<a href="{% url 'add_request_offer' %}"> make a new request or offer </a>
 
 
 {% endblock %}

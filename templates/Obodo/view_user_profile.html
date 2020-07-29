@@ -1,16 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div>
-    <p>HI</p>
-    <img src="{{ user.profile_pic.url }}"/>
-    <p>{{ user.community }}</p>
-    <p>{{ user.username }}</p>
-    {% for post in user.posts.all %}
-    <p>{{ post.title }}</p>
-    <p>{{ post.post_text }}</p>
-    {% endfor %}
+
+<div class="d-flex justify-content-center">
+    <span><a href="{% url 'view_user_profile' user_pk=user.pk %}"> Profile </a></span>
+    <span><a href="{% url 'auth_logout' %}"> logout</a></span>
+    <span><a href="{% url 'add_request_offer' %}"> add a post</a></span>
+    <span><a href="{% url 'homepage' %}">home</a></span>
+
 </div>
 
+<div>
+    <p> {{ user.username}} </p>
+    <a href="{% url 'edit_user_profile' user_pk=user.pk %}"> edit your profile</a>
+    <p>your community: {{ user.community }}</p>
+</div>
+
+<div id='user-posts'>
+    <p>your posts</p>
+    {% for post in user.posts.all %}
+    <div>
+        <div class="card" style="width: 18rem;">
+            <img src="{{ post.post_image }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{% url 'post_detail' post_pk=post.pk %}">{{ post.title }}</a></h5>
+                <span class="card-subtitle mb-2 text-muted">{{ post.request_or_offer}}</span>
+                <span class="card-subtitle mb-2 text-muted">{{ post.category }}</span>
+                <p class="card-text">{{ post.post_text }}</p>
+                <footer class="card-footer text-muted">{{post.address}}</footer>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 
 {% endblock %}

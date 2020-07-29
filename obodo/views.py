@@ -27,7 +27,7 @@ def add_request_offer(request):
 
 def view_user_posts(request):
     posts = request.user.posts.all()
-    return render(request, 'obodo/view_user_posts.html', {
+    return render(request, 'obodo/view_user_profile.html', {
         "posts": posts,
     })
 
@@ -160,5 +160,6 @@ def view_community_posts(request):
     return render(request, 'obodo/view_community_posts.html', {
         "posts": posts
     })
-
+# return render(request, 'obodo/homepage.html', {
+    #     "posts":posts
 
