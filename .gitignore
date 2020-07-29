@@ -122,6 +122,6 @@ dmypy.json
 # End of https://www.gitignore.io/api/django
 .vscode/
 .env
-.static/webpack_bundles
-.webpack-stats.json
-./node_modules
+static/webpack_bundles
+webpack-stats.json
+node_modules
