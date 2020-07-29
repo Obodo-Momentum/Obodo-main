@@ -1,4 +1,8 @@
 from django import forms
+<<<<<<< HEAD
+from .models import Tag, RequestOfferPost, Profile, Comment
+=======
+>>>>>>> a23dbe17550cd7c57d93190dc14f10c4a3df64ed
 from .widgets import MapInput
 from users.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -142,6 +146,15 @@ class RegistrationForm(UserCreationForm):
 # Your password can’t be entirely numeric.
 
 # (<ul> <li>"Your password can’t be too similar to your other personal information."</li> <li>"Your password must contain at least 8 characters."</li> <li>"Your password can’t be a commonly used password."</li> <li>"Your password can’t be entirely numeric."</li> </ul>)
+
+class CommentForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment
+        fields = [
+            'comment_text'           
+        ]
+
 class EventForm(forms.ModelForm):
 
     class Meta:
