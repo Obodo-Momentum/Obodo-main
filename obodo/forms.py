@@ -2,7 +2,7 @@ from django import forms
 from .widgets import MapInput
 from users.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Tag, RequestOfferPost, Event, Organization, Member
+from .models import Tag, RequestOfferPost, Event, Organization, Member, Profile
 # from .widgets import MapInput
 
 
@@ -49,6 +49,14 @@ class RequestOfferForm(forms.ModelForm):
             'timeline_start' : forms.DateInput(attrs={"class":"form-control"}),
             'timeline_end' : forms.DateInput(attrs={"class":"form-control"}),
         }
+
+class ProfileForm(forms.ModelForm):
+    profile_pic = forms.FileField(label='Upload Your Photo')
+    class Meta:
+        model = User
+        fields = [
+            'profile_pic',
+        ]
 
 class OrganizationForm(forms.ModelForm):
 

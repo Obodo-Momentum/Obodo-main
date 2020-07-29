@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import RequestOfferPost, Tag, Event, Organization, Member
+from .models import RequestOfferPost, Tag, Event, Organization, Member, Profile
 from users.models import User
-from .forms import RequestOfferForm, EventForm, OrganizationForm, MemberForm
+from .forms import RequestOfferForm, EventForm, OrganizationForm, MemberForm, ProfileForm
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 # Create your views here.
 
@@ -80,9 +81,9 @@ def view_user_profile(request, user_pk):
     })
 
 def edit_user_profile(request, user_pk):
-    
+    user = request.user
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=request.user)
+        form = ProfileForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             form.save()
             return redirect(to='view_user_profile', user_pk=user.pk)
@@ -110,7 +111,7 @@ def add_event(request):
             event = Event(event_pic = request.FILES['event_pic'])
             event.host = request.user
             event = form.save()
-            return redirect(to='homepage')
+            return redirect(to='view_user_events')
     else:
         form = EventForm()
     
@@ -149,29 +150,55 @@ def add_organization(request):
     if request.method == 'POST':
         form = OrganizationForm(request.POST, request.FILES)
         if form.is_valid():
-            org = Organization(picture = request.FILES['picture'])
+            org = form.save(commit=False)
             org.creator = request.user
-            org = form.save()
-            return redirect(to='view_organization')
+            form.save()
+            return redirect(to='view_organization', organization_pk=organization.pk)
     else:
         form = OrganizationForm()
-    
     return render(request, 'obodo/add_organization.html', {
         "form": form,
     })
 
-def view_organization(request, org_pk):
-    creator = request.user
-    community = request.user.community
-    organization = get_object_or_404(Organization, pk=org_pk)
+def view_organization(request, organization_pk):
+    organization = get_object_or_404(Organization.objects.all(), pk=organization_pk)
     return render(request, 'obodo/view_organization.html', {
         'organization': organization,
-        "creator": creator,
-        "community": community,
     })
 
 def browse_organizations(request):
     organizations = Organization.objects.all()
     return render(request, 'obodo/browse_organizations.html', {
-        "organizations": organizations,
+        "organizations": organizations
+    })
+
+def search_organizations(request):
+    query = request.GET.get('q')
+
+    if query is not None:
+        organizations = Organization.objects.filter(Q(name__icontains=query))
+    else:
+        organizations = None
+    
+    return render(request, 'obodo/search_organizations.html', {
+        'query': query,
+        'organizations': organizations,
+    })
+
+def add_member(request, organization_pk):
+    organization = get_object_or_404(Organization.objects.all(), pk=organization_pk)
+
+    if request.method == 'POST':
+        form = MemberForm(data=request.POST)
+        if form.is_valid():
+            member = form.save(commit=False)
+            member.organization = organization
+            member.save()
+            return redirect(to='view_organization', organization_pk=organization.pk)
+    else:
+        form = MemberForm()
+    
+    return render(request, 'obodo/add_member.html', {
+        "form": form,
+        "organization": organization,
     })

@@ -11,5 +11,14 @@
     <p>Mission Statement: {{ organization.mission }}</p>
 </div>
 
+<p><a href="{% url 'add_member' organization_pk=organization.pk %}">Click to Join</a></p>
+
+<p>Members:</p>
+<ul>
+    {% for member in organization.members.all %}
+      <li><a href="{% url 'view_user_profile' user_pk=user.pk %}">{{ member }}</a></li>
+    {% endfor %}
+  </ul>
+
 
 {% endblock %}

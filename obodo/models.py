@@ -76,6 +76,12 @@ class RequestOfferPost(models.Model):
             tags.append(tag)
         self.tags.set(tags)
 
+
+class Profile(models.Model):
+    current_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="profiles", null=True)
+    profile_pic = models.ImageField(default='default.jpg')
+    joined_at = models.DateField(auto_now_add=True, blank=True, null=True)
+
 class Photo(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     created_at = models.DateTimeField(auto_now_add=True)

@@ -38,9 +38,11 @@ urlpatterns = [
     path('obodo/view_all_events/', obodo_views.view_all_events, name="view_all_events"),
     path('obodo/view_community_posts/', obodo_views.view_community_posts, name="view_community_posts"),
     path('obodo/add_organization/', obodo_views.add_organization, name='add_organization'),
-    path('obodo/view_organization/<int:org_pk>/', obodo_views.view_organization, name='view_organization'),
+    path('obodo/view_organization/<int:organization_pk>/', obodo_views.view_organization, name='view_organization'),
     path('obodo/browse_organizations/', obodo_views.browse_organizations, name='browse_organizations'),
-    
+    path('obodo/search_organizations/', obodo_views.search_organizations, name='search_organizations'),
+    path('obodo/view_organization/<int:organization_pk>/add_member/', obodo_views.add_member, name='add_member'),
+
 ]
 
 
