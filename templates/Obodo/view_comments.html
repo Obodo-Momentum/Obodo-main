@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+
+
+
+{% block content %}
+<div>some text right here </div>
+
+{% for comment in post.comments.all %}
+<div class="ml-3 border border-success">
+    <p>User: {{ comment.commenter }}</p>
+    <p>{{ comment.posted_at }}</p>
+    <p>Comment {{ comment.comment_text }}</p>
+</div>
+{% endfor %}
+{% endblock %}

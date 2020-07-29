@@ -1,9 +1,12 @@
 from django import forms
-from .models import Tag, RequestOfferPost, Profile
+<<<<<<< HEAD
+from .models import Tag, RequestOfferPost, Profile, Comment
+=======
+>>>>>>> a23dbe17550cd7c57d93190dc14f10c4a3df64ed
 from .widgets import MapInput
 from users.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Tag, RequestOfferPost, Profile, Event
+from .models import Tag, RequestOfferPost, Event, Organization, Member, Profile
 # from .widgets import MapInput
 
 
@@ -59,6 +62,36 @@ class ProfileForm(forms.ModelForm):
             'profile_pic',
         ]
 
+class OrganizationForm(forms.ModelForm):
+
+    class Meta:
+        model = Organization
+        fields = [
+            'name',
+            'picture',
+            'located_at',
+            'mission',
+        ]
+        widgets = {
+            'name' : forms.TextInput(attrs={"class":"form-control"}),
+            'picture' : forms.FileInput(attrs={"class":"form-control-file"}),
+            'located_at' : forms.TextInput(attrs={"class":"form-control"}),
+            'mission' : forms.Textarea(attrs={"class":"form-control"}),
+        }
+
+
+class MemberForm(forms.ModelForm):
+
+    class Meta:
+        model = Member
+        fields = [
+            'username',
+        ]
+        widgets = {
+            'username' : forms.TextInput(attrs={"class":"form-control"}),
+        }
+
+
 # class CommentForm(forms.ModelForm):
 
 #     class Meta:
@@ -113,6 +146,15 @@ class RegistrationForm(UserCreationForm):
 # Your password can’t be entirely numeric.
 
 # (<ul> <li>"Your password can’t be too similar to your other personal information."</li> <li>"Your password must contain at least 8 characters."</li> <li>"Your password can’t be a commonly used password."</li> <li>"Your password can’t be entirely numeric."</li> </ul>)
+
+class CommentForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment
+        fields = [
+            'comment_text'           
+        ]
+
 class EventForm(forms.ModelForm):
 
     class Meta:
