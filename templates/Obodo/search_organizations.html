@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Find an Organization</h2>
+
+<form action="{% url 'search_organizations' %}" method='GET'>
+    <input type='search' name='q' placeholder="Enter search here" class="">
+    <p>
+        <button class="" type="submit">Show Results</button>
+    </p>
+</form>
+<br>
+<h6>Results:</h6>
+<ul>
+{% if organizations is not None %}
+    {% for organization in organizations %}
+        <li><a class="" href="{% url 'view_organization' organization_pk=organization.pk %}">{{ organization.name }}</a></li>
+    {% empty %}
+        <p>No results match your query.</p>
+    {% endfor %}
+{% endif %}
+</ul>
+
+
+
+
+{% endblock %}

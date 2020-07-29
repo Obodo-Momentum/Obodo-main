@@ -1,24 +1,24 @@
 {% extends 'base.html' %} {% load mapbox_location_field_tags %} {%
 location_field_includes %} {% load render_bundle from webpack_loader %} {% load static %} {% block content %}
-<div class="main">
-    <h1>Add Your Request / Add Your Offering</h1>
-    <div class='container'>
-        <div class="row">
-            <div class="col-6">
-                <!-- <div></div> -->
-                <form class="" action="{% url 'add_request_offer' %}" method="POST" id='post-form'
-                    enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class='post-form'>
-                        <div class="form-group">
-                            {{ form.as_p }}
-                        </div>
-                        <div>
-                            <button class="" type="submit">Submit</button>
-                        </div>
-                </form>
-                <!-- {{ form.media }} -->
-            </div>
+
+<h1>Add Your Request / Add Your Offering</h1>
+<div class='container'>
+    <div class="row">
+        <div class="col-6">
+            <!-- <div></div> -->
+            <form class="" action="{% url 'add_request_offer' %}" method="POST" id='post-form'
+                enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <!-- <div class='post-form'>
+                    <div class="form-group">
+                        {{ form.as_p }}
+                    </div> -->
+                    <div>
+                        <button class="" type="submit">Submit</button>
+                    </div>
+            </form>
+            <!-- {{ form.media }} -->
         </div>
 
         <div class="col-6">
