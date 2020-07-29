@@ -1,6 +1,6 @@
 .banner {
   background-color: #002400 ;
-  color: blanchedalmond;
+  color: white;
   border-bottom: solid .25rem #AEB2A9;
   width: 100%;
 }
@@ -12,4 +12,38 @@
 .form-control {
   height: 25px;
 }
+
+.btn{
+  background-color: #002400;
+  color: white;
+}
+
+.btn:hover{
+  color: white;
+}
+
+.navbar-list{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #7D5F4F;
+}
+
+.navbar-item{
+  display: inline-block;
+  border-right: 1px solid #AEB2A9;
+}
+
+.navbar-item:hover {
+  background-color: #AEB2A9;
+}
+
+.nav-link {
+  color: white;
+}
+
+.nav-link:hover {
+  color: black;
+}
+
 

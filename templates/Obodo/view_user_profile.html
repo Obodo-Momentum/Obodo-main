@@ -2,12 +2,11 @@
 
 {% block content %}
 
-<div class="d-flex justify-content-center">
-    <span><a href="{% url 'view_user_profile' user_pk=user.pk %}"> Profile </a></span>
-    <span><a href="{% url 'auth_logout' %}"> logout</a></span>
-    <span><a href="{% url 'add_request_offer' %}"> add a post</a></span>
-    <span><a href="{% url 'homepage' %}">home</a></span>
-
+<div>
+    <ul class='navbar-list'>
+        <li class="navbar-item"><a href="{% url 'auth_logout' %}" class="nav-link"> Logout</a></li>
+        <li class="navbar-item"><a href="{% url 'homepage' %}" class="nav-link">Home</a></li>
+    </ul>
 </div>
 
 <div>

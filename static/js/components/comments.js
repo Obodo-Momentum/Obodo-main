@@ -1,8 +1,8 @@
 import * as React from 'react'
 import CommentsBlock from 'simple-react-comments'
-import { commentsData } from './data/index' // Some comment data
+// import { commentsData } from './data/index' // Some comment data
 
-class App extends React.Component {
+class Comments extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -40,4 +40,4 @@ class App extends React.Component {
   }
 }
 
-export default App
+export default Comments
