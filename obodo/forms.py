@@ -1,8 +1,5 @@
 from django import forms
-<<<<<<< HEAD
 from .models import Tag, RequestOfferPost, Profile, Comment
-=======
->>>>>>> a23dbe17550cd7c57d93190dc14f10c4a3df64ed
 from .widgets import MapInput
 from users.models import User
 from django.contrib.auth.forms import UserCreationForm

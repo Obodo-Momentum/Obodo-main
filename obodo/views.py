@@ -1,11 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import RequestOfferPost, Tag, Event, Organization, Member, Profile
 from users.models import User
-<<<<<<< HEAD
-from .forms import RequestOfferForm, ProfileForm, EventForm, CommentForm
-=======
 from .forms import RequestOfferForm, EventForm, OrganizationForm, MemberForm, ProfileForm
->>>>>>> a23dbe17550cd7c57d93190dc14f10c4a3df64ed
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 
@@ -165,10 +161,6 @@ def view_community_posts(request):
     return render(request, 'obodo/homepage.html', {
         "posts": posts
     })
-<<<<<<< HEAD
-# return render(request, 'obodo/homepage.html', {
-    #     "posts":posts
-=======
 
 def add_organization(request):
     if request.method == 'POST':
@@ -208,7 +200,6 @@ def search_organizations(request):
         'query': query,
         'organizations': organizations,
     })
->>>>>>> a23dbe17550cd7c57d93190dc14f10c4a3df64ed
 
 def add_member(request, organization_pk):
     organization = get_object_or_404(Organization.objects.all(), pk=organization_pk)
