@@ -1,6 +1,6 @@
 import * as React from 'react'
 import CommentsBlock from 'simple-react-comments'
-// import { commentsData } from './data/index' // Some comment data
+import { commentsData } from './data/index' // Some comment data
 
 class Comments extends React.Component {
   constructor (props) {
