@@ -19,6 +19,7 @@ def add_request_offer(request):
             post.member = request.user
             post.community = request.user.community
             post.save()
+            post.set_tag_names(form.cleaned_data['tag_names'])
             return redirect(to='view_user_posts')
     else:
         form = RequestOfferForm()
