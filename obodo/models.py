@@ -56,6 +56,7 @@ class RequestOfferPost(models.Model):
     timeline_end = models.DateField()
     community = models.CharField(max_length=50, null=True, blank=True)
     time_stamp = models.DateTimeField(auto_now_add=True)
+    
 
     def __str__(self):
         return self.title

@@ -1,7 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import RequestOfferPost, Tag, Event, Organization, Member, Profile
 from users.models import User
+<<<<<<< HEAD
+from .forms import RequestOfferForm, ProfileForm, EventForm, CommentForm
+=======
 from .forms import RequestOfferForm, EventForm, OrganizationForm, MemberForm, ProfileForm
+>>>>>>> a23dbe17550cd7c57d93190dc14f10c4a3df64ed
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 
@@ -13,7 +17,6 @@ def home(request):
 def add_request_offer(request):
     if request.method == 'POST':
         form = RequestOfferForm(request.POST, request.FILES)
-        
         if form.is_valid():
             post = form.save(commit=False)
             post.image = request.FILES
@@ -23,7 +26,6 @@ def add_request_offer(request):
             return redirect(to='view_user_posts')
     else:
         form = RequestOfferForm()
-    
     return render(request, 'obodo/add_request_offer.html', {
         'form': form,
     })
@@ -71,7 +73,6 @@ def add_profile(request):
         "form": form
     })
 
-
 def view_user_profile(request, user_pk):
     user = get_object_or_404(User, pk=user_pk)
     posts = user.posts.all()
@@ -95,15 +96,35 @@ def edit_user_profile(request, user_pk):
     })
 
 
-# def view_post_comment(request, post_pk):
-    
-#     post = get_object_or_404(RequestOfferPost, pk=post_pk)
-#     comments = post.comments.all()
+def view_comments(request, post_pk):
+    post = get_object_or_404(RequestOfferPost, pk=post_pk)
+    comments = post.comments.all()
 
-#     return render(request, dataorsmth, {
-#         "":.,
+    return render(request, 'obodo/view_comments.html', {
+        "post": post,
+        "comments": comments,
+        
+    })
 
-#     }
+def add_comment(request, post_pk):
+    post = get_object_or_404(RequestOfferPost, pk=post_pk)
+    if request.method == 'POST':
+        form = CommentForm(data=request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.original_post = post
+            comment.commenter = request.user
+            comment.save()
+            
+            return redirect(to='post_detail', post_pk=post.pk)
+    else:
+        form = CommentForm()
+    return render(request, "obodo/add_comment.html", {
+        "form": form,
+        "post": post,
+    })
+
+
 def add_event(request):
     if request.method == 'POST':
         form = EventForm(request.POST, request.FILES)
@@ -137,14 +158,17 @@ def view_all_events(request):
         "events": events,
     })
 
-
 def view_community_posts(request):
     community = request.user.community
     posts = RequestOfferPost.objects.filter(community = community)
 
     return render(request, 'obodo/homepage.html', {
-        "posts":posts
+        "posts": posts
     })
+<<<<<<< HEAD
+# return render(request, 'obodo/homepage.html', {
+    #     "posts":posts
+=======
 
 def add_organization(request):
     if request.method == 'POST':
@@ -184,6 +208,7 @@ def search_organizations(request):
         'query': query,
         'organizations': organizations,
     })
+>>>>>>> a23dbe17550cd7c57d93190dc14f10c4a3df64ed
 
 def add_member(request, organization_pk):
     organization = get_object_or_404(Organization.objects.all(), pk=organization_pk)

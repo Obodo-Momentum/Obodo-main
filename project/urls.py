@@ -23,7 +23,7 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
-    path('home/', obodo_views.home, name='homepage'),
+    path('home/', obodo_views.view_community_posts, name='homepage'),
     path('obodo/add_request_offer/', obodo_views.add_request_offer, name='add_request_offer'),
     path('obodo/view_user_posts/', obodo_views.view_user_posts, name='view_user_posts'),
     path('obodo/post_detail/<int:post_pk>/', obodo_views.post_detail, name='post_detail'),
@@ -36,6 +36,11 @@ urlpatterns = [
     path('obodo/view_event_page/<int:event_pk>/', obodo_views.view_event_page, name="view_event_page"),
     path('obodo/view_user_events/', obodo_views.view_user_events, name="view_user_events"),
     path('obodo/view_all_events/', obodo_views.view_all_events, name="view_all_events"),
+<<<<<<< HEAD
+    # path('obodo/view_community_posts/', obodo_views.view_community_posts, name="view_community_posts"),
+    path('obodo/view_comments/<int:post_pk>/', obodo_views.view_comments, name='view_comments'),
+    path('obodo/add_comment/<int:post_pk>/', obodo_views.add_comment, name="add_comment")
+=======
     path('obodo/view_community_posts/', obodo_views.view_community_posts, name="view_community_posts"),
     path('obodo/add_organization/', obodo_views.add_organization, name='add_organization'),
     path('obodo/view_organization/<int:organization_pk>/', obodo_views.view_organization, name='view_organization'),
@@ -43,6 +48,7 @@ urlpatterns = [
     path('obodo/search_organizations/', obodo_views.search_organizations, name='search_organizations'),
     path('obodo/view_organization/<int:organization_pk>/add_member/', obodo_views.add_member, name='add_member'),
 
+>>>>>>> a23dbe17550cd7c57d93190dc14f10c4a3df64ed
 ]
 
 
