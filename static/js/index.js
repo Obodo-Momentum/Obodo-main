@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './add-request-or-offer'
-import './comment-section'
 
 class App extends React.Component {
   render () {

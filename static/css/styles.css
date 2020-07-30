@@ -27,6 +27,9 @@
   margin: 0;
   padding: 0;
   background-color: #7D5F4F;
+  position: sticky;
+  top: 0;
+  
 }
 
 .navbar-item{
@@ -44,6 +47,10 @@
 
 .nav-link:hover {
   color: black;
+}
+
+.container{
+  margin: 0rem
 }
 
 
