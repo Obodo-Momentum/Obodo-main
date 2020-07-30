@@ -228,7 +228,7 @@ category = "main"
 description = "An Amazon S3 Transfer Manager"
 name = "s3transfer"
 optional = false
-python-versions = "*"
+python-versions = "3.7.7"
 version = "0.3.3"
 
 [package.dependencies]

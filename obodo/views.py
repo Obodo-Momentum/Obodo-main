@@ -7,8 +7,6 @@ from django.db.models import Q
 
 # Create your views here.
 
-def home(request):
-    return render(request, 'obodo/homepage.html')
 
 def add_request_offer(request):
     if request.method == 'POST':
