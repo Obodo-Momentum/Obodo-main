@@ -17,6 +17,15 @@ class Comments extends React.Component {
     }
   }
 
+  const request = axios.create({
+   
+  })
+  
+
+  getPostComments ({ props }) {
+
+  }
+
   componentDidMount () {
 
     // axios get request using that postId for the pk
