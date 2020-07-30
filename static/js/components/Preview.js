@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Card from 'react-bootstrap/Card'
 import { propTypes } from 'react-bootstrap/esm/Image'
 
