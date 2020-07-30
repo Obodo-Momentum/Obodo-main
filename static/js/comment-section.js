@@ -2,10 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Comments from './components/comments'
 
-export function getPostPk(){
-    
+const commentSections = document.querySelectorAll('.commentSection')
+console.log('comment section')
+for (const commentSection of commentSections) {
+  console.log('js is running')
+  ReactDOM.render(<Comments postId={commentSection.dataset.postId} />, commentSection)
 }
-
-const commentSection = document.getElementById('comment-section')
-if (commentSection) {
-  ReactDOM.render(<Comments />, commentSection)
