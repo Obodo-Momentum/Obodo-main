@@ -45,7 +45,9 @@ urlpatterns = [
     path('obodo/browse_organizations/', obodo_views.browse_organizations, name='browse_organizations'),
     path('obodo/search_organizations/', obodo_views.search_organizations, name='search_organizations'),
     path('obodo/view_organization/<int:organization_pk>/add_member/', obodo_views.add_member, name='add_member'),
-
+    path('obodo/tags/<str:tag_name>/', obodo_views.view_tag, name='view_tag'),
+    path('obodo/list_tags/', obodo_views.list_tags, name='list_tags'),
+    path('obodo/search_tags/', obodo_views.search_tags, name='search_tags'),
 ]
 
 

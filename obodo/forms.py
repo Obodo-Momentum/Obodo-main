@@ -1,12 +1,8 @@
 from django import forms
-<<<<<<< HEAD
-from .models import Tag, RequestOfferPost, Profile, Comment
-=======
->>>>>>> a23dbe17550cd7c57d93190dc14f10c4a3df64ed
 from .widgets import MapInput
 from users.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Tag, RequestOfferPost, Event, Organization, Member, Profile
+from .models import Tag, RequestOfferPost, Event, Organization, Member, Profile, Comment
 # from .widgets import MapInput
 
 
@@ -29,7 +25,7 @@ from .models import Tag, RequestOfferPost, Event, Organization, Member, Profile
 #         return super().to_python(reverse_tuple_string(value))
 
 class RequestOfferForm(forms.ModelForm):
-    tag_names = forms.CharField(label="Tags", help_text="Enter tags separated by spaces.", widget=forms.TextInput(attrs={"class":"form-control"}))
+    tag_names = forms.CharField(label="Tags", help_text="Enter tags separated by spaces.", widget=forms.TextInput(attrs={"class":"form-control"}), required=False)
     # location = LocationField()
     class Meta:
         model = RequestOfferPost
