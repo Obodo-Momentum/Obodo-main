@@ -124,3 +124,4 @@ class Member(models.Model):
 
     def __str__(self):
         return f"{self.username}"
+

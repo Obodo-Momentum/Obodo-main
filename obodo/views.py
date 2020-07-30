@@ -219,3 +219,31 @@ def add_member(request, organization_pk):
         "form": form,
         "organization": organization,
     })
+
+def view_tag(request, tag_name):
+    tag = get_object_or_404(Tag, tag=tag_name)
+    posts = tag.posts.all()
+    
+    return render(request, 'obodo/tag_detail.html', {
+        'tag': tag,
+        'posts': posts,
+    })
+
+def list_tags(request):
+    tags = Tag.objects.order_by('posts')
+    return render(request, 'obodo/list_tags.html', {
+        'tags': tags,
+    })
+
+def search_tags(request):
+    query = request.GET.get('q')
+
+    if query is not None:
+        tags = Tag.objects.filter(Q(tag__icontains=query))
+    else:
+        tags = None
+    
+    return render(request, 'obodo/search_tags.html', {
+        'query': query,
+        'tags': tags,
+    })
