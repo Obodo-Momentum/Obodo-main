@@ -3,6 +3,7 @@ from users.models import User
 import uuid
 from mapbox_location_field.models import LocationField
 import datetime
+from django.conf import settings
 
 # Create your models here.
 
@@ -71,7 +72,7 @@ class RequestOfferPost(models.Model):
         tag_names = tag_names.split()
         tags = []
         for tag_name in tag_names:
-            tag = Tag.object.filter(tag=tag_name).first()
+            tag = Tag.objects.filter(tag=tag_name).first()
             if tag is None:
                 tag = Tag.objects.create(tag=tag_name)
             tags.append(tag)
@@ -123,3 +124,4 @@ class Member(models.Model):
 
     def __str__(self):
         return f"{self.username}"
+
