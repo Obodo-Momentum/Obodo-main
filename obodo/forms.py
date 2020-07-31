@@ -51,11 +51,25 @@ class RequestOfferForm(forms.ModelForm):
         }
 
 class ProfileForm(forms.ModelForm):
+    LOCATION_CHOICES = (
+        ('Raleigh', 'Raleigh'),
+        ('Durham', 'Durham'),
+        ('Wake Forest', 'Wake Forest'),
+        ('Chapel Hill', 'Chapel Hill'),
+        ('Cary', 'Cary'),
+        ('Apex/Holly Springs', 'Apex/Holly Springs'),
+        ('Garner', 'Garner'),
+        ('Clayton', 'Clayton'),
+        ('Knightdale/Zebulon', 'Knightdale/Zebulon'),
+    )
+
     profile_pic = forms.FileField(label='Upload Your Photo')
+    community = forms.ChoiceField(choices=LOCATION_CHOICES, widget=forms.Select(attrs={'class':'form-control'}))
     class Meta:
         model = User
         fields = [
             'profile_pic',
+            'community',
         ]
 
 class OrganizationForm(forms.ModelForm):
@@ -86,15 +100,6 @@ class MemberForm(forms.ModelForm):
         widgets = {
             'username' : forms.TextInput(attrs={"class":"form-control"}),
         }
-
-
-# class CommentForm(forms.ModelForm):
-
-#     class Meta:
-#         model = Comment
-#         fields = [
-#             'comment_text',
-#         ]
 
 class RegistrationForm(UserCreationForm):
     """
@@ -129,12 +134,15 @@ class RegistrationForm(UserCreationForm):
             'email',
             'username',
             'community',
+            'first_name',
+            'last_name',
             ]
         
         widgets = {
             'username' : forms.TextInput(attrs={'class':'form-control'}),
             'email' : forms.TextInput(attrs={'class':'form-control'}),
-            
+            'first_name' : forms.TextInput(attrs={'class':'form-control'}),
+            'last_name' : forms.TextInput(attrs={'class':'form-control'}),
         }
 # Your password can’t be too similar to your other personal information.
 # Your password must contain at least 8 characters.
