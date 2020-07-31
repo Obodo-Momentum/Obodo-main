@@ -1,4 +1,5 @@
 from django import forms
+from .models import Tag, RequestOfferPost, Profile, Comment
 from .widgets import MapInput
 from users.models import User
 from django.contrib.auth.forms import UserCreationForm
