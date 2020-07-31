@@ -7,21 +7,18 @@ class Comments extends React.Component {
     super(props)
     console.log(props.postId)
     this.state = {
-      comments: [
-        {
-          comment_id: '1',
-          comment_body: 'Hello',
-          comment_user: 'username1'
-        }
-      ]
+      comments: []
     }
   }
 
   componentDidMount () {
-    axios.get(this.props.postId)
-      .then(response => { return response.data }
+    const postId = this.props.postId
+    axios.get(`obodo/view_comments/${postId}/`)
+      .then(response => {
+        this.setState({ comments: response.data })
+      }
       )
-    console.log(comments)
+    console.log(this.response.data)
     // this.setState({ comments: comments })
   }
 
