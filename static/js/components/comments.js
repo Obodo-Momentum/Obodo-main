@@ -1,11 +1,11 @@
 import * as React from 'react'
 import CommentsBlock from 'simple-react-comments'
+import axios from 'axios'
 
 class Comments extends React.Component {
   constructor (props) {
     super(props)
-    console.log(props)
-    this.commentsRef = React.createRef()
+    console.log(props.postId)
     this.state = {
       comments: [
         {
@@ -17,18 +17,12 @@ class Comments extends React.Component {
     }
   }
 
-  const request = axios.create({
-   
-  })
-  
-
-  getPostComments ({ props }) {
-
-  }
-
   componentDidMount () {
-
-    // axios get request using that postId for the pk
+    axios.get(this.props.postId)
+      .then(response => { return response.data }
+      )
+    console.log(comments)
+    // this.setState({ comments: comments })
   }
 
   componentDidUpdate () {

@@ -91,14 +91,10 @@ def edit_user_profile(request, user_pk):
 
 
 def view_comments(request, post_pk):
-    post = get_object_or_404(RequestOfferPost, pk=post_pk)
-    comments = post.comments.all()
-
-    return render(request, 'obodo/view_comments.html', {
-        "post": post,
-        "comments": comments,
-        
-    })
+    if request.method == "GET":
+        post = get_object_or_404(RequestOfferPost, pk=post_pk)
+        comments = post.comments.all().values()
+        return JsonResponse(list(comments), safe=False)
 
 def add_comment(request, post_pk):
     post = get_object_or_404(RequestOfferPost, pk=post_pk)

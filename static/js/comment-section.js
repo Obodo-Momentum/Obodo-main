@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Comments from './components/comments'
+import axios from 'axios'
 
 const commentSections = document.querySelectorAll('.commentSection')
 console.log('comment section')
