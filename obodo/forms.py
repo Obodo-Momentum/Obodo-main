@@ -3,6 +3,7 @@ from .widgets import MapInput
 from users.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Tag, RequestOfferPost, Event, Organization, Member, Profile, Comment
+from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput, DateTimePickerInput, MonthPickerInput, YearPickerInput
 # from .widgets import MapInput
 
 
@@ -26,7 +27,8 @@ from .models import Tag, RequestOfferPost, Event, Organization, Member, Profile,
 
 class RequestOfferForm(forms.ModelForm):
     tag_names = forms.CharField(label="Tags", help_text="Enter tags separated by spaces.", widget=forms.TextInput(attrs={"class":"form-control"}), required=False)
-    # location = LocationField()
+    post_image = forms.ImageField(required=False)
+
     class Meta:
         model = RequestOfferPost
         fields = [
@@ -38,7 +40,6 @@ class RequestOfferForm(forms.ModelForm):
             'request_or_offer',
             'timeline_start',
             'timeline_end',
-            'location',
         ]
         widgets = {
             'title' : forms.TextInput(attrs={"class":"form-control"}),
@@ -46,8 +47,8 @@ class RequestOfferForm(forms.ModelForm):
             'category' : forms.Select(attrs={"class":"form-control"}),
             'request_or_offer' : forms.Select(attrs={"class":"form-control"}),
             'post_image' : forms.FileInput(attrs={"class":"form-control-file"}),
-            'timeline_start' : forms.DateInput(attrs={"class":"form-control"}),
-            'timeline_end' : forms.DateInput(attrs={"class":"form-control"}),
+            'timeline_start' : DatePickerInput(format='%m/%d/%Y'),
+            'timeline_end' : DatePickerInput(format='%m/%d/%Y'),
         }
 
 class ProfileForm(forms.ModelForm):

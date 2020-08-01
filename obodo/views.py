@@ -25,6 +25,19 @@ def add_request_offer(request):
         'form': form,
     })
 
+def search_posts(request):
+    query = request.GET.get('q')
+
+    if query is not None:
+        posts = RequestOfferPost.objects.filter(Q(title__icontains=query))
+    else:
+        posts = None
+    
+    return render(request, 'obodo/search_posts.html', {
+        'query': query,
+        'posts': posts,
+    })
+
 def view_user_posts(request):
     posts = request.user.posts.all()
     return render(request, 'obodo/view_user_profile.html', {
@@ -151,6 +164,19 @@ def view_all_events(request):
     events = Event.objects.all()
     return render(request, 'obodo/view_all_events.html', {
         "events": events,
+    })
+
+def search_events(request):
+    query = request.GET.get('q')
+
+    if query is not None:
+        events = Event.objects.filter(Q(event_title__icontains=query))
+    else:
+        events = None
+    
+    return render(request, 'obodo/search_events.html', {
+        'query': query,
+        'events': events,
     })
 
 def view_community_posts(request):

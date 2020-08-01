@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from imagekit.models import ProcessedImageField
+from imagekit.processors import ResizeToFill
 
 
 # Consider creating a custom user model from scratch as detailed at
@@ -20,7 +22,10 @@ LOCATION_CHOICES = (
 
 class User(AbstractUser):
     community = models.CharField(max_length=55, choices=LOCATION_CHOICES)
-    profile_pic = models.ImageField(default='default.jpg')
+    profile_pic = ProcessedImageField(upload_to='images',
+                                      processors=[ResizeToFill(300, 200)],
+                                      format='JPEG',
+                                      options={'quality': 60})
 
 
 
