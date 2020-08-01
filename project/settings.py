@@ -65,10 +65,11 @@ INSTALLED_APPS = [
     'mapbox_location_field',
     'bootstrap_datepicker_plus',
     'imagekit',
-
+    'rest_framework'
     # Project-specific
     'users',
     'obodo',
+    'api',
 ]
 
 MIDDLEWARE = [
