@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="login-menu">
+<ul class='navbar-list d-flex justify-content-end'>
 
-    <span> <a href="{% url 'auth_login' %}"> login or make a new account</a></span>
+    <li class="navbar-item"><a href="{% url 'auth_login' %}" class="nav-link">Login or Create a New Account</a></li>
 
-</div>
+</ul>
 
 <div class='preview-posts'>
 
@@ -14,7 +14,7 @@
 {% for post in posts.all %}
 <div>
     <div class="card" style="width: 18rem;">
-        <img src="{{ post.post_image }}" class="card-img-top" alt="...">
+        <img src="{{ post.post_image.url }}" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title"><a href="{% url 'post_detail' post_pk=post.pk %}">{{ post.title }}</a></h5>
             <span class="card-subtitle mb-2 text-muted">{{ post.request_or_offer}}</span>
