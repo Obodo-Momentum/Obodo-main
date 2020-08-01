@@ -42,6 +42,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+BOOTSTRAP4 = {
+    'include_jquery': True,
+}
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -59,6 +63,8 @@ INSTALLED_APPS = [
     'webpack_loader',
     'storages',
     'mapbox_location_field',
+    'bootstrap_datepicker_plus',
+    'imagekit',
 
     # Project-specific
     'users',
