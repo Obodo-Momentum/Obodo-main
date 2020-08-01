@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Search Tags to Locate Posts</h2>
+
+<form action="{% url 'search_tags' %}" method='GET'>
+    <input type='search' name='q' placeholder="Enter search here" class="">
+    <p>
+        <button class="" type="submit">Show Results</button>
+    </p>
+</form>
+<br>
+<h6>Results:</h6>
+<ul>
+{% if tags is not None %}
+    {% for tag in tags %}
+        <li><a class="" href="{% url 'view_tag' tag_name=tag.tag %}">{{ tag }}</a></li>
+    {% empty %}
+        <p>No results match your query.</p>
+    {% endfor %}
+{% endif %}
+</ul>
+
+
+
+
+{% endblock %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import RequestOfferPost, Tag, Event, Organization, Member, Profile
 from users.models import User
-from .forms import RequestOfferForm, EventForm, OrganizationForm, MemberForm, ProfileForm
+from .forms import RequestOfferForm, EventForm, OrganizationForm, MemberForm, ProfileForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 
@@ -17,6 +17,7 @@ def add_request_offer(request):
             post.member = request.user
             post.community = request.user.community
             post.save()
+            post.set_tag_names(form.cleaned_data['tag_names'])
             return redirect(to='view_user_posts')
     else:
         form = RequestOfferForm()
@@ -164,8 +165,8 @@ def add_organization(request):
     if request.method == 'POST':
         form = OrganizationForm(request.POST, request.FILES)
         if form.is_valid():
-            org = form.save(commit=False)
-            org.creator = request.user
+            organization = form.save(commit=False)
+            organization.creator = request.user
             form.save()
             return redirect(to='view_organization', organization_pk=organization.pk)
     else:
@@ -215,4 +216,32 @@ def add_member(request, organization_pk):
     return render(request, 'obodo/add_member.html', {
         "form": form,
         "organization": organization,
+    })
+
+def view_tag(request, tag_name):
+    tag = get_object_or_404(Tag, tag=tag_name)
+    posts = tag.posts.all()
+    
+    return render(request, 'obodo/tag_detail.html', {
+        'tag': tag,
+        'posts': posts,
+    })
+
+def list_tags(request):
+    tags = Tag.objects.order_by('posts')
+    return render(request, 'obodo/list_tags.html', {
+        'tags': tags,
+    })
+
+def search_tags(request):
+    query = request.GET.get('q')
+
+    if query is not None:
+        tags = Tag.objects.filter(Q(tag__icontains=query))
+    else:
+        tags = None
+    
+    return render(request, 'obodo/search_tags.html', {
+        'query': query,
+        'tags': tags,
     })
