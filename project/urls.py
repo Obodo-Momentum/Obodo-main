@@ -20,9 +20,12 @@ from django.urls import include, path
 from obodo import views as obodo_views
 from django.views.generic import TemplateView
 from registration.backends.simple.views import RegistrationView
-
+from api import views as api_views
+from rest_framework import routers
 
 urlpatterns = [
+    
+    path('api/post_comments/<int:post_pk>/', api_views.PostCommentsView.as_view(), name='post_comments'),
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
     path('home/', obodo_views.view_community_posts, name='homepage'),
