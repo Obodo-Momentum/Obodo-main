@@ -19,7 +19,7 @@ from django.conf.urls.static import static
 from django.urls import include, path
 from obodo import views as obodo_views
 from django.views.generic import TemplateView
-# from django_registration.backends.one_step.views import RegistrationView
+from registration.backends.simple.views import RegistrationView
 
 
 urlpatterns = [

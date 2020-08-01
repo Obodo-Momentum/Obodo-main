@@ -6,14 +6,13 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import JsonResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
-from registration.backends.simple.views import RegistrationView
+from registration.views import RegistrationView
 from django.urls import reverse_lazy
 
 # Create your views here.
 
-class MyRegistrationView(RegistrationView):
-    pass
-    success_url = reverse_lazy('homepage:homepage')
+class RegistrationView(RegistrationView):
+    success_url = reverse_lazy('homepage')
 
 def add_request_offer(request):
     if request.method == 'POST':
