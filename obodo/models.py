@@ -4,6 +4,8 @@ import uuid
 from mapbox_location_field.models import LocationField
 import datetime
 from django.conf import settings
+from imagekit.models import ProcessedImageField
+from imagekit.processors import ResizeToFill
 
 # Create your models here.
 
@@ -44,7 +46,10 @@ class Tag(models.Model):
 
 class RequestOfferPost(models.Model):
     member = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="posts", null=True)
-    post_image = models.ImageField(default='default.jpg')
+    post_image = ProcessedImageField(upload_to='images',
+                                      processors=[ResizeToFill(300, 200)],
+                                      format='JPEG',
+                                      options={'quality': 60})
     title = models.CharField(max_length=80, null=True, blank=True)
     post_text = models.TextField(max_length=500, null=True, blank=True)
     address = models.CharField(max_length=100, null=True, blank=True)
@@ -53,8 +58,8 @@ class RequestOfferPost(models.Model):
     fulfilled = models.BooleanField(default=False)
     category = models.CharField(max_length=25, choices=CATEGORY_CHOICES)
     request_or_offer = models.CharField(max_length=50, choices=TYPE_SELECTION)
-    timeline_start = models.DateField()
-    timeline_end = models.DateField()
+    timeline_start = models.DateTimeField()
+    timeline_end = models.DateTimeField()
     community = models.CharField(max_length=50, null=True, blank=True)
     time_stamp = models.DateTimeField(auto_now_add=True)
     
@@ -81,7 +86,10 @@ class RequestOfferPost(models.Model):
 
 class Profile(models.Model):
     current_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="profiles", null=True)
-    profile_pic = models.ImageField(default='default.jpg')
+    profile_pic = ProcessedImageField(upload_to='images',
+                                      processors=[ResizeToFill(300, 200)],
+                                      format='JPEG',
+                                      options={'quality': 60})
     joined_at = models.DateField(auto_now_add=True, blank=True, null=True)
 
 class Photo(models.Model):
@@ -102,7 +110,10 @@ class Comment(models.Model):
 class Event(models.Model):
     host = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="events", null=True)
     event_title = models.CharField(max_length=50, null=True, blank=True)
-    event_pic = models.ImageField(default='default.jpg')
+    event_pic = ProcessedImageField(upload_to='images',
+                                      processors=[ResizeToFill(300, 200)],
+                                      format='JPEG',
+                                      options={'quality': 60})
     event_text = models.TextField(max_length=500, null=True, blank=True)
     attendee = models.ManyToManyField(to=User, related_name="attendees")
     start_date = models.DateField(default=datetime.date.today, blank=True)
@@ -113,7 +124,10 @@ class Event(models.Model):
 class Organization(models.Model):
     creator = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='creators', null=True)
     name = models.CharField(max_length=100, null=True, blank=True)
-    picture = models.ImageField(default='default.jpg')
+    picture = ProcessedImageField(upload_to='images',
+                                      processors=[ResizeToFill(300, 200)],
+                                      format='JPEG',
+                                      options={'quality': 60})
     located_at = models.CharField(max_length=200, null=True, blank=True)
     mission = models.TextField(max_length=500, null=True, blank=True)
 

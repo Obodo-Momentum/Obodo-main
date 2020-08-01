@@ -1,5 +1,4 @@
-  
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
 <div>
@@ -16,12 +15,28 @@
 </div>
 
 
-<h1>Posts related to: {{ tag }}</h1>
+<h2>Find What You Need or Find Someone to Help</h2>
 
-
+<form action="{% url 'search_posts' %}" method='GET'>
+    <input type='search' name='q' placeholder="Enter search here" class="">
+    <p>
+        <button class="" type="submit">Show Results</button>
+        <button><a href="{% url 'home' %}">Back to Home</a></button>
+    </p>
+</form>
+<br>
+<h6>Results:</h6>
 <ul>
-  {% for post in posts.all %}
-    <li><a href="{% url 'post_detail' post_pk=post.pk %}">{{ post.title }}</a></li>
-  {% endfor %}
+{% if posts is not None %}
+    {% for post in posts %}
+        <li><a class="" href="{% url 'post_detail' post_pk=post.pk %}">{{ post.title }}</a></li>
+    {% empty %}
+        <p>No results match your query.</p>
+    {% endfor %}
+{% endif %}
 </ul>
+
+
+
+
 {% endblock %}
