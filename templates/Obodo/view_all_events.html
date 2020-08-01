@@ -4,9 +4,12 @@
 
 <div>
     <ul class='navbar-list d-flex justify-content-end'>
-        <p>Hello {{user.username}}!</p>
+        <span class="mr-auto p-2 ">
+            <p class="username">Hello {{user.username}}!</p>
+        </span>
         <li class="navbar-item"><a href="{% url 'homepage' %}" class="nav-link">Home</a></li>
-        <li class="navbar-item"><a href="{% url 'view_user_profile' user_pk=user.pk %}" class="nav-link">Your Profile</a></li>
+        <li class="navbar-item"><a href="{% url 'view_user_profile' user_pk=user.pk %}" class="nav-link">Your
+                Profile</a></li>
         <li class="navbar-item"><a href="{% url 'add_request_offer' %}" class="nav-link">Create a Post</a></li>
         <li class="navbar-item"><a href="{% url 'browse_organizations' %}" class="nav-link">Organizations</a></li>
         <li class="navbar-item"><a href="{% url 'view_all_events' %}" class="nav-link">Events</a></li>
@@ -31,7 +34,7 @@
 
 <ul>
     {% for event in events.all %}
-        <li><a href="{% url 'view_event_page' event_pk=event.pk %}">{{ event.event_title }}</a></li>
+    <li><a href="{% url 'view_event_page' event_pk=event.pk %}">{{ event.event_title }}</a></li>
     {% endfor %}
 </ul>
 

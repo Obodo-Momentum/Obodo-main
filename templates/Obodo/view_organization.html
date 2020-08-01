@@ -1,37 +1,40 @@
 {% extends "base.html" %}
 
+{% block content %}
 <div>
   <ul class='navbar-list d-flex justify-content-end'>
-      <p>Hello {{user.username}}!</p>
-      <li class="navbar-item"><a href="{% url 'homepage' %}" class="nav-link">Home</a></li>
-      <li class="navbar-item"><a href="{% url 'view_user_profile' user_pk=user.pk %}" class="nav-link">Your Profile</a></li>
-      <li class="navbar-item"><a href="{% url 'add_request_offer' %}" class="nav-link">Create a Post</a></li>
-      <li class="navbar-item"><a href="{% url 'browse_organizations' %}" class="nav-link">Organizations</a></li>
-      <li class="navbar-item"><a href="{% url 'view_all_events' %}" class="nav-link">Events</a></li>
-      <li class="navbar-item"><a href="{% url 'list_tags' %}" class="nav-link">Search Posts by Tag</a></li>
-      <li class="navbar-item"><a href="{% url 'auth_logout' %}" class="nav-link">Logout</a></li>
+    <span class="mr-auto p-2 ">
+      <p class="username">Hello {{user.username}}!</p>
+    </span>
+    <li class="navbar-item"><a href="{% url 'homepage' %}" class="nav-link">Home</a></li>
+    <li class="navbar-item"><a href="{% url 'view_user_profile' user_pk=user.pk %}" class="nav-link">Your Profile</a>
+    </li>
+    <li class="navbar-item"><a href="{% url 'add_request_offer' %}" class="nav-link">Create a Post</a></li>
+    <li class="navbar-item"><a href="{% url 'browse_organizations' %}" class="nav-link">Organizations</a></li>
+    <li class="navbar-item"><a href="{% url 'view_all_events' %}" class="nav-link">Events</a></li>
+    <li class="navbar-item"><a href="{% url 'list_tags' %}" class="nav-link">Search Posts by Tag</a></li>
+    <li class="navbar-item"><a href="{% url 'auth_logout' %}" class="nav-link">Logout</a></li>
   </ul>
 </div>
 
-{% block content %}
 <div>
-    <p>Organization Profile</p>
-    <img src="{{ organization.picture.url }}"/>
-    <p>Organization Creator: {{ organization.creator }}</p>
-    <p>{{ organization.name }}</p>
-    <p>{{ organization.located_at }}</p>
-    <p>{{ organization.creator.community }}</p>
-    <p>Mission Statement: {{ organization.mission }}</p>
+  <p>Organization Profile</p>
+  <img src="{{ organization.picture.url }}" />
+  <p>Organization Creator: {{ organization.creator }}</p>
+  <p>{{ organization.name }}</p>
+  <p>{{ organization.located_at }}</p>
+  <p>{{ organization.creator.community }}</p>
+  <p>Mission Statement: {{ organization.mission }}</p>
 </div>
 
 <p><a href="{% url 'add_member' organization_pk=organization.pk %}">Click to Join</a></p>
 
 <p>Members:</p>
 <ul>
-    {% for member in organization.members.all %}
-      <li><a href="{% url 'view_user_profile' user_pk=user.pk %}">{{ member }}</a></li>
-    {% endfor %}
-  </ul>
+  {% for member in organization.members.all %}
+  <li><a href="{% url 'view_user_profile' user_pk=user.pk %}">{{ member }}</a></li>
+  {% endfor %}
+</ul>
 
 
 {% endblock %}

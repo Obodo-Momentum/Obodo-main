@@ -6,9 +6,12 @@
 
 <div>
     <ul class='navbar-list d-flex justify-content-end'>
-        <p>Hello {{user.username}}!</p>
+        <span class="mr-auto p-2 ">
+            <p class="username">Hello {{user.username}}!</p>
+        </span>
         <li class="navbar-item"><a href="{% url 'homepage' %}" class="nav-link">Home</a></li>
-        <li class="navbar-item"><a href="{% url 'view_user_profile' user_pk=user.pk %}" class="nav-link">Your Profile</a></li>
+        <li class="navbar-item"><a href="{% url 'view_user_profile' user_pk=user.pk %}" class="nav-link">Your
+                Profile</a></li>
         <li class="navbar-item"><a href="{% url 'add_request_offer' %}" class="nav-link">Create a Post</a></li>
         <li class="navbar-item"><a href="{% url 'browse_organizations' %}" class="nav-link">Organizations</a></li>
         <li class="navbar-item"><a href="{% url 'view_all_events' %}" class="nav-link">Events</a></li>
@@ -17,26 +20,43 @@
     </ul>
 </div>
 
-<button><a href="{% url 'add_organization' %}">Create an Organization</a></button>
+<h2>Organizations in your community</h2>
 
-<h4>Find an Organization</h4>
-
-<form action="{% url 'search_organizations' %}" method='GET'>
-    <input type='search' name='q' placeholder="Enter search here" class="">
-    <p>
-        <button class="" type="submit">Show Results</button>
-        
-    </p>
-</form>
+<div class="conatiner">
+    <div class="row">
+        <div class="col">
+            <a class="btn ml-5 mt-5" href="{% url 'add_organization' %}" role="button">Create an Organization</a>
 
 
-<h2>Browse Through Organizations</h2>
 
-<ul>
-    {% for organization in organizations.all %}
-        <li><a href="{% url 'view_organization' organization_pk=organization.pk %}">{{ organization.name }}</a></li>
-    {% endfor %}
-</ul>
+            <h4>Find an Organization</h4>
+
+            <form action="{% url 'search_organizations' %}" method='GET'>
+                <input type='search' name='q' placeholder="Enter search here" class="">
+                <p>
+                    <button class="" type="submit">Show Results</button>
+
+                </p>
+            </form>
+        </div>
+
+        <div class="col">
+            <ul>
+                {% for organization in organizations.all %}
+                <li><a href="{% url 'view_organization' organization_pk=organization.pk %}">{{ organization.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
 
 
 {% endblock %}

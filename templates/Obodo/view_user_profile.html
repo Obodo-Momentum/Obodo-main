@@ -4,9 +4,12 @@
 
 <div>
     <ul class='navbar-list d-flex justify-content-end'>
-        <p>Hello {{user.username}}!</p>
+        <span class="mr-auto p-2 ">
+            <p class="username">Hello {{user.username}}!</p>
+        </span>
         <li class="navbar-item"><a href="{% url 'homepage' %}" class="nav-link">Home</a></li>
-        <li class="navbar-item"><a href="{% url 'view_user_profile' user_pk=user.pk %}" class="nav-link">Your Profile</a></li>
+        <li class="navbar-item"><a href="{% url 'view_user_profile' user_pk=user.pk %}" class="nav-link">Your
+                Profile</a></li>
         <li class="navbar-item"><a href="{% url 'add_request_offer' %}" class="nav-link">Create a Post</a></li>
         <li class="navbar-item"><a href="{% url 'browse_organizations' %}" class="nav-link">Organizations</a></li>
         <li class="navbar-item"><a href="{% url 'view_all_events' %}" class="nav-link">Events</a></li>
@@ -15,8 +18,11 @@
     </ul>
 </div>
 
-<button><a href="{% url 'add_organization' %}">Create an Organization</a></button>
-<button><a href="{% url 'add_event' %}">Create an Event</a></button>
+<div>
+
+    <a class="btn ml-5 mt-5" href="{% url 'add_event' %}" role="button">Create an Event</a>
+</div>
+
 
 <div>
     <h3>Profile for {{ user.username}} </h3>
