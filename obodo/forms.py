@@ -3,7 +3,8 @@ from .models import Tag, RequestOfferPost, Profile, Comment
 from .widgets import MapInput
 from users.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Tag, RequestOfferPost, Event, Organization, Member, Profile
+from .models import Tag, RequestOfferPost, Event, Organization, Member, Profile, Comment
+from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput, DateTimePickerInput, MonthPickerInput, YearPickerInput
 # from .widgets import MapInput
 
 
@@ -26,8 +27,9 @@ from .models import Tag, RequestOfferPost, Event, Organization, Member, Profile
 #         return super().to_python(reverse_tuple_string(value))
 
 class RequestOfferForm(forms.ModelForm):
-    tag_names = forms.CharField(label="Tags", help_text="Enter tags separated by spaces.", widget=forms.TextInput(attrs={"class":"form-control"}))
-    # location = LocationField()
+    tag_names = forms.CharField(label="Tags", help_text="Enter tags separated by spaces.", widget=forms.TextInput(attrs={"class":"form-control"}), required=False)
+    post_image = forms.ImageField(required=False)
+
     class Meta:
         model = RequestOfferPost
         fields = [
@@ -39,7 +41,6 @@ class RequestOfferForm(forms.ModelForm):
             'request_or_offer',
             'timeline_start',
             'timeline_end',
-            'location',
         ]
         widgets = {
             'title' : forms.TextInput(attrs={"class":"form-control"}),
@@ -47,16 +48,30 @@ class RequestOfferForm(forms.ModelForm):
             'category' : forms.Select(attrs={"class":"form-control"}),
             'request_or_offer' : forms.Select(attrs={"class":"form-control"}),
             'post_image' : forms.FileInput(attrs={"class":"form-control-file"}),
-            'timeline_start' : forms.DateInput(attrs={"class":"form-control"}),
-            'timeline_end' : forms.DateInput(attrs={"class":"form-control"}),
+            'timeline_start' : DatePickerInput(format='%m/%d/%Y'),
+            'timeline_end' : DatePickerInput(format='%m/%d/%Y'),
         }
 
 class ProfileForm(forms.ModelForm):
+    LOCATION_CHOICES = (
+        ('Raleigh', 'Raleigh'),
+        ('Durham', 'Durham'),
+        ('Wake Forest', 'Wake Forest'),
+        ('Chapel Hill', 'Chapel Hill'),
+        ('Cary', 'Cary'),
+        ('Apex/Holly Springs', 'Apex/Holly Springs'),
+        ('Garner', 'Garner'),
+        ('Clayton', 'Clayton'),
+        ('Knightdale/Zebulon', 'Knightdale/Zebulon'),
+    )
+
     profile_pic = forms.FileField(label='Upload Your Photo')
+    community = forms.ChoiceField(choices=LOCATION_CHOICES, widget=forms.Select(attrs={'class':'form-control'}))
     class Meta:
         model = User
         fields = [
             'profile_pic',
+            'community',
         ]
 
 class OrganizationForm(forms.ModelForm):
@@ -87,15 +102,6 @@ class MemberForm(forms.ModelForm):
         widgets = {
             'username' : forms.TextInput(attrs={"class":"form-control"}),
         }
-
-
-# class CommentForm(forms.ModelForm):
-
-#     class Meta:
-#         model = Comment
-#         fields = [
-#             'comment_text',
-#         ]
 
 class RegistrationForm(UserCreationForm):
     """
@@ -130,12 +136,15 @@ class RegistrationForm(UserCreationForm):
             'email',
             'username',
             'community',
+            'first_name',
+            'last_name',
             ]
         
         widgets = {
             'username' : forms.TextInput(attrs={'class':'form-control'}),
             'email' : forms.TextInput(attrs={'class':'form-control'}),
-            
+            'first_name' : forms.TextInput(attrs={'class':'form-control'}),
+            'last_name' : forms.TextInput(attrs={'class':'form-control'}),
         }
 # Your password can’t be too similar to your other personal information.
 # Your password must contain at least 8 characters.

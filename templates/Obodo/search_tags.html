@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
 
@@ -15,25 +15,27 @@
     </ul>
 </div>
 
-<button><a href="{% url 'add_event' %}">Create an Event</a></button>
+<h2>Search Tags to Locate Posts</h2>
 
-<h2>Search Events</h2>
-
-<form action="{% url 'search_events' %}" method='GET'>
+<form action="{% url 'search_tags' %}" method='GET'>
     <input type='search' name='q' placeholder="Enter search here" class="">
     <p>
         <button class="" type="submit">Show Results</button>
-        <button><a href="{% url 'view_all_events' %}">Back to Browse</a></button>
     </p>
 </form>
-
-<h2>Browse Events</h2>
-
+<br>
+<h6>Results:</h6>
 <ul>
-    {% for event in events.all %}
-        <li><a href="{% url 'view_event_page' event_pk=event.pk %}">{{ event.event_title }}</a></li>
+{% if tags is not None %}
+    {% for tag in tags %}
+        <li><a class="" href="{% url 'view_tag' tag_name=tag.tag %}">{{ tag }}</a></li>
+    {% empty %}
+        <p>No results match your query.</p>
     {% endfor %}
+{% endif %}
 </ul>
+
+
 
 
 {% endblock %}

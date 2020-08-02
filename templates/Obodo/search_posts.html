@@ -1,7 +1,6 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
-
 <div>
     <ul class='navbar-list d-flex justify-content-end'>
         <p>Hello {{user.username}}!</p>
@@ -15,25 +14,29 @@
     </ul>
 </div>
 
-<button><a href="{% url 'add_event' %}">Create an Event</a></button>
 
-<h2>Search Events</h2>
+<h2>Find What You Need or Find Someone to Help</h2>
 
-<form action="{% url 'search_events' %}" method='GET'>
+<form action="{% url 'search_posts' %}" method='GET'>
     <input type='search' name='q' placeholder="Enter search here" class="">
     <p>
         <button class="" type="submit">Show Results</button>
-        <button><a href="{% url 'view_all_events' %}">Back to Browse</a></button>
+        <button><a href="{% url 'home' %}">Back to Home</a></button>
     </p>
 </form>
-
-<h2>Browse Events</h2>
-
+<br>
+<h6>Results:</h6>
 <ul>
-    {% for event in events.all %}
-        <li><a href="{% url 'view_event_page' event_pk=event.pk %}">{{ event.event_title }}</a></li>
+{% if posts is not None %}
+    {% for post in posts %}
+        <li><a class="" href="{% url 'post_detail' post_pk=post.pk %}">{{ post.title }}</a></li>
+    {% empty %}
+        <p>No results match your query.</p>
     {% endfor %}
+{% endif %}
 </ul>
+
+
 
 
 {% endblock %}

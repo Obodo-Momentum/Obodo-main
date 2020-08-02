@@ -19,8 +19,13 @@ from django.conf.urls.static import static
 from django.urls import include, path
 from obodo import views as obodo_views
 from django.views.generic import TemplateView
+from registration.backends.simple.views import RegistrationView
+from api import views as api_views
+from rest_framework import routers
 
 urlpatterns = [
+    
+    path('api/post_comments/<int:post_pk>/', api_views.PostCommentsView.as_view(), name='post_comments'),
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
     path('home/', obodo_views.view_community_posts, name='homepage'),
@@ -36,7 +41,6 @@ urlpatterns = [
     path('obodo/view_event_page/<int:event_pk>/', obodo_views.view_event_page, name="view_event_page"),
     path('obodo/view_user_events/', obodo_views.view_user_events, name="view_user_events"),
     path('obodo/view_all_events/', obodo_views.view_all_events, name="view_all_events"),
-    # path('obodo/view_community_posts/', obodo_views.view_community_posts, name="view_community_posts"),
     path('obodo/view_comments/<int:post_pk>/', obodo_views.view_comments, name='view_comments'),
     path('obodo/add_comment/<int:post_pk>/', obodo_views.add_comment, name="add_comment"),
     path('obodo/view_community_posts/', obodo_views.view_community_posts, name="view_community_posts"),
@@ -45,6 +49,11 @@ urlpatterns = [
     path('obodo/browse_organizations/', obodo_views.browse_organizations, name='browse_organizations'),
     path('obodo/search_organizations/', obodo_views.search_organizations, name='search_organizations'),
     path('obodo/view_organization/<int:organization_pk>/add_member/', obodo_views.add_member, name='add_member'),
+    path('obodo/tags/<str:tag_name>/', obodo_views.view_tag, name='view_tag'),
+    path('obodo/list_tags/', obodo_views.list_tags, name='list_tags'),
+    path('obodo/search_tags/', obodo_views.search_tags, name='search_tags'),
+    path('obodo/search_posts/', obodo_views.search_posts, name='search_posts'),
+    path('obodo/search_events/', obodo_views.search_events, name='search_events'),
 ]
 
 
