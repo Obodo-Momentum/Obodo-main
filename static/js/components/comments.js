@@ -13,13 +13,11 @@ class Comments extends React.Component {
 
   componentDidMount () {
     const postId = this.props.postId
-    axios.get(`obodo/view_comments/${postId}/`)
-      .then(response => {
+    axios.get(`/api/post_comments/${postId}/`)
+      .then((response) => {
+        console.log(response.data)
         this.setState({ comments: response.data })
-      }
-      )
-    console.log(this.response.data)
-    // this.setState({ comments: comments })
+      })
   }
 
   componentDidUpdate () {
