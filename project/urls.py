@@ -19,8 +19,13 @@ from django.conf.urls.static import static
 from django.urls import include, path
 from obodo import views as obodo_views
 from django.views.generic import TemplateView
+from registration.backends.simple.views import RegistrationView
+from api import views as api_views
+from rest_framework import routers
 
 urlpatterns = [
+    
+    path('api/post_comments/<int:post_pk>/', api_views.PostCommentsView.as_view(), name='post_comments'),
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
     path('home/', obodo_views.view_community_posts, name='homepage'),
@@ -36,6 +41,8 @@ urlpatterns = [
     path('obodo/view_event_page/<int:event_pk>/', obodo_views.view_event_page, name="view_event_page"),
     path('obodo/view_user_events/', obodo_views.view_user_events, name="view_user_events"),
     path('obodo/view_all_events/', obodo_views.view_all_events, name="view_all_events"),
+    path('obodo/view_comments/<int:post_pk>/', obodo_views.view_comments, name='view_comments'),
+    path('obodo/add_comment/<int:post_pk>/', obodo_views.add_comment, name="add_comment"),
     path('obodo/view_community_posts/', obodo_views.view_community_posts, name="view_community_posts"),
     path('obodo/add_organization/', obodo_views.add_organization, name='add_organization'),
     path('obodo/view_organization/<int:organization_pk>/', obodo_views.view_organization, name='view_organization'),

@@ -65,10 +65,11 @@ INSTALLED_APPS = [
     'mapbox_location_field',
     'bootstrap_datepicker_plus',
     'imagekit',
-
+    'rest_framework',
     # Project-specific
     'users',
     'obodo',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -181,10 +182,12 @@ DEFAULT_FILE_STORAGE = env('DEFAULT_FILE_STORAGE')
 AWS_STORAGE_BUCKET_NAME = 'obodo-app'
 AWS_S3_REGION_NAME = 'us-east-2'
 
+ACCOUNT_AUTHENTICATED_REGISTRATION_REDIRECTS = True
+REGISTRATION_AUTO_LOGIN = True
 REGISTRATION_FORM = 'obodo.forms.RegistrationForm'
 LOGIN_REDIRECT_URL = '/home/'
 LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_ACTIVATION_DAYS = 7
-REGISTRATION_AUTO_LOGIN = True
+
 
 # REGISTRATION_FORM = 'obodo.forms.MyUserCreationForm'
