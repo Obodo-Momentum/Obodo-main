@@ -1,10 +1,11 @@
-{% extends 'base.html' %} {% load render_bundle from webpack_loader %} {% load static %}  {% block content %}
+{% extends 'base.html' %} {% load render_bundle from webpack_loader %} {% load static %} {% block content %}
 
 <div>
     <ul class='navbar-list d-flex justify-content-end'>
         <p>Hello {{user.username}}!</p>
         <li class="navbar-item"><a href="{% url 'homepage' %}" class="nav-link">Home</a></li>
-        <li class="navbar-item"><a href="{% url 'view_user_profile' user_pk=user.pk %}" class="nav-link">Your Profile</a></li>
+        <li class="navbar-item"><a href="{% url 'view_user_profile' user_pk=user.pk %}" class="nav-link">Your
+                Profile</a></li>
         <li class="navbar-item"><a href="{% url 'add_request_offer' %}" class="nav-link">Create a Post</a></li>
         <li class="navbar-item"><a href="{% url 'browse_organizations' %}" class="nav-link">Organizations</a></li>
         <li class="navbar-item"><a href="{% url 'view_all_events' %}" class="nav-link">Events</a></li>
@@ -17,7 +18,7 @@
 <div class='container'>
     <div class="row">
         <div class="col-6">
-            
+
             <form class="" action="{% url 'add_request_offer' %}" method="POST" id='post-form'
                 enctype="multipart/form-data">
                 {% csrf_token %}
@@ -25,13 +26,13 @@
                 <div>
                     <button class="" type="submit">Submit</button>
                 </div>
-                
+
             </form>
-            
+
         </div>
-    
+
         <div class="col-6">
-            <div id='preview'>
+            <div class='preview'>
             </div>
         </div>
     </div>

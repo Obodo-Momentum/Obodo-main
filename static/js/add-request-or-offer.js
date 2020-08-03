@@ -11,7 +11,7 @@ function getDataFromForm (form) {
   return fields
 }
 
-const preview = document.getElementById('preview')
+const preview = document.('preview')
 if (preview) {
   const postForm = document.getElementById('post-form')
   postForm.addEventListener('input', function (event) {
