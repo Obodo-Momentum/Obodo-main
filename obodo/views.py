@@ -4,9 +4,15 @@ from users.models import User
 from .forms import RequestOfferForm, EventForm, OrganizationForm, MemberForm, ProfileForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.http import JsonResponse
+from django.views.decorators.csrf import ensure_csrf_cookie
+from registration.views import RegistrationView
+from django.urls import reverse_lazy
 
 # Create your views here.
 
+class RegistrationView(RegistrationView):
+    success_url = reverse_lazy('homepage')
 
 def add_request_offer(request):
     if request.method == 'POST':
@@ -89,6 +95,7 @@ def view_user_profile(request, user_pk):
         "posts": posts,
     })
 
+
 def edit_user_profile(request, user_pk):
     user = request.user
     if request.method == 'POST':
@@ -105,15 +112,13 @@ def edit_user_profile(request, user_pk):
 
 
 def view_comments(request, post_pk):
-    post = get_object_or_404(RequestOfferPost, pk=post_pk)
-    comments = post.comments.all()
-
-    return render(request, 'obodo/view_comments.html', {
-        "post": post,
-        "comments": comments,
+    if request.method == "GET":
+        post = get_object_or_404(RequestOfferPost, pk=post_pk)
+        comments = post.comments.all().values()
         
-    })
+        return JsonResponse(list(comments), safe=False)
 
+@ensure_csrf_cookie
 def add_comment(request, post_pk):
     post = get_object_or_404(RequestOfferPost, pk=post_pk)
     if request.method == 'POST':
@@ -124,13 +129,14 @@ def add_comment(request, post_pk):
             comment.commenter = request.user
             comment.save()
             
-            return redirect(to='post_detail', post_pk=post.pk)
-    else:
-        form = CommentForm()
-    return render(request, "obodo/add_comment.html", {
-        "form": form,
-        "post": post,
-    })
+            return JsonResponse(comment, status=201)
+    #         return redirect(to='post_detail', post_pk=post.pk)
+    # else:
+    #     form = CommentForm()
+    # return render(request, "obodo/add_comment.html", {
+    #     "form": form,
+    #     "post": post,
+    # })
 
 
 def add_event(request):
