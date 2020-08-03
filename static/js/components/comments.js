@@ -1,6 +1,6 @@
-import * as React from 'react'
-import CommentsBlock from 'simple-react-comments'
+import React from 'react'
 import axios from 'axios'
+import Card from 'react-bootstrap/Card'
 
 class Comments extends React.Component {
   constructor (props) {
@@ -17,39 +17,15 @@ class Comments extends React.Component {
       .then((response) => {
         console.log(response.data)
         this.setState({ comments: response.data })
+        console.log(this.comments)
       })
-  }
-
-  componentDidUpdate () {
-
   }
 
   render () {
     return (
-      <div id='comments-component' ref={this.commentsRef}>
-        <CommentsBlock
-          comments={this.state.comments}
-          signinUrl='/signin'
-          isLoggedIn
-          reactRouter
-          onSubmit={text => {
-            if (text.length > 0) {
-              this.setState({
-                comments: [
-                  ...this.state.comments,
-                  {
-                    authorUrl: '#',
-                    avatarUrl: '#avatarUrl',
-                    createdAt: new Date(),
-                    fullName: 'Name',
-                    text
-                  }
-                ]
-              })
-              console.log('submit:', text)
-            }
-          }}
-        />
+      <div>
+        <Card></Card.Body>
+        </Card>
       </div>
     )
   }
