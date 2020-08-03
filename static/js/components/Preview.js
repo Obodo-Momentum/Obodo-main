@@ -46,7 +46,7 @@ export default function Preview ({ title, post_text, category, request_or_offer,
             {post_text}
           </Card.Text>
           <Card.Text>
-            {message}
+            {mission}
           </Card.Text>
           <Card.Text>
             {event_text}
