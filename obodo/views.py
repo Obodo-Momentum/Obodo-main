@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import JsonResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
-from registration.views import RegistrationView
+from registration.backends.simple.views import RegistrationView
 from django.urls import reverse_lazy
 
 # Create your views here.
