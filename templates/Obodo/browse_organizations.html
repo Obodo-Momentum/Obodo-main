@@ -24,7 +24,7 @@
 
 <div class="conatiner">
     <div class="row">
-        <div class="col">
+        <div class="col-4">
             <a class="btn ml-5 mt-5" href="{% url 'add_organization' %}" role="button">Create an Organization</a>
 
 
@@ -40,11 +40,18 @@
             </form>
         </div>
 
-        <div class="col">
+        <div class="col-8">
             <ul>
                 {% for organization in organizations.all %}
-                <li><a href="{% url 'view_organization' organization_pk=organization.pk %}">{{ organization.name }}</a>
-                </li>
+                <div class="card" style="width: 100%;">
+                    <img src="{{ organization.picture.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ organization.name }}</h5>
+                        <p class="card-text">{{ organization.mission }}</p>
+                        <a href="{% url 'view_organization' organization_pk=organization.pk %}" class="btn"
+                            role="button">More Details</a>
+                    </div>
+                </div>
                 {% endfor %}
             </ul>
         </div>

@@ -10,10 +10,8 @@
         <li class="navbar-item"><a href="{% url 'homepage' %}" class="nav-link">Home</a></li>
         <li class="navbar-item"><a href="{% url 'view_user_profile' user_pk=user.pk %}" class="nav-link">Your
                 Profile</a></li>
-        <li class="navbar-item"><a href="{% url 'add_request_offer' %}" class="nav-link">Create a Post</a></li>
         <li class="navbar-item"><a href="{% url 'browse_organizations' %}" class="nav-link">Organizations</a></li>
         <li class="navbar-item"><a href="{% url 'view_all_events' %}" class="nav-link">Events</a></li>
-        <li class="navbar-item"><a href="{% url 'list_tags' %}" class="nav-link">Search Posts by Tag</a></li>
         <li class="navbar-item"><a href="{% url 'auth_logout' %}" class="nav-link">Logout</a></li>
     </ul>
 </div>
@@ -32,11 +30,19 @@
 
 <h2>Browse Events</h2>
 
-<ul>
-    {% for event in events.all %}
-    <li><a href="{% url 'view_event_page' event_pk=event.pk %}">{{ event.event_title }}</a></li>
-    {% endfor %}
-</ul>
+
+{% for event in events.all %}
+<a href="{% url 'view_event_page' event_pk=event.pk %}">{{ event.event_title }}</a>
+<div class="card" style="width: 18rem;">
+    <img src="{{ event.event_pic.url }}" class="card-img-top" alt="event pic">
+    <div class="card-body">
+        <h5 class="card-title">{{ event.event_title }}</h5>
+        <p class="card-text">{{ event.event_text }}</p>
+        <a href="{% url 'view_event_page' event_pk=event.pk %}" class="btn " role="button">More Details</a>
+    </div>
+</div>
+{% endfor %}
+
 
 
 {% endblock %}

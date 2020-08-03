@@ -38,6 +38,15 @@ img {
   object-fit: contain
 }
 
+.logo{
+  height: 10rem;
+  width: auto;
+}
+
+.banner-text{
+  display: inline-block;
+}
+
 .navbar-item{
   display: inline-block;
   border-right: 1px solid #AEB2A9;
@@ -59,5 +68,23 @@ img {
   color: white;
 }
 
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+  
+}
 
 
