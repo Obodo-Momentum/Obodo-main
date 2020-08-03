@@ -84,7 +84,10 @@ img {
     color: white;
     transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
-  
+}
+
+.org-search{
+  border: 0.10rem solid black;
 }
 
 

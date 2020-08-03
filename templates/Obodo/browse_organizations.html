@@ -20,24 +20,27 @@
     </ul>
 </div>
 
-<h2>Organizations in your community</h2>
+<div class="mt-4 mb-4">
+    <h2 class="text-center">Organizations in your community</h2>
+</div>
 
 <div class="conatiner">
     <div class="row">
         <div class="col-4">
-            <a class="btn ml-5 mt-5" href="{% url 'add_organization' %}" role="button">Create an Organization</a>
+            <a class="btn ml-5 mb-2" href="{% url 'add_organization' %}" role="button">Create an Organization</a>
 
 
+            <div class="org-search">
+                <h4 class="ml-5 mt-5 mb-2">Find an Organization</h4>
 
-            <h4>Find an Organization</h4>
+                <form class="ml-5 mt-5 mb-5" action="{% url 'search_organizations' %}" method='GET'>
+                    <input type='search' name='q' placeholder="Enter search here" class="">
+                    <p>
+                        <button class="btn mt-5 mb-5" type="submit">Show Results</button>
 
-            <form action="{% url 'search_organizations' %}" method='GET'>
-                <input type='search' name='q' placeholder="Enter search here" class="">
-                <p>
-                    <button class="" type="submit">Show Results</button>
-
-                </p>
-            </form>
+                    </p>
+                </form>
+            </div>
         </div>
 
         <div class="col-8">
