@@ -19,12 +19,13 @@ from django.conf.urls.static import static
 from django.urls import include, path
 from obodo import views as obodo_views
 from django.views.generic import TemplateView
-from registration.backends.simple.views import RegistrationView
+from obodo.views import MyRegistrationView
 from api import views as api_views
 from rest_framework import routers
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    
+    path('accounts/register/', MyRegistrationView.as_view(), name='registration_register'),
     path('api/post_comments/<int:post_pk>/', api_views.PostCommentsView.as_view(), name='post_comments'),
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),

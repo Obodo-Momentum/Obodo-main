@@ -11,7 +11,7 @@ from django.urls import reverse_lazy
 
 # Create your views here.
 
-class RegistrationView(RegistrationView):
+class MyRegistrationView(RegistrationView):
     success_url = reverse_lazy('homepage')
 
 def add_request_offer(request):
