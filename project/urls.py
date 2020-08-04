@@ -54,6 +54,7 @@ urlpatterns = [
     path('obodo/search_tags/', obodo_views.search_tags, name='search_tags'),
     path('obodo/search_posts/', obodo_views.search_posts, name='search_posts'),
     path('obodo/search_events/', obodo_views.search_events, name='search_events'),
+    path('obodo/search_category/', obodo_views.search_category, name='search_category'),
 ]
 
 

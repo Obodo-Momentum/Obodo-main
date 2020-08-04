@@ -75,7 +75,7 @@ class ProfileForm(forms.ModelForm):
         ]
 
 class OrganizationForm(forms.ModelForm):
-
+    
     class Meta:
         model = Organization
         fields = [
