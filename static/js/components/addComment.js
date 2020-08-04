@@ -23,6 +23,7 @@ class AddComment extends React.Component {
     event.preventDefault()
     axios
       .post(`/api/post_comments/${postId}/`, {
+        withCredentials: true,
         comment_text: this.state.comment_text
       })
       .then(response =>
