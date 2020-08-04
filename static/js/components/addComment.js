@@ -11,11 +11,11 @@ class AddComment extends React.Component {
       posted: false
     }
     this.handleTextChange = this.handleTextChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleTextChange (event) {
     this.setState({ comment_text: event.target.value })
-    console.log(this.state.comment_text)
   }
 
   handleSubmit (event) {
@@ -28,6 +28,7 @@ class AddComment extends React.Component {
       })
       .then(response =>
         this.setState({ posted: true }))
+    console.log(this.state.comment_text)
   }
 
   render () {
