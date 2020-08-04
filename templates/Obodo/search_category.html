@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<h2>Posts related to selected category:</h2>
+
+<form action="{% url 'search_category' %}" method='GET'>
+    <input type='search' name='category' placeholder="Enter search here" list="brow">
+    <datalist id="brow">
+        <option value="kids">
+        <option value="outdoors">
+        <option value="services">
+        <option value="food">
+        <option value="clothing">
+        <option value="homegoods">
+        <option value="furniture">
+        <option value="books">
+    </datalist>  
+    <p>
+        <button class="" type="submit">Show Results</button>
+    </p>
+</form>
+<br>
+<h6>Results:</h6>
+<ul>
+{% if posts is not None %}
+    {% for post in posts %}
+        <li><a class="" href="{% url 'post_detail' post_pk=post.pk %}">{{ post.title }}</a></li>
+    {% empty %}
+        <p>No results match your query.</p>
+    {% endfor %}
+{% endif %}
+</ul>
+
+
+
+
+{% endblock %}
