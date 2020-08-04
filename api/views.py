@@ -23,5 +23,6 @@ class PostCommentsView(views.APIView):
             return Response(serializer.data, status=201)
 
 
-
-    
+class CommentViewSet(viewsets.ModelViewSet):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
