@@ -24,8 +24,12 @@ from api import views as api_views
 from rest_framework import routers
 from django.contrib.auth import views as auth_views
 
+router = routers.DefaultRouter()
+router.register('comments', api_views.CommentViewSet, basename='comment')
+
 urlpatterns = [
     path('accounts/register/', MyRegistrationView.as_view(), name='registration_register'),
+    path('api/', include(router.urls)),
     path('api/post_comments/<int:post_pk>/', api_views.PostCommentsView.as_view(), name='post_comments'),
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),

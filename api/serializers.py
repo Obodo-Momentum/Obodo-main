@@ -23,6 +23,7 @@ class RequestOfferPostSerializer(serializers.ModelSerializer):
         )
 
 class CommentSerializer(serializers.ModelSerializer):
+    commenter = serializers.StringRelatedField()
     class Meta:
         model = Comment
         fields = (
@@ -42,5 +43,4 @@ class UserSerializer(serializers.ModelSerializer):
         'date_joined',
         'community',
         'profile_pic',
-
     )

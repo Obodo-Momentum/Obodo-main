@@ -170,7 +170,13 @@ INTERNAL_IPS = [
     '127.0.0.1',
     # ...
 ]
+REST_FRAMEWORK = {
 
+    'DEFAULT_AUTHENTICATION_CLASSES':[
+        'rest_framework.authentication.BasicAuthentication',
+        'obodo.authentication.CsrfExemptSessionAuthentication',
+    ]
+}
 # Configure Django App for Heroku.
 import django_heroku
 django_heroku.settings(locals())
@@ -184,7 +190,7 @@ AWS_S3_REGION_NAME = 'us-east-2'
 
 
 REGISTRATION_FORM = 'obodo.forms.RegistrationForm'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/home/'
 LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = False
