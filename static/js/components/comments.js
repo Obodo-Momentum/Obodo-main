@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import Card from 'react-bootstrap/Card'
+import Comment from './comment'
 
 class Comments extends React.Component {
   constructor (props) {
@@ -15,18 +15,23 @@ class Comments extends React.Component {
     const postId = this.props.postId
     axios.get(`/api/post_comments/${postId}/`)
       .then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         this.setState({ comments: response.data })
-        console.log(this.comments)
+        // console.log(this.state.comments)
       })
   }
 
   render () {
+    console.log(this.state.comments)
     return (
       <div>
-        <Card></Card.Body>
-        </Card>
+        {this.state.comments.map(comment => {
+          return (
+            <Comment comment={comment} key={comment.id} />
+          )
+        })}
       </div>
+
     )
   }
 }
