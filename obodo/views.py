@@ -193,6 +193,7 @@ def view_community_posts(request):
         "posts": posts
     })
 
+
 def add_organization(request):
     if request.method == 'POST':
         form = OrganizationForm(request.POST, request.FILES)
@@ -276,4 +277,17 @@ def search_tags(request):
     return render(request, 'obodo/search_tags.html', {
         'query': query,
         'tags': tags,
+    })
+
+def search_category(request):
+    category = request.GET.get('category')
+
+    if category is not None:
+        posts = RequestOfferPost.objects.filter(Q(category__icontains=category))
+    else:
+        posts = None
+    
+    return render(request, 'obodo/search_category.html', {
+        'category': category,
+        'posts': posts,
     })
