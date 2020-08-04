@@ -9,18 +9,6 @@ from imagekit.processors import ResizeToFill
 
 # Create your models here.
 
-
-CATEGORY_CHOICES = (
-    ('kids', 'kids'),
-    ('outdoors', 'outdoors'),
-    ('services', 'services'),
-    ('food', 'food'),
-    ('clothing', 'clothing'),
-    ('homegoods', 'homegoods'),
-    ('furniture', 'furniture'),
-    ('books', 'books'),
-)
-
 TYPE_SELECTION = (
     ('Request', 'Request'),
     ('Offer', 'Offer'),
@@ -45,6 +33,18 @@ class Tag(models.Model):
         return self.tag
 
 class RequestOfferPost(models.Model):
+
+    CATEGORY_CHOICES = (
+    ('kids', 'kids'),
+    ('outdoors', 'outdoors'),
+    ('services', 'services'),
+    ('food', 'food'),
+    ('clothing', 'clothing'),
+    ('homegoods', 'homegoods'),
+    ('furniture', 'furniture'),
+    ('books', 'books'),
+    )
+
     member = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="posts", null=True)
     post_image = ProcessedImageField(upload_to='images',
                                       processors=[ResizeToFill(300, 200)],
