@@ -1,5 +1,5 @@
-{% load render_bundle from webpack_loader %}      
-       
+{% load render_bundle from webpack_loader %}
+
 
 <!DOCTYPE html>
 {% load static %}
@@ -15,58 +15,71 @@
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
   <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
   <link rel='stylesheet' href="{% static 'js/index.js' %}">
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet"/>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"
+    integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
-  <div class=" banner">
+  <div class="banner">
     <div class="mx-auto" style="width: 200px;">
-      <h1>Obodo</h1>
-      <h4>A place for community</h4>
+      <div class="pt-2">
+        <h1>Obodo</h1>
+        <h4>A place for community</h4>
+      </div>
     </div>
     <p>Hello {{user.username}}!</p>
   </div>
 
-{% if user.is_authenticated %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Menu</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  {% if user.is_authenticated %}
+  <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand nav-link" href="#">Menu</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class='navbar-nav mr-auto'>
-        <li class="nav-item active"><a href="{% url 'homepage' %}" class="nav-link">Home<span class="sr-only">(current)</span></a></li>
-        <li class="nav-item active"><a href="{% url 'view_user_profile' user_pk=user.pk %}" class="nav-link">Profile<span class="sr-only">(current)</span></a></li>
-        <li class="nav-item active"><a href="{% url 'view_user_posts' %}" class="nav-link">Your Posts<span class="sr-only">(current)</span></a></li>
-        <li class="nav-item active"><a href="{% url 'browse_organizations' %}" class="nav-link">Organizations<span class="sr-only">(current)</span></a></li>
-        <li class="nav-item active"><a href="{% url 'view_all_events' %}" class="nav-link">Events<span class="sr-only">(current)</span></a></li>
-        <li class="nav-item active"><a href="{% url 'list_tags' %}" class="nav-link">Search by Tag<span class="sr-only">(current)</span></a></li>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class='navbar-nav mr-auto'>
+        <li class="nav-item active"><a href="{% url 'homepage' %}" class="nav-link">Home<span
+              class="sr-only">(current)</span></a></li>
+        <li class="nav-item active"><a href="{% url 'view_user_profile' user_pk=user.pk %}"
+            class="nav-link">Profile<span class="sr-only">(current)</span></a></li>
+        <li class="nav-item active"><a href="{% url 'browse_organizations' %}" class="nav-link">Organizations<span
+              class="sr-only">(current)</span></a></li>
+        <li class="nav-item active"><a href="{% url 'view_all_events' %}" class="nav-link">Events<span
+              class="sr-only">(current)</span></a></li>
         <div class="dropdown-divider"></div>
-        <li class="nav-item active"><a href="{% url 'auth_logout' %}" class="nav-link">Logout<span class="sr-only">(current)</span></a></li>
+        <li class="nav-item active"><a href="{% url 'auth_logout' %}" class="nav-link">Logout<span
+              class="sr-only">(current)</span></a></li>
 
-    </ul>
-  </div>
-</nav>
-{% else %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Menu</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+      </ul>
+    </div>
+  </nav>
+  {% else %}
+  <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="#">Menu</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class='navbar-nav mr-auto'>
-        <li class="nav-item active"><a href="{% url 'auth_login' %}" class="nav-link">Login<span class="sr-only">(current)</span></a></li>
-        <li class="nav-item active"><a href="{% url 'registration_register' %}" class="nav-link">Register<span class="sr-only">(current)</span></a></li>
-    </ul>
-  </div>
-</nav>
-{% endif %}
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class='navbar-nav mr-auto'>
+        <li class="nav-item active"><a href="{% url 'auth_login' %}" class="nav-link">Login<span
+              class="sr-only">(current)</span></a></li>
+        <li class="nav-item active"><a href="{% url 'registration_register' %}" class="nav-link">Register<span
+              class="sr-only">(current)</span></a></li>
+      </ul>
+    </div>
+  </nav>
+  {% endif %}
 
 
   {% block content %} {% endblock %} {% render_bundle 'main' 'js' %}

@@ -1,7 +1,13 @@
+<<<<<<< HEAD
+import * as React from 'react'
+import CommentsBlock from 'simple-react-comments'
+import { commentsData } from './data/index' // Some comment data
+=======
 import React from 'react'
 import axios from 'axios'
 import Comment from './comment'
 import AddComment from './addComment'
+>>>>>>> master
 
 class Comments extends React.Component {
   constructor (props) {
@@ -12,6 +18,8 @@ class Comments extends React.Component {
     }
   }
 
+<<<<<<< HEAD
+=======
   componentDidMount () {
     const postId = this.props.postId
     axios.get(`/api/post_comments/${postId}/`)
@@ -22,6 +30,7 @@ class Comments extends React.Component {
       })
   }
 
+>>>>>>> master
   render () {
     console.log(this.state.comments)
     return (

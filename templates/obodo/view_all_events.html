@@ -3,25 +3,43 @@
 {% block content %}
 
 
-<button><a href="{% url 'add_event' %}">Create an Event</a></button>
+<h2 class="text-center">Browse Events</h2>
+<div class='row'>
 
-<h2>Search Events</h2>
 
-<form action="{% url 'search_events' %}" method='GET'>
-    <input type='search' name='q' placeholder="Enter search here" class="">
-    <p>
-        <button class="" type="submit">Show Results</button>
-        <button><a href="{% url 'view_all_events' %}">Back to Browse</a></button>
-    </p>
-</form>
+    <div class=" ml-3 col-4">
+        <a href="{% url 'add_event' %}" class="btn ml-5 mt-5" role="button">Create an Event</a>
 
-<h2>Browse Events</h2>
+        <div class=" ml-5 mt-4 search">
+            <h2>Search Events</h2>
+            <form action="{% url 'search_events' %}" method='GET'>
+                <input type='search' name='q' placeholder="Enter search here" class="">
 
-<ul>
-    {% for event in events.all %}
-        <li><a href="{% url 'view_event_page' event_pk=event.pk %}">{{ event.event_title }}</a></li>
-    {% endfor %}
-</ul>
+                <button class="mt-3 btn" type="submit">Show Results</button>
+
+            </form>
+
+        </div>
+    </div>
+
+
+    <div class="col-7 mt-5 ml-3 p-2">
+        {% for event in events.all %}
+        <div class="card" style="width: 100%;">
+            <img src="{{ event.event_pic.url }}" class="card-img-top" alt="event pic">
+            <div class="card-body">
+                <h5 class="card-title">{{ event.event_title }}</h5>
+                <p class="card-text">{{ event.event_text }}</p>
+                <a href="{% url 'view_event_page' event_pk=event.pk %}" class="btn " role="button">More Details</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+
+
 
 
 {% endblock %}
