@@ -19,16 +19,18 @@ class AddComment extends React.Component {
   }
 
   handleSubmit (event) {
-    const postId = this.props.postId
     event.preventDefault()
     axios
-      .post(`/api/post_comments/${postId}/`, {
+      .post(`/api/post_comments/${this.props.postId}/`, {
         withCredentials: true,
         comment_text: this.state.comment_text
       })
       .then(response =>
-        this.setState({ posted: true }))
-    console.log(this.state.comment_text)
+        console.log(this.state.comment_text))
+  }
+
+  postComment (prevState) {
+    if (this.state.comment_text !== prevState) { this.setState({ posted: true }) }
   }
 
   render () {
