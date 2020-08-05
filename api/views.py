@@ -16,11 +16,13 @@ class PostCommentsView(views.APIView):
 
     def post(self, request, post_pk, format=None):
         serializer = CommentSerializer(data=request.data)
+        post = get_object_or_404(RequestOfferPost, pk=post_pk)
         if serializer.is_valid():
-            post = get_object_or_404(RequestOfferPost, pk=post_pk)
             serializer.save(original_post = post, commenter = request.user, comment_text= request.data)
             serializer.save()
             return Response(serializer.data, status=201)
+        else:
+            return Response(status=400)
 
 
 class CommentViewSet(viewsets.ModelViewSet):
