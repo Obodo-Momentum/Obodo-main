@@ -113,3 +113,12 @@ img {
     padding: 20px;
 }
 
+.landingLink{
+  display: block;
+  color: white;
+}
+
+.landingLink:hover{
+  text-decoration: underline;
+  color: white;
+}

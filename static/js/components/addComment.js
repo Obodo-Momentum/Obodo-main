@@ -25,7 +25,10 @@ class AddComment extends React.Component {
         withCredentials: true,
         comment_text: this.state.comment_text
       })
-      .then(response => { this.setState({ posted: true }) }
+      .then(response => {
+        this.setState({ posted: true })
+        this.location.reload()
+      }
       )
     console.log(this.state.comment_text)
   }
