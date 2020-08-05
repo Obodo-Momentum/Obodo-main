@@ -46,7 +46,7 @@ def search_posts(request):
 
 def view_user_posts(request):
     posts = request.user.posts.all()
-    return render(request, 'obodo/view_user_profile.html', {
+    return render(request, 'obodo/view_user_posts.html', {
         "posts": posts,
     })
 
