@@ -1,1 +1,1 @@
-web: gunicorn obodo.wsgi
+web: gunicorn project.wsgi
