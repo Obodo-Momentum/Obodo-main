@@ -25,12 +25,9 @@ class AddComment extends React.Component {
         withCredentials: true,
         comment_text: this.state.comment_text
       })
-      .then(response =>
-        console.log(this.state.comment_text))
-  }
-
-  postComment (prevState) {
-    if (this.state.comment_text !== prevState) { this.setState({ posted: true }) }
+      .then(response => { this.setState({ posted: true }) }
+      )
+    console.log(this.state.comment_text)
   }
 
   render () {
