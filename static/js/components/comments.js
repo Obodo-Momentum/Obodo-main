@@ -22,6 +22,9 @@ class Comments extends React.Component {
       })
   }
 
+  loadNewComments () {
+  }
+
   render () {
     console.log(this.state.comments)
     return (
