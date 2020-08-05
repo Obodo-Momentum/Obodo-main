@@ -4,13 +4,17 @@
 
 {% block content %}
 <div class="ml-3 mt-3">
-<div>Add your comment here!</div>
-<form action="{% url 'add_comment' post_pk=post.pk %}" method="POST">
-{% csrf_token %}
-{{ form.as_p }}
-<button type="submit">Add Comment</button>
+    <div>Add your comment here!</div>
+    <form action="{% url 'add_comment' post_pk=post.pk %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Comment</button>
 
 
-</form>
+    </form>
+</div>
+
+<div>
+    <div id="preview"></div>
 </div>
 {% endblock %}

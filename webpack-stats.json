@@ -1,11 +1,1 @@
-{
-    "status": "done",
-    "chunks": {
-        "main": [
-            {
-                "name": "main-7eb0ca8577bf7e902071.js",
-                "path": "/Users/ben/momentum-projects/Obodo-main/static/webpack_bundles/main-7eb0ca8577bf7e902071.js"
-            }
-        ]
-    }
-}
+{"status":"done","chunks":{"main":[{"name":"main-38590c0ac4522fd4d713.js","path":"/Users/alyshialozanosmith/Desktop/momentum_projects/Obodo-main/static/webpack_bundles/main-38590c0ac4522fd4d713.js"}]}}
