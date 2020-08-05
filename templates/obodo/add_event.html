@@ -3,7 +3,6 @@
 {% block content %}
 
 
-
 <h2>Add an Event</h2>
 
 <form action="{% url 'add_event' %}" method='POST' enctype="multipart/form-data">
@@ -13,6 +12,11 @@
         <button type="submit">Add Event</button>
     </div>
 </form>
+
+<div>
+    <div id="preview">
+    </div>
+</div>
 
 
 {% endblock %}

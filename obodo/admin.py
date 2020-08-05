@@ -10,5 +10,3 @@ admin.site.register(Organization)
 admin.site.register(Member)
 admin.site.register(Profile)
 admin.site.register(Comment)
-
-

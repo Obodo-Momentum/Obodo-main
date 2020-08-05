@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 
-
 <div class="container">
     <div class="row">
 
@@ -15,12 +14,12 @@
                 <input type='search' name='q' placeholder="Enter a single tag" class="">
                 <p>
                     <button class="" type="submit">Show Results</button>
-                    
+
                 </p>
             </form>
 
             <h4>Search by Category</h4>
-            
+
             <form action="{% url 'search_category' %}" method='GET'>
                 <input type='search' name='category' placeholder="Select from dropdown" list="brow">
                 <datalist id="brow">
@@ -32,7 +31,7 @@
                     <option value="homegoods">
                     <option value="furniture">
                     <option value="books">
-                </datalist>  
+                </datalist>
                 <p>
                     <button class="" type="submit">Show Results</button>
                 </p>
@@ -42,19 +41,18 @@
 
         <div class="col-6">
             {% for post in posts %}
-            <div class="card mt-5" style="width: 18rem;">
+            <div class="card mt-5" style="width: 18rem;" data-post-id="{{ post.id }}">
                 <img src="{{ post.post_image.url }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title"><a href="{% url 'post_detail' post_pk=post.pk %}">{{ post.title }}</a></h5>
-                    <span class="card-subtitle mb-2 text-muted">{{ post.request_or_offer}}</span>
+                    <span class="card-subtitle mb-2 text-muted">{{ post.request_or_offer}} |</span>
                     <span class="card-subtitle mb-2 text-muted">{{ post.category }}</span>
                     <p class="card-text">{{ post.post_text }}</p>
                     <footer class="card-footer text-muted">{{ post.address }}</footer>
                 </div>
             </div>
-            <div id="commentSection">
-
-            </div>
+            <div class="commentSection" data-post-id="{{ post.id }}"></div>
+            <div class="addCommentSection" data-post-id="{{ post.id }}"></div>
 
             {% endfor %}
         </div>
