@@ -2,25 +2,28 @@
 {% block content %}
 
 
-<div class="container ml-2 mr-2">
-    <div class="row">
+<div class="mt-4">
+    <h1 class="text-center">Your Community's needs and offers</h1>
+</div>
+<div class="row mt-5">
 
-        <div class="col-4">
-            <a class="btn ml-5 mt-5" href="{% url 'add_request_offer' %}" role="button"> Make a New Request or Offer
-            </a>
-            <div class="mt-2">
+    <div class=" ml-3 col-4">
+        <a class="btn ml-5 mt-5" href="{% url 'add_request_offer' %}" role="button"> Make a New Request or Offer
+        </a>
+        <div class="ml-5 mt-4 search">
+            <div class="">
                 <h4>Search Posts by Tag</h4>
 
                 <form action="{% url 'search_tags' %}" method='GET'>
                     <input type='search' name='q' placeholder="Enter a single tag" class="">
                     <p>
-                        <button class="btn" type="submit">Show Results</button>
+                        <button class="btn mt-3" type="submit">Show Results</button>
 
                     </p>
                 </form>
             </div>
 
-            <div class="m2">
+            <div class="mt-4">
                 <h4>Search by Category</h4>
 
                 <form action="{% url 'search_category' %}" method='GET'>
@@ -36,35 +39,36 @@
                         <option value="books">
                     </datalist>
                     <p>
-                        <button class="btn" type="submit">Show Results</button>
+                        <button class="btn mt-3" type="submit">Show Results</button>
                     </p>
                 </form>
             </div>
         </div>
+    </div>
 
 
-        <div class="col-6">
-            {% for post in posts %}
-            <div class="card mt-5" style="width: 100%;">
-                <img src="{{ post.post_image.url }}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title"><a href="{% url 'post_detail' post_pk=post.pk %}">{{ post.title }}</a>
-                    </h5>
-                    <span class="card-subtitle mb-2 text-muted">{{ post.request_or_offer}}</span>
-                    <span class="card-subtitle mb-2 text-muted">{{ post.category }}</span>
-                    <p class="card-text">{{ post.post_text }}</p>
-                    <footer class="card-footer text-muted">{{ post.address }}</footer>
-                </div>
+    <div class="col-7">
+        {% for post in posts %}
+        <div class=" card mt-5" style="width: 100%;">
+            <img src="{{ post.post_image.url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{% url 'post_detail' post_pk=post.pk %}">{{ post.title }}</a>
+                </h5>
+                <span class="card-subtitle mb-2 text-muted">{{ post.request_or_offer}}</span>
+                <span class="card-subtitle mb-2 text-muted">{{ post.category }}</span>
+                <p class="card-text">{{ post.post_text }}</p>
+                <footer class="card-footer text-muted">{{ post.address }}</footer>
             </div>
-            <div id="commentSection">
+        </div>
+        <div id="commentSection">
 
-            </div>
-
-            {% endfor %}
         </div>
 
+        {% endfor %}
     </div>
+
 </div>
+
 
 
 {% endblock %}

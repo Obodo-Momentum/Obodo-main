@@ -38,8 +38,8 @@
   </div>
 
   {% if user.is_authenticated %}
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="#">Menu</a>
+  <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand nav-link" href="#">Menu</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -51,13 +51,9 @@
               class="sr-only">(current)</span></a></li>
         <li class="nav-item active"><a href="{% url 'view_user_profile' user_pk=user.pk %}"
             class="nav-link">Profile<span class="sr-only">(current)</span></a></li>
-        <li class="nav-item active"><a href="{% url 'view_user_posts' %}" class="nav-link">Your Posts<span
-              class="sr-only">(current)</span></a></li>
         <li class="nav-item active"><a href="{% url 'browse_organizations' %}" class="nav-link">Organizations<span
               class="sr-only">(current)</span></a></li>
         <li class="nav-item active"><a href="{% url 'view_all_events' %}" class="nav-link">Events<span
-              class="sr-only">(current)</span></a></li>
-        <li class="nav-item active"><a href="{% url 'list_tags' %}" class="nav-link">Search by Tag<span
               class="sr-only">(current)</span></a></li>
         <div class="dropdown-divider"></div>
         <li class="nav-item active"><a href="{% url 'auth_logout' %}" class="nav-link">Logout<span
@@ -67,7 +63,7 @@
     </div>
   </nav>
   {% else %}
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg">
     <a class="navbar-brand" href="#">Menu</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

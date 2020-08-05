@@ -97,8 +97,9 @@ img {
     -ms-transform: translate(-50%,-50%);
 }
 
-.org-search{
+.search{
   border: 0.10rem solid black;
+  padding: 10%;
 }
 
 .landingPageContent{
