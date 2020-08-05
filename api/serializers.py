@@ -24,6 +24,7 @@ class RequestOfferPostSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
     commenter = serializers.StringRelatedField()
+    posted_at = serializers.DateTimeField(format="%m-%d-%Y %H:%M:%S")
     class Meta:
         model = Comment
         fields = (
