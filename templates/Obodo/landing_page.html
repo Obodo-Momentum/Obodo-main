@@ -1,15 +1,31 @@
-{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obodo landing page</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+</head>
 
-<video autoplay muted loop id="myVideo">
-    <source src="../static/images/production ID_4617439 copy.mp4" type="video/mp4">
-</video>
+<body>
 
-<div class="content">
-    <h1>Obodo</h1>
-    <p>A place for community</p>
-    <a href="{% url 'auth_login' %}" class="nav-link">Login or Create a New Account</a>
-</div>
+    {% block content %}
 
-{% endblock %}
+    <video autoplay muted loop id="myVideo">
+        <source src="../static/images/production ID_4617439 copy.mp4" type="video/mp4">
+    </video>
+
+    <div class="landingPageContent">
+        <h1 class="text-center text-large">Obodo</h1>
+        <p class="text-center font-weight-light">A place for community</p>
+        <a href="{% url 'auth_login' %}" class="text-center font-weight-lighter">Login or Create a New Account</a>
+    </div>
+
+    {% endblock %}
+</body>
+
+</html>

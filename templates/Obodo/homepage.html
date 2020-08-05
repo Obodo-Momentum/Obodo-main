@@ -8,35 +8,38 @@
         <div class="col-4">
             <a class="btn ml-5 mt-5" href="{% url 'add_request_offer' %}" role="button"> Make a New Request or Offer
             </a>
+            <div class="mt-2">
+                <h4>Search Posts by Tag</h4>
 
-            <h4>Search Posts by Tag</h4>
+                <form action="{% url 'search_tags' %}" method='GET'>
+                    <input type='search' name='q' placeholder="Enter a single tag" class="">
+                    <p>
+                        <button class="btn" type="submit">Show Results</button>
 
-            <form action="{% url 'search_tags' %}" method='GET'>
-                <input type='search' name='q' placeholder="Enter a single tag" class="">
-                <p>
-                    <button class="" type="submit">Show Results</button>
+                    </p>
+                </form>
+            </div>
 
-                </p>
-            </form>
+            <div class="m2">
+                <h4>Search by Category</h4>
 
-            <h4>Search by Category</h4>
-
-            <form action="{% url 'search_category' %}" method='GET'>
-                <input type='search' name='category' placeholder="Select from dropdown" list="brow">
-                <datalist id="brow">
-                    <option value="kids">
-                    <option value="outdoors">
-                    <option value="services">
-                    <option value="food">
-                    <option value="clothing">
-                    <option value="homegoods">
-                    <option value="furniture">
-                    <option value="books">
-                </datalist>
-                <p>
-                    <button class="" type="submit">Show Results</button>
-                </p>
-            </form>
+                <form action="{% url 'search_category' %}" method='GET'>
+                    <input type='search' name='category' placeholder="Select from dropdown" list="brow">
+                    <datalist id="brow">
+                        <option value="kids">
+                        <option value="outdoors">
+                        <option value="services">
+                        <option value="food">
+                        <option value="clothing">
+                        <option value="homegoods">
+                        <option value="furniture">
+                        <option value="books">
+                    </datalist>
+                    <p>
+                        <button class="btn" type="submit">Show Results</button>
+                    </p>
+                </form>
+            </div>
         </div>
 
 

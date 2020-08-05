@@ -33,14 +33,14 @@
   color: white;
 }
 
-.navbar-list{
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+.navbar{
+ 
   background-color: #7D5F4F;
-  position: sticky;
-  top: 0;
-  
+  color: white;
+}
+
+.text-large{
+  font-size: xxx-large;
 }
 
 img { 
@@ -99,5 +99,16 @@ img {
 
 .org-search{
   border: 0.10rem solid black;
+}
+
+.landingPageContent{
+
+    position: fixed;
+    right: 26%;
+    bottom: 20rem;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 50%;
+    padding: 20px;
 }
 
