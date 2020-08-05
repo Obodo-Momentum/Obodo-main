@@ -1,18 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<div>
-    <ul class='navbar-list d-flex justify-content-end'>
-        <span class="mr-auto p-2 ">
-            <p class="username">Hello {{user.username}}!</p>
-        </span>
-        <li class="navbar-item"><a href="{% url 'view_user_profile' user_pk=user.pk %}" class="nav-link">
-                Profile</a></li>
-        <li class="navbar-item"><a href="{% url 'browse_organizations' %}" class="nav-link">Organizations</a></li>
-        <li class="navbar-item"><a href="{% url 'view_all_events' %}" class="nav-link">Events</a></li>
-        <li class="navbar-item"><a href="{% url 'list_tags' %}" class="nav-link">Search Posts by Tag</a></li>
-        <li class="navbar-item"><a href="{% url 'auth_logout' %}" class="nav-link">Logout</a></li>
-    </ul>
-</div>
+
 
 <div class="container ml-2 mr-2">
     <div class="row">
@@ -21,14 +9,44 @@
             <a class="btn ml-5 mt-5" href="{% url 'add_request_offer' %}" role="button"> Make a New Request or Offer
             </a>
 
+            <h4>Search Posts by Tag</h4>
+
+            <form action="{% url 'search_tags' %}" method='GET'>
+                <input type='search' name='q' placeholder="Enter a single tag" class="">
+                <p>
+                    <button class="" type="submit">Show Results</button>
+
+                </p>
+            </form>
+
+            <h4>Search by Category</h4>
+
+            <form action="{% url 'search_category' %}" method='GET'>
+                <input type='search' name='category' placeholder="Select from dropdown" list="brow">
+                <datalist id="brow">
+                    <option value="kids">
+                    <option value="outdoors">
+                    <option value="services">
+                    <option value="food">
+                    <option value="clothing">
+                    <option value="homegoods">
+                    <option value="furniture">
+                    <option value="books">
+                </datalist>
+                <p>
+                    <button class="" type="submit">Show Results</button>
+                </p>
+            </form>
         </div>
 
-        <div class="col-8">
+
+        <div class="col-6">
             {% for post in posts %}
             <div class="card mt-5" style="width: 100%;">
                 <img src="{{ post.post_image.url }}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title"><a href="{% url 'post_detail' post_pk=post.pk %}">{{ post.title }}</a></h5>
+                    <h5 class="card-title"><a href="{% url 'post_detail' post_pk=post.pk %}">{{ post.title }}</a>
+                    </h5>
                     <span class="card-subtitle mb-2 text-muted">{{ post.request_or_offer}}</span>
                     <span class="card-subtitle mb-2 text-muted">{{ post.category }}</span>
                     <p class="card-text">{{ post.post_text }}</p>
