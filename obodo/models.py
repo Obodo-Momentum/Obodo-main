@@ -46,7 +46,7 @@ class RequestOfferPost(models.Model):
     )
 
     member = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="posts", null=True)
-    post_image = ProcessedImageField(upload_to='images',
+    post_image = ProcessedImageField(upload_to='images', default='',
                                       processors=[ResizeToFill(300, 200)],
                                       format='JPEG',
                                       options={'quality': 60})

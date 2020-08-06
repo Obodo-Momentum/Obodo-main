@@ -10,7 +10,9 @@
     <h3>Profile for {{ user.username}} </h3>
     <p>Your Community: {{ user.community }}</p>
     <a href="{% url 'edit_user_profile' user_pk=user.pk %}"> Edit Profile Picture</a><br>
+    {% if profile_pic %}
     <img src="{{ user.profile_pic.url }}">
+    {% endif %}
 </div>
 
 <div id='user-posts'>
