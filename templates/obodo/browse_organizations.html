@@ -29,19 +29,17 @@
     </div>
 
     <div class="col-7 mt-5 ml-3 p-2">
-        <ul>
-            {% for organization in organizations.all %}
-            <div class="card" style="width: 100%;">
-                <img src="{{ organization.picture.url }}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{ organization.name }}</h5>
-                    <p class="card-text">{{ organization.mission }}</p>
-                    <a href="{% url 'view_organization' organization_pk=organization.pk %}" class="btn"
-                        role="button">More Details</a>
-                </div>
+        {% for organization in organizations.all %}
+        <div class="card" style="width: 100%;">
+            <img src="{{ organization.picture.url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ organization.name }}</h5>
+                <p class="card-text">{{ organization.mission }}</p>
+                <a href="{% url 'view_organization' organization_pk=organization.pk %}" class="btn" role="button">More
+                    Details</a>
             </div>
-            {% endfor %}
-        </ul>
+        </div>
+        {% endfor %}
     </div>
 
 </div>

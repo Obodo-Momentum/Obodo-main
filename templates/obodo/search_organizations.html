@@ -4,28 +4,39 @@
 
 
 
-<h2>Search Organizations</h2>
+<h2 class="ml-3 mt-4 p-4">Search Organizations</h2>
 
-<form action="{% url 'search_organizations' %}" method='GET'>
-    <input type='search' name='q' placeholder="Enter search here" class="">
-    <p>
-        <button class="" type="submit">Show Results</button>
-        <button><a href="{% url 'browse_organizations' %}">Back to Browse</a></button>
-    </p>
-</form>
-<br>
-<h6>Results:</h6>
-<ul>
-{% if organizations is not None %}
-    {% for organization in organizations %}
-        <li><a class="" href="{% url 'view_organization' organization_pk=organization.pk %}">{{ organization.name }}</a></li>
-    {% empty %}
+<div class="row">
+    <div class='col ml-3'>
+        <div class="search mt-5">
+            <form action="{% url 'search_organizations' %}" method='GET'>
+                <input type='search' name='q' placeholder="Enter search here" class="">
+                <p class="mt-4">
+                    <button class="btn" type="submit">Show Results</button>
+                    <a href="{% url 'browse_organizations' %}" class="btn" role="button">Back to Browse</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <div class="col p-4 mr-3">
+        <h6>Results:</h6>
+        {% if organizations is not None %}
+        {% for organization in organizations %}
+        <div class="card" style="width: 100%;">
+            <img src="{{ organization.picture.url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ organization.name }}</h5>
+                <p class="card-text">{{ organization.mission }}</p>
+                <a href="{% url 'view_organization' organization_pk=organization.pk %}" class="btn" role="button">More
+                    Details</a>
+            </div>
+        </div>
+        {% empty %}
         <p>No results match your query.</p>
-    {% endfor %}
-{% endif %}
-</ul>
+        {% endfor %}
+        {% endif %}
+    </div>
 
-
-
-
+</div>
 {% endblock %}

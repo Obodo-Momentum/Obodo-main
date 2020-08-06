@@ -4,35 +4,56 @@
 
 
 
-<h2>Posts related to selected category:</h2>
+<h2 class="mt-4 p-4">Posts related to selected category:</h2>
+<div class="row">
+    <div class="col ml-3 mt-4">
+        <div class="search mt-5">
+            <form action="{% url 'search_category' %}" method='GET'>
+                <input type='search' name='category' placeholder="Enter search here" list="brow">
+                <datalist id="brow">
+                    <option value="kids">
+                    <option value="outdoors">
+                    <option value="services">
+                    <option value="food">
+                    <option value="clothing">
+                    <option value="homegoods">
+                    <option value="furniture">
+                    <option value="books">
+                </datalist>
+                <p>
+                    <button class="btn mt-4" type="submit">Show Results</button>
+                </p>
+            </form>
+        </div>
 
-<form action="{% url 'search_category' %}" method='GET'>
-    <input type='search' name='category' placeholder="Enter search here" list="brow">
-    <datalist id="brow">
-        <option value="kids">
-        <option value="outdoors">
-        <option value="services">
-        <option value="food">
-        <option value="clothing">
-        <option value="homegoods">
-        <option value="furniture">
-        <option value="books">
-    </datalist>  
-    <p>
-        <button class="" type="submit">Show Results</button>
-    </p>
-</form>
-<br>
-<h6>Results:</h6>
-<ul>
-{% if posts is not None %}
-    {% for post in posts %}
-        <li><a class="" href="{% url 'post_detail' post_pk=post.pk %}">{{ post.title }}</a></li>
-    {% empty %}
+    </div>
+
+    <div class="col mt-4">
+        <h6>Results:</h6>
+
+        {% if posts is not None %}
+        {% for post in posts %}
+        <div class="card mt-4" style="width: 100%;" data-post-id="{{ post.id }}">
+            <img src="{{ post.post_image.url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{% url 'post_detail' post_pk=post.pk %}">{{ post.title }}</a></h5>
+                <span class="card-subtitle mb-2 text-muted">{{ post.request_or_offer}} |</span>
+                <span class="card-subtitle mb-2 text-muted">{{ post.category }}</span>
+                <p class="card-text">{{ post.post_text }}</p>
+                <footer class="card-footer text-muted">{{ post.address }}</footer>
+            </div>
+        </div>
+        <div class="commentSection" data-post-id="{{ post.id }}"></div>
+        {% empty %}
         <p>No results match your query.</p>
-    {% endfor %}
-{% endif %}
-</ul>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+</div>
+
+
+
 
 
 

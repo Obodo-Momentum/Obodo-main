@@ -4,26 +4,41 @@
 
 
 
-<h2>Search Events</h2>
+<h2 class="mt-4 p-4 ml-3">Search Events</h2>
+<div class="row">
+    <div class="col ml-3">
+        <div class="search mt-4">
+            <form action="{% url 'search_events' %}" method='GET'>
+                <input type='search' name='q' placeholder="Enter search here" class="">
+                <p class="mt-3">
+                    <button class="btn" type="submit">Show Results</button>
+                    <a href="{% url 'view_all_events' %}" class="btn" role="button">Back to Browse</a>
+                </p>
+            </form>
+        </div>
+    </div>
 
-<form action="{% url 'search_events' %}" method='GET'>
-    <input type='search' name='q' placeholder="Enter search here" class="">
-    <p>
-        <button class="" type="submit">Show Results</button>
-        <button><a href="{% url 'view_all_events' %}">Back to Browse</a></button>
-    </p>
-</form>
-<br>
-<h6>Results:</h6>
-<ul>
-{% if events is not None %}
-    {% for event in events %}
-        <li><a class="" href="{% url 'view_event_page' event_pk=event.pk %}">{{ event.event_title }}</a></li>
-    {% empty %}
+    <div class="col mr-3">
+        <h6>Results:</h6>
+
+        {% if events is not None %}
+        {% for event in events %}
+        <div class="card" style="width: 100%;">
+            <img src="{{ event.event_pic.url }}" class="card-img-top" alt="event pic">
+            <div class="card-body">
+                <h5 class="card-title">{{ event.event_title }}</h5>
+                <p class="card-text">{{ event.event_text }}</p>
+                <a href="{% url 'view_event_page' event_pk=event.pk %}" class="btn " role="button">More Details</a>
+            </div>
+        </div>
+        {% empty %}
         <p>No results match your query.</p>
-    {% endfor %}
-{% endif %}
-</ul>
+        {% endfor %}
+        {% endif %}
+
+
+    </div>
+</div>
 
 
 

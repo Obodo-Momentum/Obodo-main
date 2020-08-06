@@ -6,7 +6,7 @@ export default function Comment ({ comment }) {
   return (
     <Card>
       <Card.Text>{comment.comment_text}</Card.Text>
-      <Card.Subtitle className=' mb-2 text-muted'>{comment.username}</Card.Subtitle>
+      <Card.Subtitle className=' mb-2 text-muted'>{comment.commenter}</Card.Subtitle>
     </Card>
   )
 }
