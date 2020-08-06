@@ -1,21 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-
-<button><a href="{% url 'add_organization' %}">Create an Organization</a></button>
-<button><a href="{% url 'add_event' %}">Create an Event</a></button>
-
-<div>
-    <h3>Profile for {{ user.username}} </h3>
-    <p>Your Community: {{ user.community }}</p>
-    <a href="{% url 'edit_user_profile' user_pk=user.pk %}"> Edit Profile Picture</a><br>
-    {% if profile_pic %}
-    <img src="{{ user.profile_pic.url }}">
-    {% endif %}
+<div class="row">
+    <div class="col-3">
+        <img src="{{ user.profile_pic.url }}">
+    </div>
+    <div class="col-7">
+        <h1>{{ user.username}} </h1>
+        <p>Your Community: {{ user.community }}</p>
+        <a href="{% url 'edit_user_profile' user_pk=user.pk %}" class="btn" role="button"> Edit Profile Picture</a><br>
+    </div>
 </div>
 
-<div id='user-posts'>
+<div id='user-posts' class="ml-4">
     <p>your posts</p>
     {% for post in user.posts.all %}
     <div>

@@ -2,7 +2,7 @@ import React from 'react'
 import Card from 'react-bootstrap/Card'
 import { propTypes } from 'react-bootstrap/esm/Image'
 
-export default function Preview ({ title, post_text, category, request_or_offer, location, timeline_start, timeline_end, post_image, tag_names }) {
+export default function Preview ({ title, post_text, category, request_or_offer, location, timeline_start, timeline_end, post_image, tag_names, name, mission, event_text, event_title }) {
   let imageUrl = ''
   switch (category) {
     case 'kids':
@@ -38,10 +38,18 @@ export default function Preview ({ title, post_text, category, request_or_offer,
         <Card.Img variant='top' src={imageUrl} />
         <Card.Body>
           <Card.Title>{title}</Card.Title>
+          <Card.Title>{name}</Card.Title>
+          <Card.Title>{event_title}</Card.Title>
           <Card.Subtitle>{request_or_offer}</Card.Subtitle>
           <Card.Subtitle>{category}</Card.Subtitle>
           <Card.Text>
             {post_text}
+          </Card.Text>
+          <Card.Text>
+            {mission}
+          </Card.Text>
+          <Card.Text>
+            {event_text}
           </Card.Text>
           <footer>
             <div>{timeline_start} - {timeline_end}</div>
