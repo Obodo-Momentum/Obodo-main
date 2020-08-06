@@ -1,24 +1,36 @@
 {% extends "base.html" %}
 
-
+{% block content%}
 <div>
-  <p>Organization Profile</p>
-  <img src="{{ organization.picture.url }}" />
-  <p>Organization Creator: {{ organization.creator }}</p>
-  <p>{{ organization.name }}</p>
-  <p>{{ organization.located_at }}</p>
-  <p>{{ organization.creator.community }}</p>
-  <p>Mission Statement: {{ organization.mission }}</p>
+  <h1 class="text-center mt-4 p-4">Organization Profile</h1>
 </div>
 
-<p><a href="{% url 'add_member' organization_pk=organization.pk %}">Click to Join</a></p>
+<div class="row ml-3 mr-3">
 
-<p>Members:</p>
-<ul>
-  {% for member in organization.members.all %}
-  <li><a href="{% url 'view_user_profile' user_pk=user.pk %}">{{ member }}</a></li>
-  {% endfor %}
-</ul>
+  <div class="col">
+    <p>{{ organization.name }}</p>
+    <p>Organization Creator: {{ organization.creator }}</p>
+    <p>{{ organization.located_at }}</p>
+    <p>{{ organization.creator.community }}</p>
+    <p>Mission Statement: {{ organization.mission }}</p>
+    <a href="{% url 'add_member' organization_pk=organization.pk %}" class="btn" role="button">Click to Join</a>
+  </div>
+
+  <div class="col">
+    <img src="{{ organization.picture.url }}" />
+  </div>
+
+</div>
+
+<div class="ml-3">
+  <p>Members:</p>
+  <ul>
+    {% for member in organization.members.all %}
+    <li><a href="{% url 'view_user_profile' user_pk=user.pk %}">{{ member }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+
 
 
 {% endblock %}

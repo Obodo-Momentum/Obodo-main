@@ -3,10 +3,24 @@
 
 
 {% block content %}
+
 <div>
-    <p>Event</p>
-    <img src="{{ event.event_pic.url }}"/>
+    <h1 class="text-center mt-4 p-4">Event Details</h1>
 </div>
+
+<div class="row">
+    <div class="col ml-3">
+        <h1>{{event.event_title}}</h1>
+        <p>{{event.event_location}}</p>
+        <p>{{event.event_text}}</p>
+        <p>starts:{{event.start_date}}-{{event.end_date}}</p>
+    </div>
+
+    <div class="col">
+        <img src="{{ event.event_pic.url }}" />
+    </div>
+</div>
+
 
 
 {% endblock %}

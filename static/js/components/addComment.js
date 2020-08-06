@@ -27,9 +27,9 @@ class AddComment extends React.Component {
       })
       .then(response => {
         this.setState({ posted: true })
-        this.location.reload()
       }
       )
+    window.location.reload()
     console.log(this.state.comment_text)
   }
 
@@ -41,7 +41,10 @@ class AddComment extends React.Component {
             <Form.Control as='textarea' rows='3' placeholder='Add a comment' value={this.state.comment_text} onChange={this.handleTextChange} />
           </Form.Group>
 
-          <Button className='btn' type='submit' name='submit' value='submit'>
+          <Button
+            className='btn' type='submit' name='submit' value='submit'
+            style={{ backgroundColor: '#002400' }}
+          >
            Submit
           </Button>
         </Form>
