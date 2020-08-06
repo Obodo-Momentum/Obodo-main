@@ -5,7 +5,7 @@
 {% block content %}
 
 
-<div class="mt-4 mb-4">
+<div class="mt-4 p-4">
     <h2 class="text-center">Organizations in your community</h2>
 </div>
 
@@ -28,20 +28,18 @@
         </div>
     </div>
 
-    <div class="col-7">
-        <ul>
-            {% for organization in organizations.all %}
-            <div class="card" style="width: 100%;">
-                <img src="{{ organization.picture.url }}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{ organization.name }}</h5>
-                    <p class="card-text">{{ organization.mission }}</p>
-                    <a href="{% url 'view_organization' organization_pk=organization.pk %}" class="btn"
-                        role="button">More Details</a>
-                </div>
+    <div class="col-7 mt-5 ml-3 p-2">
+        {% for organization in organizations.all %}
+        <div class="card" style="width: 100%;">
+            <img src="{{ organization.picture.url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ organization.name }}</h5>
+                <p class="card-text">{{ organization.mission }}</p>
+                <a href="{% url 'view_organization' organization_pk=organization.pk %}" class="btn" role="button">More
+                    Details</a>
             </div>
-            {% endfor %}
-        </ul>
+        </div>
+        {% endfor %}
     </div>
 
 </div>

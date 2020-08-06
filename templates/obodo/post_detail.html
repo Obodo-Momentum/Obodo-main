@@ -1,16 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-
-<div>
-    <div class="">Title: {{ post.title }}</div>
-    <div class="">Text: {{ post.post_text }}</div>
-    <img src="{{ post.post_image.url }}" alt="My image" />
+<div class="mt-4 p-4">
+    <h1 class="text-center">{{ post.title }}</h1>
 </div>
 
-<div>
-    <button><a href="{% url 'delete_post' post_pk=post.pk %}">Delete this post</a></button>
+<div class="row m-3">
+    <div class="col">
+        <p>{{post.request_or_offer}} | {{post.category}}</p>
+        <p>{{post.post_text}}</p>
+    </div>
+    <div class="post-image col">
+        <img src="{{ post.post_image.url }}" alt="My image" />
+    </div>
 </div>
+
+
+<div class="ml-3">
+    <a href="{% url 'delete_post' post_pk=post.pk %}" class="btn" role="button">Delete this post</a> </div>
 
 {% endblock %}

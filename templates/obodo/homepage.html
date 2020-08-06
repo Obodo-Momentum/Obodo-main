@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<h1 class="text-center mt-4">Your community's needs and offers</h1>
+<h1 class="text-center mt-4 p-4">{{user.community}} needs and offers</h1>
 <div class="row">
 
     <div class="col-4">
@@ -46,7 +46,9 @@
         <div class="card mt-5" style="width: 100%;" data-post-id="{{ post.id }}">
             <img src="{{ post.post_image.url }}" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title"><a href="{% url 'post_detail' post_pk=post.pk %}">{{ post.title }}</a></h5>
+                <h5 class="card-title"><a href="{% url 'post_detail' post_pk=post.pk %}"
+                        class="postLink">{{ post.title }}</a>
+                </h5>
                 <span class="card-subtitle mb-2 text-muted">{{ post.request_or_offer}} |</span>
                 <span class="card-subtitle mb-2 text-muted">{{ post.category }}</span>
                 <p class="card-text">{{ post.post_text }}</p>

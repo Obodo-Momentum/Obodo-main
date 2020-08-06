@@ -122,3 +122,11 @@ img {
   text-decoration: underline;
   color: white;
 }
+
+.pageLink{
+  color: black;
+}
+.pageLink:hover{
+  color: black;
+  text-decoration: underline;
+}
