@@ -46,7 +46,7 @@ class RequestOfferPost(models.Model):
     )
 
     member = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="posts", null=True)
-    post_image = ProcessedImageField(upload_to='images',
+    post_image = ProcessedImageField(upload_to='images', default='',
                                       processors=[ResizeToFill(300, 200)],
                                       format='JPEG',
                                       options={'quality': 60})
@@ -86,7 +86,7 @@ class RequestOfferPost(models.Model):
 
 class Profile(models.Model):
     current_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="profiles", null=True)
-    profile_pic = ProcessedImageField(upload_to='images',
+    profile_pic = ProcessedImageField(upload_to='images', default='',
                                       processors=[ResizeToFill(300, 200)],
                                       format='JPEG',
                                       options={'quality': 60})
@@ -110,7 +110,7 @@ class Comment(models.Model):
 class Event(models.Model):
     host = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="events", null=True)
     event_title = models.CharField(max_length=50, null=True, blank=True)
-    event_pic = ProcessedImageField(upload_to='images',
+    event_pic = ProcessedImageField(upload_to='images', default='',
                                       processors=[ResizeToFill(300, 200)],
                                       format='JPEG',
                                       options={'quality': 60})
@@ -124,7 +124,7 @@ class Event(models.Model):
 class Organization(models.Model):
     creator = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='creators', null=True)
     name = models.CharField(max_length=100, null=True, blank=True)
-    picture = ProcessedImageField(upload_to='images',
+    picture = ProcessedImageField(upload_to='images', default='',
                                       processors=[ResizeToFill(300, 200)],
                                       format='JPEG',
                                       options={'quality': 60})

@@ -22,7 +22,7 @@ LOCATION_CHOICES = (
 
 class User(AbstractUser):
     community = models.CharField(max_length=55, choices=LOCATION_CHOICES)
-    profile_pic = ProcessedImageField(upload_to='images',
+    profile_pic = ProcessedImageField(upload_to='images', default=''
                                       processors=[ResizeToFill(300, 200)],
                                       format='JPEG',
                                       options={'quality': 60})
